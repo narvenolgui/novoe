@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📋 Нейро-анкета | Бумажная версия + ввод данных</title>
+    <title>Нейро-анкета для родителей (бумажная версия)</title>
     <style>
         * {
             margin: 0;
@@ -14,126 +14,171 @@
         body {
             font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
             background: #e8dfee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
             padding: 30px 20px;
         }
 
-        .app-wrapper {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        /* Переключение вкладок */
-        .tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-            background: white;
-            padding: 8px;
-            border-radius: 60px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 14px 10px;
-            border: none;
-            background: transparent;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #5e4a6e;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .tab-btn.active {
-            background: #2d1b4e;
-            color: white;
-            box-shadow: 0 8px 16px #2d1b4e40;
-        }
-
-        .panel {
-            display: none;
+        .paper {
+            max-width: 800px;
+            width: 100%;
             background: white;
             border-radius: 36px;
-            padding: 32px 28px;
-            box-shadow: 0 20px 40px -10px rgba(45, 27, 78, 0.2);
+            box-shadow: 0 25px 50px -12px rgba(45, 27, 78, 0.25);
+            padding: 40px 35px;
+            border: 1px solid #dac0f0;
         }
 
-        .panel.active {
-            display: block;
+        /* Для печати — убираем всё лишнее */
+        @media print {
+            body {
+                background: white;
+                padding: 0.3in;
+            }
+            .paper {
+                box-shadow: none;
+                border: 2px solid #2d1b4e;
+                padding: 30px 25px;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .question-block {
+                page-break-inside: avoid;
+            }
         }
 
-        h2 {
-            color: #2d1b4e;
-            font-size: 2rem;
-            margin-bottom: 12px;
+        .header {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             border-bottom: 3px dashed #b185db;
             padding-bottom: 20px;
+            margin-bottom: 25px;
         }
 
-        .print-sheet {
-            background: #fefcf8;
-            border: 2px solid #dac0f0;
-            border-radius: 28px;
-            padding: 30px 25px;
-            margin: 25px 0;
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #2d1b4e;
+            letter-spacing: -0.01em;
+        }
+
+        .header span {
+            background: #2d1b4e;
+            color: white;
+            font-size: 1rem;
+            padding: 6px 18px;
+            border-radius: 40px;
+            margin-left: 10px;
+        }
+
+        .subtitle {
+            color: #4a3a5c;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            font-style: italic;
         }
 
         .question-block {
             margin-bottom: 28px;
-            page-break-inside: avoid;
+            border-bottom: 1px dotted #e5d5f5;
+            padding-bottom: 20px;
         }
 
         .q-title {
             font-weight: 700;
             font-size: 1.25rem;
             color: #1e1130;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .q-number {
+            background: #f0e6ff;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #2d1b4e;
         }
 
         .option-row {
             display: flex;
-            align-items: baseline;
-            gap: 14px;
-            margin-left: 10px;
-            padding: 8px 0;
-            border-bottom: 1px dotted #e5d5f5;
+            align-items: center;
+            gap: 16px;
+            padding: 10px 0 10px 15px;
         }
 
         .option-row input[type="checkbox"] {
-            width: 22px;
-            height: 22px;
+            width: 24px;
+            height: 24px;
             accent-color: #2d1b4e;
-            transform: scale(1.1);
             cursor: pointer;
+            flex-shrink: 0;
         }
 
         .option-row label {
             font-size: 1.15rem;
             color: #2d1b4e;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .emoji-medium {
-            font-size: 1.7rem;
-            margin-right: 10px;
+        .emoji-big {
+            font-size: 1.8rem;
+            min-width: 40px;
+        }
+
+        .child-info {
+            margin-top: 35px;
+            padding-top: 20px;
+            border-top: 2px solid #b185db;
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .child-info div {
+            font-size: 1.2rem;
+            color: #2d1b4e;
+            font-weight: 500;
+        }
+
+        .child-info .line {
+            border-bottom: 2px solid #b185db;
+            min-width: 200px;
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #5e4a6e;
+            font-size: 1rem;
+            text-align: center;
         }
 
         .print-btn {
             background: #2d1b4e;
             color: white;
             border: none;
-            padding: 18px 28px;
+            padding: 18px 30px;
             border-radius: 60px;
             font-size: 1.3rem;
             font-weight: 700;
             cursor: pointer;
             box-shadow: 0 10px 20px #2d1b4e60;
-            margin-top: 15px;
+            margin-top: 30px;
             width: 100%;
             transition: 0.15s;
         }
@@ -142,356 +187,191 @@
             background: #412a66;
         }
 
-        /* Панель ввода данных */
-        .input-group {
-            margin-bottom: 28px;
-        }
-
-        .input-group label {
-            font-weight: 600;
-            color: #2d1b4e;
-            font-size: 1.2rem;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        select {
-            width: 100%;
-            padding: 18px 20px;
-            border-radius: 40px;
-            border: 2px solid #dac0f0;
-            font-size: 1.1rem;
-            background: white;
-            color: #1e1130;
-            font-weight: 500;
-        }
-
-        .result-preview {
-            background: #f3edfa;
-            border-radius: 24px;
-            padding: 24px;
-            margin: 30px 0;
-        }
-
-        .rec-item {
-            background: white;
+        .hint {
+            background: #f9f5ff;
             border-radius: 20px;
-            padding: 16px 22px;
-            margin-bottom: 12px;
-            border-left: 10px solid #b185db;
-            font-size: 1.1rem;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .btn-secondary {
-            background: white;
-            border: 2px solid #2d1b4e;
-            color: #2d1b4e;
-            padding: 14px 24px;
-            border-radius: 60px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            flex: 1;
-        }
-
-        .btn-primary {
-            background: #2d1b4e;
-            color: white;
-            border: none;
-            padding: 16px 28px;
-            border-radius: 60px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            cursor: pointer;
-            flex: 2;
-        }
-
-        .note {
-            color: #5e4a6e;
-            margin: 20px 0 10px;
-            font-style: italic;
-        }
-
-        @media print {
-            body { background: white; padding: 0.2in; }
-            .tabs, .no-print, .print-btn, .app-wrapper > h1, .action-buttons { display: none !important; }
-            .panel { display: block !important; background: white; box-shadow: none; padding: 0; }
-            .print-sheet { border: 2px solid #2d1b4e; }
+            padding: 14px 20px;
+            margin-bottom: 25px;
+            color: #4a3568;
+            border-left: 6px solid #b185db;
         }
     </style>
 </head>
 <body>
-<div class="app-wrapper">
-    
-    <!-- Вкладки: Анкета на бумаге | Ввод данных и печать результата -->
-    <div class="tabs no-print">
-        <button class="tab-btn active" data-tab="paperTab">📄 Бумажная анкета (для печати)</button>
-        <button class="tab-btn" data-tab="inputTab">🖨️ Ввод данных → выдать результат</button>
-    </div>
-
-    <!-- ПАНЕЛЬ 1: БУМАЖНАЯ АНКЕТА (галочки) -->
-    <div id="paperTab" class="panel active">
-        <h2>🧠 Нейро-анкета <span style="font-size:1rem; background:#2d1b4e; color:white; padding:4px 16px; border-radius:40px;">для родителей</span></h2>
-        <p style="margin-bottom:20px; color:#3a2a4a;">Поставьте галочку ✓ в подходящем варианте (только один в каждом вопросе).</p>
-        
-        <div class="print-sheet" id="printableSheet">
-            <!-- Вопрос 1 -->
-            <div class="question-block">
-                <div class="q-title">1️⃣ Как ребёнок переносит дорогу в машине / качели?</div>
-                <div class="option-row"><input type="checkbox" class="paper-check" data-q="0" data-val="vestib_low"> <label><span class="emoji-medium">🤢</span> Укачивает, жалуется на тошноту</label></div>
-                <div class="option-row"><input type="checkbox" class="paper-check" data-q="0" data-val="vestib_mid"> <label><span class="emoji-medium">🙂</span> Нормально, но не любит резких поворотов</label></div>
-                <div class="option-row"><input type="checkbox" class="paper-check" data-q="0" data-val="vestib_high"> <label><span class="emoji-medium">🎢</span> Обожает, просит быстрее/выше</label></div>
-            </div>
-            <!-- Вопрос 2 -->
-            <div class="question-block">
-                <div class="q-title">2️⃣ Что происходит во время домашнего задания?</div>
-                <div class="option-row"><input type="checkbox" class="paper-check" data-q="1" data-val="energy_low"> <label><span class="emoji-medium">😴</span> Быстро устаёт, начинает зевать, «зависает»</label></div>
-                <div class="option-row"><input type="checkbox" class="paper-check" data-q="1" data-val="focus_low"> <label><span class="emoji-medium">🤯</span> Психует, бросает ручку, отвлекается на всё</label></div>
-                <div class="option-row"><input type="checkbox" class="paper-check" data-q="1" data-val="motor_restless"> <label><span class="emoji-medium">⚡</span> Делает, но постоянно ёрзает, меняет позу</label></div>
-            </div>
-            <!-- Вопрос 3 -->
-            <div class="question-block">
-                <div class="q-title">3️⃣ Реакция на громкие звуки (пылесос, крики, школа)?</div>
-                <div class="option-row"><input type="checkbox" class="paper-check" data-q="2" data-val="audio_sensitive"> <label><span class="emoji-medium">🙉</span> Закрывает уши, пугается, плачет</label></div>
-                <div class="option-row"><input type="checkbox" class="paper-check" data-q="2" data-val="audio_normal"> <label><span class="emoji-medium">😐</span> Спокойно, не замечает</label></div>
-                <div class="option-row"><input type="checkbox" class="paper-check" data-q="2" data-val="audio_seeker"> <label><span class="emoji-medium">🔊</span> Сам шумит, громко говорит</label></div>
-            </div>
-            <!-- Вопрос 4 -->
-            <div class="question-block">
-                <div class="q-title">4️⃣ Еда и текстуры:</div>
-                <div class="option-row"><input type="checkbox" class="paper-check" data-q="3" data-val="oral_defensive"> <label><span class="emoji-medium">🥦</span> Привередлив, ест только привычное, давится кусочками</label></div>
-                <div class="option-row"><input type="checkbox" class="paper-check" data-q="3" data-val="oral_mid"> <label><span class="emoji-medium">🍝</span> Ест разное, но иногда отказывается от нового</label></div>
-                <div class="option-row"><input type="checkbox" class="paper-check" data-q="3" data-val="oral_seeker"> <label><span class="emoji-medium">🍭</span> Тянет в рот несъедобное, грызёт карандаши</label></div>
-            </div>
-            <!-- Вопрос 5 -->
-            <div class="question-block">
-                <div class="q-title">5️⃣ При письме или рисовании:</div>
-                <div class="option-row"><input type="checkbox" class="paper-check" data-q="4" data-val="press_hard"> <label><span class="emoji-medium">✍️</span> Сильно давит на ручку, рвёт бумагу</label></div>
-                <div class="option-row"><input type="checkbox" class="paper-check" data-q="4" data-val="press_weak"> <label><span class="emoji-medium">🖐️</span> Слабо держит, буквы бледные, быстро устаёт</label></div>
-                <div class="option-row"><input type="checkbox" class="paper-check" data-q="4" data-val="grip_unstable"> <label><span class="emoji-medium">🌀</span> Часто меняет хват, вертит ручку</label></div>
-            </div>
-            <!-- Вопрос 6 -->
-            <div class="question-block">
-                <div class="q-title">6️⃣ Выполнение инструкции из 2–3 шагов:</div>
-                <div class="option-row"><input type="checkbox" class="paper-check" data-q="5" data-val="seq_good"> <label><span class="emoji-medium">🐒</span> Запоминает и делает всё по порядку</label></div>
-                <div class="option-row"><input type="checkbox" class="paper-check" data-q="5" data-val="seq_mid"> <label><span class="emoji-medium">🐿️</span> Отвлекается, делает только первое или путает</label></div>
-                <div class="option-row"><input type="checkbox" class="paper-check" data-q="5" data-val="seq_low"> <label><span class="emoji-medium">🦥</span> Смотрит растерянно, нужны повторы</label></div>
-            </div>
-            <!-- Вопрос 7 -->
-            <div class="question-block">
-                <div class="q-title">7️⃣ Что чаще наблюдается вечером?</div>
-                <div class="option-row"><input type="checkbox" class="paper-check" data-q="6" data-val="hyper_evening"> <label><span class="emoji-medium">🌪️</span> Перевозбуждение, скачет, не может уснуть</label></div>
-                <div class="option-row"><input type="checkbox" class="paper-check" data-q="6" data-val="fatigue_evening"> <label><span class="emoji-medium">😩</span> Сильная усталость, капризы, «выжатый лимон»</label></div>
-                <div class="option-row"><input type="checkbox" class="paper-check" data-q="6" data-val="evening_ok"> <label><span class="emoji-medium">😌</span> Относительно спокоен, переключается на сон</label></div>
-            </div>
-            <p style="margin-top: 30px;">👤 Имя ребёнка: _________________________________  Возраст: _____</p>
-            <p style="margin-top: 20px;">Спасибо! Передайте анкету специалисту.</p>
+    <div class="paper" id="anketa">
+        <div class="header">
+            <h1>🧠 Нейро-анкета <span>экспресс</span></h1>
         </div>
+        <div class="subtitle">для детей 5–12 лет</div>
         
-        <button class="print-btn no-print" id="printPaperBtn">🖨️ Распечатать чистую анкету</button>
-        <p class="note no-print">Распечатайте и дайте родителю заполнить. Потом переключитесь на вкладку «Ввод данных».</p>
-    </div>
+        <div class="hint">
+            ✅ Поставьте галочку в одном подходящем варианте для каждого вопроса.
+        </div>
 
-    <!-- ПАНЕЛЬ 2: ВВОД ДАННЫХ ИЗ АНКЕТЫ + ГЕНЕРАЦИЯ РЕКОМЕНДАЦИЙ -->
-    <div id="inputTab" class="panel">
-        <h2>📋 Ввод данных из анкеты</h2>
-        <p style="margin-bottom: 25px;">Перенесите галочки родителя в форму ниже. Вы получите лист для печати с рекомендациями.</p>
-        
-        <div id="inputForm"></div>
-        
-        <div id="generatedResult" style="display: none;">
-            <div class="result-preview" id="recommendationPreview"></div>
-            <div class="action-buttons">
-                <button class="btn-secondary" id="editDataBtn">✏️ Изменить ответы</button>
-                <button class="btn-primary" id="printResultBtn">🖨️ Распечатать рекомендации</button>
+        <!-- Вопрос 1 -->
+        <div class="question-block">
+            <div class="q-title"><span class="q-number">1</span> Как ребёнок переносит дорогу в машине / качели?</div>
+            <div class="option-row">
+                <input type="checkbox" name="q1" value="vestib_low">
+                <label><span class="emoji-big">🤢</span> Укачивает, жалуется на тошноту</label>
+            </div>
+            <div class="option-row">
+                <input type="checkbox" name="q1" value="vestib_mid">
+                <label><span class="emoji-big">🙂</span> Нормально, но не любит резких поворотов</label>
+            </div>
+            <div class="option-row">
+                <input type="checkbox" name="q1" value="vestib_high">
+                <label><span class="emoji-big">🎢</span> Обожает, просит быстрее/выше</label>
             </div>
         </div>
+
+        <!-- Вопрос 2 -->
+        <div class="question-block">
+            <div class="q-title"><span class="q-number">2</span> Что происходит во время домашнего задания?</div>
+            <div class="option-row">
+                <input type="checkbox" name="q2" value="energy_low">
+                <label><span class="emoji-big">😴</span> Быстро устаёт, начинает зевать, «зависает»</label>
+            </div>
+            <div class="option-row">
+                <input type="checkbox" name="q2" value="focus_low">
+                <label><span class="emoji-big">🤯</span> Психует, бросает ручку, отвлекается на всё</label>
+            </div>
+            <div class="option-row">
+                <input type="checkbox" name="q2" value="motor_restless">
+                <label><span class="emoji-big">⚡</span> Делает, но постоянно ёрзает, меняет позу</label>
+            </div>
+        </div>
+
+        <!-- Вопрос 3 -->
+        <div class="question-block">
+            <div class="q-title"><span class="q-number">3</span> Реакция на громкие звуки (пылесос, крики, школьный шум)?</div>
+            <div class="option-row">
+                <input type="checkbox" name="q3" value="audio_sensitive">
+                <label><span class="emoji-big">🙉</span> Закрывает уши, пугается, плачет</label>
+            </div>
+            <div class="option-row">
+                <input type="checkbox" name="q3" value="audio_normal">
+                <label><span class="emoji-big">😐</span> Спокойно, не замечает</label>
+            </div>
+            <div class="option-row">
+                <input type="checkbox" name="q3" value="audio_seeker">
+                <label><span class="emoji-big">🔊</span> Сам шумит, громко говорит</label>
+            </div>
+        </div>
+
+        <!-- Вопрос 4 -->
+        <div class="question-block">
+            <div class="q-title"><span class="q-number">4</span> Еда и текстуры:</div>
+            <div class="option-row">
+                <input type="checkbox" name="q4" value="oral_defensive">
+                <label><span class="emoji-big">🥦</span> Привередлив, ест только привычное, давится кусочками</label>
+            </div>
+            <div class="option-row">
+                <input type="checkbox" name="q4" value="oral_mid">
+                <label><span class="emoji-big">🍝</span> Ест разное, но иногда отказывается от нового</label>
+            </div>
+            <div class="option-row">
+                <input type="checkbox" name="q4" value="oral_seeker">
+                <label><span class="emoji-big">🍭</span> Тянет в рот несъедобное, грызёт карандаши</label>
+            </div>
+        </div>
+
+        <!-- Вопрос 5 -->
+        <div class="question-block">
+            <div class="q-title"><span class="q-number">5</span> При письме или рисовании:</div>
+            <div class="option-row">
+                <input type="checkbox" name="q5" value="press_hard">
+                <label><span class="emoji-big">✍️</span> Сильно давит на ручку, рвёт бумагу</label>
+            </div>
+            <div class="option-row">
+                <input type="checkbox" name="q5" value="press_weak">
+                <label><span class="emoji-big">🖐️</span> Слабо держит, буквы бледные, быстро устаёт</label>
+            </div>
+            <div class="option-row">
+                <input type="checkbox" name="q5" value="grip_unstable">
+                <label><span class="emoji-big">🌀</span> Часто меняет хват, вертит ручку</label>
+            </div>
+        </div>
+
+        <!-- Вопрос 6 -->
+        <div class="question-block">
+            <div class="q-title"><span class="q-number">6</span> Выполнение инструкции из 2–3 шагов (принеси, положи, налей):</div>
+            <div class="option-row">
+                <input type="checkbox" name="q6" value="seq_good">
+                <label><span class="emoji-big">🐒</span> Запоминает и делает всё по порядку</label>
+            </div>
+            <div class="option-row">
+                <input type="checkbox" name="q6" value="seq_mid">
+                <label><span class="emoji-big">🐿️</span> Отвлекается, делает только первое или путает</label>
+            </div>
+            <div class="option-row">
+                <input type="checkbox" name="q6" value="seq_low">
+                <label><span class="emoji-big">🦥</span> Смотрит растерянно, нужны повторы</label>
+            </div>
+        </div>
+
+        <!-- Вопрос 7 -->
+        <div class="question-block">
+            <div class="q-title"><span class="q-number">7</span> Что чаще наблюдается вечером?</div>
+            <div class="option-row">
+                <input type="checkbox" name="q7" value="hyper_evening">
+                <label><span class="emoji-big">🌪️</span> Перевозбуждение, скачет, не может уснуть</label>
+            </div>
+            <div class="option-row">
+                <input type="checkbox" name="q7" value="fatigue_evening">
+                <label><span class="emoji-big">😩</span> Сильная усталость, капризы, «выжатый лимон»</label>
+            </div>
+            <div class="option-row">
+                <input type="checkbox" name="q7" value="evening_ok">
+                <label><span class="emoji-big">😌</span> Относительно спокоен, переключается на сон</label>
+            </div>
+        </div>
+
+        <!-- Данные о ребёнке -->
+        <div class="child-info">
+            <div>👤 Имя ребёнка: <span class="line"></span></div>
+            <div>🎂 Возраст: <span class="line"></span></div>
+        </div>
+
+        <div class="footer">
+            Спасибо! Передайте заполненную анкету специалисту.
+        </div>
+
+        <!-- Кнопка печати (не печатается) -->
+        <button class="print-btn no-print" id="printBtn">🖨️ Распечатать анкету</button>
+        <p class="no-print" style="text-align:center; margin-top:15px; color:#5e4a6e;">Нажмите, чтобы распечатать чистый бланк для родителей</p>
     </div>
-</div>
 
-<script>
-    (function(){
-        "use strict";
-
-        // --- переключение вкладок
-        const tabs = document.querySelectorAll('.tab-btn');
-        const panels = {
-            paperTab: document.getElementById('paperTab'),
-            inputTab: document.getElementById('inputTab')
-        };
-        
-        tabs.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const tabId = btn.dataset.tab;
-                tabs.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                Object.values(panels).forEach(p => p.classList.remove('active'));
-                panels[tabId].classList.add('active');
-            });
-        });
-
-        // --- Бумажная анкета: управление чекбоксами (один выбор в вопросе)
-        const paperChecks = document.querySelectorAll('.paper-check');
-        paperChecks.forEach(chk => {
-            chk.addEventListener('change', function(e) {
-                if (this.checked) {
-                    const q = this.dataset.q;
-                    document.querySelectorAll(`.paper-check[data-q="${q}"]`).forEach(other => {
-                        if (other !== this) other.checked = false;
+    <script>
+        (function() {
+            // Чтобы в каждом вопросе можно было выбрать только один вариант
+            const questionGroups = [
+                document.querySelectorAll('input[name="q1"]'),
+                document.querySelectorAll('input[name="q2"]'),
+                document.querySelectorAll('input[name="q3"]'),
+                document.querySelectorAll('input[name="q4"]'),
+                document.querySelectorAll('input[name="q5"]'),
+                document.querySelectorAll('input[name="q6"]'),
+                document.querySelectorAll('input[name="q7"]')
+            ];
+            
+            questionGroups.forEach(group => {
+                group.forEach(checkbox => {
+                    checkbox.addEventListener('change', function() {
+                        if (this.checked) {
+                            group.forEach(other => {
+                                if (other !== this) other.checked = false;
+                            });
+                        }
                     });
-                }
-            });
-        });
-
-        // Печать анкеты
-        document.getElementById('printPaperBtn').addEventListener('click', () => {
-            window.print();
-        });
-
-        // --- Данные вопросов (те же что в экспресс-диагностике)
-        const questions = [
-            { text: "Как ребёнок переносит дорогу в машине / качели?", options: [
-                {emoji:"🤢", label:"Укачивает, жалуется на тошноту", value:"vestib_low"},
-                {emoji:"🙂", label:"Нормально, но не любит резких поворотов", value:"vestib_mid"},
-                {emoji:"🎢", label:"Обожает, просит быстрее/выше", value:"vestib_high"} ] },
-            { text: "Что происходит во время домашнего задания?", options: [
-                {emoji:"😴", label:"Быстро устаёт, начинает зевать, «зависает»", value:"energy_low"},
-                {emoji:"🤯", label:"Психует, бросает ручку, отвлекается на всё", value:"focus_low"},
-                {emoji:"⚡", label:"Делает, но постоянно ёрзает, меняет позу", value:"motor_restless"} ] },
-            { text: "Реакция на громкие звуки?", options: [
-                {emoji:"🙉", label:"Закрывает уши, пугается, плачет", value:"audio_sensitive"},
-                {emoji:"😐", label:"Спокойно, не замечает", value:"audio_normal"},
-                {emoji:"🔊", label:"Сам шумит, громко говорит", value:"audio_seeker"} ] },
-            { text: "Еда и текстуры:", options: [
-                {emoji:"🥦", label:"Привередлив, ест только привычное, давится кусочками", value:"oral_defensive"},
-                {emoji:"🍝", label:"Ест разное, но иногда отказывается от нового", value:"oral_mid"},
-                {emoji:"🍭", label:"Тянет в рот несъедобное, грызёт карандаши", value:"oral_seeker"} ] },
-            { text: "При письме или рисовании:", options: [
-                {emoji:"✍️", label:"Сильно давит на ручку, рвёт бумагу", value:"press_hard"},
-                {emoji:"🖐️", label:"Слабо держит, буквы бледные, быстро устаёт", value:"press_weak"},
-                {emoji:"🌀", label:"Часто меняет хват, вертит ручку", value:"grip_unstable"} ] },
-            { text: "Выполнение инструкции из 2–3 шагов:", options: [
-                {emoji:"🐒", label:"Запоминает и делает всё по порядку", value:"seq_good"},
-                {emoji:"🐿️", label:"Отвлекается, делает только первое или путает", value:"seq_mid"},
-                {emoji:"🦥", label:"Смотрит растерянно, нужны повторы", value:"seq_low"} ] },
-            { text: "Что чаще наблюдается вечером?", options: [
-                {emoji:"🌪️", label:"Перевозбуждение, скачет, не может уснуть", value:"hyper_evening"},
-                {emoji:"😩", label:"Сильная усталость, капризы, «выжатый лимон»", value:"fatigue_evening"},
-                {emoji:"😌", label:"Относительно спокоен, переключается на сон", value:"evening_ok"} ] }
-        ];
-
-        // Генерация формы ввода
-        const inputFormDiv = document.getElementById('inputForm');
-        function buildInputForm() {
-            let html = '';
-            questions.forEach((q, idx) => {
-                html += `<div class="input-group"><label>${idx+1}. ${q.text}</label><select id="select_${idx}" data-q="${idx}"><option value="">-- выберите вариант --</option>`;
-                q.options.forEach(opt => {
-                    html += `<option value="${opt.value}">${opt.emoji} ${opt.label}</option>`;
                 });
-                html += `</select></div>`;
             });
-            html += `<button class="btn-primary" id="generateRecBtn" style="width:100%; margin-top:15px;">✨ Сгенерировать рекомендации</button>`;
-            inputFormDiv.innerHTML = html;
-        }
-        buildInputForm();
 
-        // Рекомендательный движок
-        function makeRecommendations(answers) {
-            const recs = [];
-            if (answers[0] === 'vestib_low') recs.push("🔹 Вестибулярная система чувствительна. Перед уроками — 2 мин покачиваний на фитболе или качелях.");
-            else if (answers[0] === 'vestib_high') recs.push("🔹 Любит интенсивное движение. Давайте 5-минутные активные паузы (попрыгать, повисеть) между заданиями.");
-            
-            if (answers[1] === 'energy_low') recs.push("🔹 Быстрая истощаемость. Рекомендуем «сенсорный перекус»: хрустящее яблоко/морковка перед домашкой.");
-            else if (answers[1] === 'focus_low') recs.push("🔹 Сложности с концентрацией. Включайте «белый шум» (дождь/вентилятор) на фоне.");
-            else if (answers[1] === 'motor_restless') recs.push("🔹 Двигательное беспокойство. Разрешите делать уроки стоя или лёжа на ковре, используйте эспандер.");
-            
-            if (answers[2] === 'audio_sensitive') recs.push("🔹 Чувствителен к шуму. В школе помогут беруши-невидимки или шумоподавляющие наушники.");
-            else if (answers[2] === 'audio_seeker') recs.push("🔹 Ищет звуковую стимуляцию. Давайте слушать ритмичную музыку без слов.");
-            
-            if (answers[3] === 'oral_defensive') recs.push("🔹 Пищевая избирательность. Играйте с трубочками, свистками, дуйте на ватку.");
-            else if (answers[3] === 'oral_seeker') recs.push("🔹 Оральная потребность. Купите жевательную трубочку / прорезыватель.");
-            
-            if (answers[4] === 'press_hard') recs.push("🔹 Сильный нажим — признак напряжения. Делайте массаж кистей мячиком-ёжиком.");
-            else if (answers[4] === 'press_weak') recs.push("🔹 Слабые мышцы рук. Полезно: отжимания от стены, игры с прищепками.");
-            
-            if (answers[5] === 'seq_low' || answers[5] === 'seq_mid') recs.push("🔹 Удержание инструкций — зона роста. Играйте в «робота»: давайте 2-3 команды подряд.");
-            
-            if (answers[6] === 'hyper_evening') recs.push("🔹 Перевозбуждение к вечеру. Введите «тяжёлую работу»: носить пакет с крупой, укутываться в плед.");
-            else if (answers[6] === 'fatigue_evening') recs.push("🔹 Истощение. Укоротите вечерние занятия, добавьте массаж и тёплую ванну.");
-            
-            if (recs.length === 0) recs.push("🔹 Нейродинамика в норме. Для поддержки: ползание «по-пластунски» 10 минут 3 раза в неделю.");
-            return recs;
-        }
-
-        const resultDiv = document.getElementById('generatedResult');
-        const previewDiv = document.getElementById('recommendationPreview');
-        const editBtn = document.getElementById('editDataBtn');
-        const printResultBtn = document.getElementById('printResultBtn');
-        let lastRecommendations = [];
-
-        document.addEventListener('click', (e) => {
-            if (e.target.id === 'generateRecBtn') {
-                const answers = [];
-                let allSelected = true;
-                for (let i=0; i<questions.length; i++) {
-                    const sel = document.getElementById(`select_${i}`);
-                    if (!sel.value) { allSelected = false; break; }
-                    answers.push(sel.value);
-                }
-                if (!allSelected) { alert('Пожалуйста, выберите ответы на все вопросы.'); return; }
-                
-                lastRecommendations = makeRecommendations(answers);
-                const now = new Date();
-                const dateStr = now.toLocaleDateString('ru-RU', { day:'numeric', month:'long', year:'numeric' });
-                
-                let recHtml = `<h3 style="color:#2d1b4e; margin-bottom:20px;">🧾 Нейро-профайл (${dateStr})</h3>`;
-                lastRecommendations.forEach(r => { recHtml += `<div class="rec-item">✔️ ${r}</div>`; });
-                recHtml += `<p style="margin-top:24px; font-style:italic;">— Центр нейропсихологии и развития</p>`;
-                previewDiv.innerHTML = recHtml;
-                
-                resultDiv.style.display = 'block';
-                inputFormDiv.style.display = 'none';
-            }
-            
-            if (e.target.id === 'editDataBtn') {
-                resultDiv.style.display = 'none';
-                inputFormDiv.style.display = 'block';
-            }
-            
-            if (e.target.id === 'printResultBtn') {
-                // Создаём красивую версию для печати
-                const printWindow = window.open('', '_blank', 'width=700,height=900');
-                const now = new Date();
-                const dateStr = now.toLocaleDateString('ru-RU', { day:'numeric', month:'long', year:'numeric' });
-                let recsPrint = lastRecommendations.map(r => `<div style="margin-bottom:18px; font-size:16pt; border-left:8px solid #b185db; padding-left:20px;">✔️ ${r}</div>`).join('');
-                printWindow.document.write(`
-                    <html><head><title>Нейро-рекомендации</title>
-                    <style>body { font-family: 'Segoe UI', Arial; padding: 40px; } h1 { color:#2d1b4e; } </style></head>
-                    <body>
-                        <h1>🧠 Нейро-профайл</h1><p>${dateStr}</p>
-                        <div style="margin:40px 0;">${recsPrint}</div>
-                        <p style="margin-top:50px;">С заботой, ваш психолого-педагогический центр</p>
-                        <p>☎️ Запись на диагностику: _____________</p>
-                    </body></html>
-                `);
-                printWindow.document.close();
-                printWindow.focus();
-                printWindow.print();
-            }
-        });
-
-        // Управление бумажными чекбоксами (печатная версия) + функция печати анкеты
-        // Уже реализовано
-
-        // Дополнительно: если печатают результат через кнопку в панели ввода
-    })();
-</script>
+            // Кнопка печати
+            document.getElementById('printBtn').addEventListener('click', function() {
+                window.print();
+            });
+        })();
+    </script>
 </body>
 </html>
