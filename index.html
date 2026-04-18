@@ -206,7 +206,7 @@
         const ctxRoads = canvasRoads.getContext('2d');
         
         function drawRoads() {
-            const w = 600, h = 800;
+            const w = 600, h =800;
             canvasRoads.width = w;
             canvasRoads.height = h;
 
@@ -290,7 +290,7 @@
             drawRoad(leftPoints, roadWidth);
             drawRoad(rightPoints, -roadWidth);
 
-            // СТАРТ (внизу)
+            // СТАРТ
             ctxRoads.fillStyle = '#000000';
             ctxRoads.beginPath();
             ctxRoads.arc(centerX - 130, startY + 15, 7, 0, Math.PI*2);
@@ -303,7 +303,7 @@
             ctxRoads.fillText('СТАРТ', centerX - 50, startY + 40);
             ctxRoads.fillText('СТАРТ', centerX + 10, startY + 40);
 
-            // ФИНИШ (вверху)
+            // ФИНИШ
             ctxRoads.beginPath();
             ctxRoads.arc(centerX - 80, endY - 15, 7, 0, Math.PI*2);
             ctxRoads.fill();
@@ -313,19 +313,17 @@
             ctxRoads.fillText('ФИНИШ', centerX - 50, endY - 25);
             ctxRoads.fillText('ФИНИШ', centerX + 10, endY - 25);
 
-            // Мостик (внизу)
+            // Мостик
             const midY1 = startY - 180;
             ctxRoads.fillStyle = '#cccccc';
             ctxRoads.fillRect(centerX - 45, midY1 - 5, 90, 12);
             ctxRoads.strokeStyle = '#000000';
             ctxRoads.strokeRect(centerX - 45, midY1 - 5, 90, 12);
-            
             ctxRoads.fillStyle = '#aaaaaa';
             ctxRoads.fillRect(centerX - 50, midY1 - 12, 15, 25);
             ctxRoads.fillRect(centerX + 35, midY1 - 12, 15, 25);
             ctxRoads.strokeRect(centerX - 50, midY1 - 12, 15, 25);
             ctxRoads.strokeRect(centerX + 35, midY1 - 12, 15, 25);
-            
             ctxRoads.beginPath();
             ctxRoads.moveTo(centerX - 40, midY1 - 5);
             ctxRoads.lineTo(centerX - 40, midY1 + 7);
@@ -339,7 +337,7 @@
             ctxRoads.lineTo(centerX + 40, midY1 + 7);
             ctxRoads.stroke();
 
-            // Гриб (посередине)
+            // Гриб
             const midY2 = startY - 380;
             ctxRoads.fillStyle = '#dddddd';
             ctxRoads.beginPath();
@@ -355,7 +353,7 @@
             ctxRoads.fillRect(centerX - 6, midY2 - 10, 12, 25);
             ctxRoads.strokeRect(centerX - 6, midY2 - 10, 12, 25);
 
-            // Гусеница (вверху)
+            // Гусеница
             const midY3 = startY - 580;
             ctxRoads.fillStyle = '#cccccc';
             for (let i = 0; i < 5; i++) {
@@ -378,7 +376,7 @@
             ctxRoads.fillText('правая рука', centerX + 140, startY + 60);
         }
 
-        // ---------- ЛИСТ 2: ГОРШОЧЕК (ВЫТЯНУТЫЙ ПОЛУОВАЛ, СТРЕЛКИ НЕ ПЕРЕСЕКАЮТСЯ) ----------
+        // ---------- ЛИСТ 2: ГОРШОЧЕК (ПОЛУКРУГ ПЛОСКОЙ СТОРОНОЙ ВВЕРХ + ОВАЛ + 2 СТРЕЛКИ) ----------
         const canvasBowl = document.getElementById('canvasBowl');
         const ctxBowl = canvasBowl.getContext('2d');
 
@@ -394,62 +392,37 @@
             ctxBowl.lineWidth = 3;
 
             const centerX = w / 2;
-            const bowlTopY = 120;
-            const bowlWidth = 480;
-            const bowlHeight = 320;
-            const bowlBottomY = bowlTopY + bowlHeight;
+            const bowlTopY = 140;
+            const bowlRadius = 200;
+            const bowlBottomY = bowlTopY + bowlRadius;
 
-            // === ТЕЛО ГОРШКА — ПОЛУОВАЛ (вытянутый вниз) ===
+            // === ПОЛУКРУГ (плоской стороной ВВЕРХ) ===
             ctxBowl.fillStyle = '#fafafa';
             ctxBowl.beginPath();
-            ctxBowl.ellipse(centerX, bowlTopY + bowlHeight/2, bowlWidth/2, bowlHeight/2, 0, 0, Math.PI*2);
+            ctxBowl.arc(centerX, bowlTopY, bowlRadius, 0, Math.PI, true);
+            ctxBowl.closePath();
             ctxBowl.fill();
-            ctxBowl.stroke();
-            
-            // Стираем верхнюю половину овала (оставляем только полуовал)
-            ctxBowl.fillStyle = '#ffffff';
-            ctxBowl.beginPath();
-            ctxBowl.rect(centerX - bowlWidth/2 - 10, 0, bowlWidth + 20, bowlTopY);
-            ctxBowl.fill();
-            
-            // Перерисовываем контур полуовала
-            ctxBowl.strokeStyle = '#000000';
-            ctxBowl.lineWidth = 3;
-            ctxBowl.beginPath();
-            ctxBowl.ellipse(centerX, bowlTopY + bowlHeight/2, bowlWidth/2, bowlHeight/2, 0, 0, Math.PI*2);
-            ctxBowl.stroke();
-            ctxBowl.fillStyle = '#fafafa';
-            ctxBowl.beginPath();
-            ctxBowl.ellipse(centerX, bowlTopY + bowlHeight/2, bowlWidth/2, bowlHeight/2, 0, 0, Math.PI*2);
-            ctxBowl.fill();
-            ctxBowl.stroke();
-            ctxBowl.fillStyle = '#ffffff';
-            ctxBowl.beginPath();
-            ctxBowl.rect(centerX - bowlWidth/2 - 10, 0, bowlWidth + 20, bowlTopY);
-            ctxBowl.fill();
-            ctxBowl.beginPath();
-            ctxBowl.ellipse(centerX, bowlTopY + bowlHeight/2, bowlWidth/2, bowlHeight/2, 0, Math.PI, 0, true);
             ctxBowl.stroke();
 
-            // === ПЛОСКИЙ ОВАЛ СВЕРХУ ===
+            // === ОВАЛ СВЕРХУ ===
             ctxBowl.fillStyle = '#ffffff';
             ctxBowl.beginPath();
-            ctxBowl.ellipse(centerX, bowlTopY - 5, bowlWidth/2 - 15, 22, 0, 0, Math.PI*2);
+            ctxBowl.ellipse(centerX, bowlTopY - 5, bowlRadius - 10, 25, 0, 0, Math.PI*2);
             ctxBowl.fill();
             ctxBowl.stroke();
 
             // === ОБОДОК ===
             ctxBowl.fillStyle = '#e8e8e8';
             ctxBowl.beginPath();
-            ctxBowl.ellipse(centerX, bowlTopY, bowlWidth/2 + 8, 16, 0, 0, Math.PI*2);
+            ctxBowl.ellipse(centerX, bowlTopY, bowlRadius + 8, 16, 0, 0, Math.PI*2);
             ctxBowl.fill();
             ctxBowl.stroke();
 
             // === РАЗДЕЛИТЕЛЬНАЯ ЛИНИЯ ===
             ctxBowl.setLineDash([10, 8]);
             ctxBowl.beginPath();
-            ctxBowl.moveTo(centerX, bowlTopY + 20);
-            ctxBowl.lineTo(centerX, bowlBottomY - 15);
+            ctxBowl.moveTo(centerX, bowlTopY + 15);
+            ctxBowl.lineTo(centerX, bowlBottomY - 10);
             ctxBowl.strokeStyle = '#000000';
             ctxBowl.lineWidth = 2;
             ctxBowl.stroke();
@@ -479,26 +452,20 @@
                 ctxBowl.fill();
             }
 
-            // === ГОРИЗОНТАЛЬНЫЕ ЛИНИИ ВПРАВО (разнесены по высоте) ===
-            drawLineWithArrow(centerX + 25, bowlTopY + 60, centerX + 170, bowlTopY + 60);
-            drawLineWithArrow(centerX + 25, bowlTopY + 130, centerX + 170, bowlTopY + 130);
-            drawLineWithArrow(centerX + 25, bowlTopY + 200, centerX + 170, bowlTopY + 200);
+            // === 2 ГОРИЗОНТАЛЬНЫЕ ЛИНИИ ВПРАВО ===
+            drawLineWithArrow(centerX + 30, bowlTopY + 70, centerX + 160, bowlTopY + 70);
+            drawLineWithArrow(centerX + 30, bowlTopY + 160, centerX + 160, bowlTopY + 160);
 
-            // === ГОРИЗОНТАЛЬНЫЕ ЛИНИИ ВЛЕВО (разнесены по высоте) ===
-            drawLineWithArrow(centerX - 25, bowlTopY + 60, centerX - 170, bowlTopY + 60);
-            drawLineWithArrow(centerX - 25, bowlTopY + 130, centerX - 170, bowlTopY + 130);
-            drawLineWithArrow(centerX - 25, bowlTopY + 200, centerX - 170, bowlTopY + 200);
+            // === 2 ГОРИЗОНТАЛЬНЫЕ ЛИНИИ ВЛЕВО ===
+            drawLineWithArrow(centerX - 30, bowlTopY + 70, centerX - 160, bowlTopY + 70);
+            drawLineWithArrow(centerX - 30, bowlTopY + 160, centerX - 160, bowlTopY + 160);
 
-            // === ВЕРТИКАЛЬНЫЕ ЛИНИИ ВВЕРХ (разнесены по ширине, не пересекаются с горизонтальными) ===
-            // Правая сторона — линии идут снизу вверх, останавливаются ДО горизонтальных линий
-            drawLineWithArrow(centerX + 60, bowlBottomY - 25, centerX + 60, bowlTopY + 250);
-            drawLineWithArrow(centerX + 110, bowlBottomY - 25, centerX + 110, bowlTopY + 250);
-            drawLineWithArrow(centerX + 160, bowlBottomY - 25, centerX + 160, bowlTopY + 250);
+            // === 2 ВЕРТИКАЛЬНЫЕ ЛИНИИ ВВЕРХ (справа и слева, ближе к низу) ===
+            drawLineWithArrow(centerX + 80, bowlBottomY - 30, centerX + 80, bowlBottomY - 100);
+            drawLineWithArrow(centerX + 130, bowlBottomY - 30, centerX + 130, bowlBottomY - 100);
             
-            // Левая сторона
-            drawLineWithArrow(centerX - 60, bowlBottomY - 25, centerX - 60, bowlTopY + 250);
-            drawLineWithArrow(centerX - 110, bowlBottomY - 25, centerX - 110, bowlTopY + 250);
-            drawLineWithArrow(centerX - 160, bowlBottomY - 25, centerX - 160, bowlTopY + 250);
+            drawLineWithArrow(centerX - 80, bowlBottomY - 30, centerX - 80, bowlBottomY - 100);
+            drawLineWithArrow(centerX - 130, bowlBottomY - 30, centerX - 130, bowlBottomY - 100);
 
             // === ГРИБОЧКИ В ОТВЕРСТИИ ===
             ctxBowl.fillStyle = '#dddddd';
