@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Нейро-анкета (2 страницы А4)</title>
+    <title>Нейроквест «В гости к бабушке Сове» — раздаточный материал А4</title>
     <style>
         * {
             margin: 0;
@@ -12,357 +12,453 @@
         }
 
         body {
-            font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
             background: #e8dfee;
             display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
+            flex-direction: column;
+            align-items: center;
             padding: 30px 20px;
         }
 
-        .paper {
-            max-width: 800px;
+        .print-container {
+            max-width: 900px;
             width: 100%;
+        }
+
+        /* Карточка с кнопками */
+        .controls {
             background: white;
-            border-radius: 24px;
-            box-shadow: 0 20px 40px -10px rgba(45, 27, 78, 0.2);
+            border-radius: 30px;
+            padding: 20px 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(45, 27, 78, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .controls h2 {
+            color: #2d1b4e;
+            font-size: 1.4rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            background: #f3edfa;
+            border: 2px solid #b185db;
+            color: #2d1b4e;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+
+        .btn-primary {
+            background: #2d1b4e;
+            border-color: #2d1b4e;
+            color: white;
+            box-shadow: 0 8px 16px #2d1b4e40;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Страницы А4 */
+        .page {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px -10px rgba(45, 27, 78, 0.25);
             padding: 30px 30px;
+            margin-bottom: 30px;
             border: 1px solid #dac0f0;
         }
 
+        .page-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 3px dashed #b185db;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .page-header h3 {
+            font-size: 1.6rem;
+            color: #2d1b4e;
+        }
+
+        .page-header span {
+            background: #2d1b4e;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            margin-left: 10px;
+        }
+
+        .instruction {
+            font-size: 1.1rem;
+            color: #4a3a5c;
+            margin-bottom: 25px;
+            font-style: italic;
+            background: #f9f5ff;
+            padding: 12px 18px;
+            border-radius: 20px;
+            border-left: 6px solid #b185db;
+        }
+
+        /* Контейнер для рисунка */
+        .drawing-area {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        canvas {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+            background: #fffefc;
+            border: 2px solid #e5d5f5;
+        }
+
+        .footer-note {
+            margin-top: 25px;
+            text-align: right;
+            color: #5e4a6e;
+            font-size: 0.95rem;
+        }
+
+        /* Для печати — скрываем всё лишнее */
         @media print {
             body {
                 background: white;
                 padding: 0;
             }
-            .paper {
-                box-shadow: none;
-                border: none;
-                padding: 0.8cm;
-                max-width: 100%;
-            }
-            .no-print {
+            .controls, .btn-group, .btn, h2 {
                 display: none !important;
             }
-            .page-break {
-                page-break-before: always;
+            .page {
+                box-shadow: none;
+                border: 2px solid #2d1b4e;
+                padding: 0.7in;
+                margin: 0;
+                page-break-after: always;
+                border-radius: 0;
             }
-            .question-block {
-                page-break-inside: avoid;
+            .page:last-child {
+                page-break-after: avoid;
             }
-        }
-
-        /* Шапка */
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 3px solid #b185db;
-            padding-bottom: 18px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .header h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #2d1b4e;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .header h1 span {
-            background: #2d1b4e;
-            color: white;
-            font-size: 0.9rem;
-            padding: 4px 14px;
-            border-radius: 40px;
-        }
-
-        /* Имя и возраст — сразу под шапкой */
-        .child-info-top {
-            background: #f3edfa;
-            border-radius: 20px;
-            padding: 18px 22px;
-            margin-bottom: 25px;
-            display: flex;
-            gap: 40px;
-            flex-wrap: wrap;
-            border-left: 8px solid #b185db;
-        }
-
-        .child-info-top .field {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #2d1b4e;
-            display: flex;
-            align-items: baseline;
-            gap: 10px;
-        }
-
-        .child-info-top .line {
-            border-bottom: 2px solid #2d1b4e;
-            min-width: 220px;
-            display: inline-block;
-            height: 1.2em;
-        }
-
-        .hint {
-            background: #f9f5ff;
-            border-radius: 16px;
-            padding: 10px 18px;
-            margin-bottom: 20px;
-            color: #4a3568;
-            font-size: 0.95rem;
-            border: 1px dashed #b185db;
-        }
-
-        /* Вопросы — компактно */
-        .question-block {
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px dotted #dac0f0;
-        }
-
-        .q-title {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: #1e1130;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .q-number {
-            background: #2d1b4e;
-            color: white;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .options-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 6px;
-        }
-
-        .option-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 6px 0 6px 8px;
-        }
-
-        .option-row input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            accent-color: #2d1b4e;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-
-        .option-row label {
-            font-size: 1rem;
-            color: #2d1b4e;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .emoji-small {
-            font-size: 1.5rem;
-            min-width: 32px;
-        }
-
-        /* Разрыв страницы */
-        .page-break {
-            margin-top: 30px;
-            border-top: 2px dashed #b185db;
-            padding-top: 25px;
-        }
-
-        .footer {
-            margin-top: 25px;
-            color: #5e4a6e;
-            font-size: 0.95rem;
-            text-align: center;
-            font-style: italic;
-        }
-
-        .print-btn {
-            background: #2d1b4e;
-            color: white;
-            border: none;
-            padding: 16px 28px;
-            border-radius: 60px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 8px 18px #2d1b4e60;
-            margin-top: 25px;
-            width: 100%;
-            transition: 0.15s;
-        }
-
-        .print-btn:hover {
-            background: #412a66;
-        }
-
-        /* Компактность для печати */
-        @media print {
-            .child-info-top .line {
-                min-width: 180px;
-            }
-            .question-block {
-                margin-bottom: 14px;
-                padding-bottom: 10px;
-            }
-            .option-row {
-                padding: 3px 0;
+            canvas {
+                box-shadow: none;
+                border: 1px solid #aaa;
             }
         }
     </style>
 </head>
 <body>
-    <div class="paper" id="anketa">
-
-        <!-- ШАПКА -->
-        <div class="header">
-            <h1>🧠 Нейро-анкета <span>экспресс</span></h1>
-            <div style="color:#4a3a5c; font-weight:500;">5–12 лет</div>
+<div class="print-container">
+    
+    <!-- Панель управления (не печатается) -->
+    <div class="controls">
+        <h2>🧠 Нейроквест «В гости к бабушке Сове»</h2>
+        <div class="btn-group">
+            <button class="btn btn-primary" id="printBtn">🖨️ Распечатать оба листа (А4)</button>
         </div>
-
-        <!-- ИМЯ И ВОЗРАСТ — В САМОМ НАЧАЛЕ -->
-        <div class="child-info-top">
-            <div class="field">👤 Имя ребёнка: <span class="line"></span></div>
-            <div class="field">🎂 Возраст: <span class="line"></span></div>
-        </div>
-
-        <div class="hint">
-            ✅ Поставьте галочку — только один вариант в каждом вопросе.
-        </div>
-
-        <!-- ===== ВОПРОСЫ 1–4 (ПЕРВАЯ СТРАНИЦА) ===== -->
-        
-        <!-- Вопрос 1 -->
-        <div class="question-block">
-            <div class="q-title"><span class="q-number">1</span> Как переносит дорогу в машине / качели?</div>
-            <div class="options-grid">
-                <div class="option-row"><input type="checkbox" name="q1" value="vestib_low"> <label><span class="emoji-small">🤢</span> Укачивает, жалуется</label></div>
-                <div class="option-row"><input type="checkbox" name="q1" value="vestib_mid"> <label><span class="emoji-small">🙂</span> Нормально, но резкие повороты не любит</label></div>
-                <div class="option-row"><input type="checkbox" name="q1" value="vestib_high"> <label><span class="emoji-small">🎢</span> Обожает, просит быстрее/выше</label></div>
-            </div>
-        </div>
-
-        <!-- Вопрос 2 -->
-        <div class="question-block">
-            <div class="q-title"><span class="q-number">2</span> Во время домашнего задания:</div>
-            <div class="options-grid">
-                <div class="option-row"><input type="checkbox" name="q2" value="energy_low"> <label><span class="emoji-small">😴</span> Быстро устаёт, зевает, «зависает»</label></div>
-                <div class="option-row"><input type="checkbox" name="q2" value="focus_low"> <label><span class="emoji-small">🤯</span> Психует, бросает ручку, отвлекается</label></div>
-                <div class="option-row"><input type="checkbox" name="q2" value="motor_restless"> <label><span class="emoji-small">⚡</span> Ёрзает, постоянно меняет позу</label></div>
-            </div>
-        </div>
-
-        <!-- Вопрос 3 -->
-        <div class="question-block">
-            <div class="q-title"><span class="q-number">3</span> Реакция на громкие звуки:</div>
-            <div class="options-grid">
-                <div class="option-row"><input type="checkbox" name="q3" value="audio_sensitive"> <label><span class="emoji-small">🙉</span> Закрывает уши, пугается, плачет</label></div>
-                <div class="option-row"><input type="checkbox" name="q3" value="audio_normal"> <label><span class="emoji-small">😐</span> Спокойно, не замечает</label></div>
-                <div class="option-row"><input type="checkbox" name="q3" value="audio_seeker"> <label><span class="emoji-small">🔊</span> Сам шумит, громко говорит</label></div>
-            </div>
-        </div>
-
-        <!-- Вопрос 4 -->
-        <div class="question-block">
-            <div class="q-title"><span class="q-number">4</span> Еда и текстуры:</div>
-            <div class="options-grid">
-                <div class="option-row"><input type="checkbox" name="q4" value="oral_defensive"> <label><span class="emoji-small">🥦</span> Привередлив, ест только привычное</label></div>
-                <div class="option-row"><input type="checkbox" name="q4" value="oral_mid"> <label><span class="emoji-small">🍝</span> Ест разное, иногда отказывается от нового</label></div>
-                <div class="option-row"><input type="checkbox" name="q4" value="oral_seeker"> <label><span class="emoji-small">🍭</span> Тянет в рот несъедобное, грызёт карандаши</label></div>
-            </div>
-        </div>
-
-        <!-- ===== РАЗРЫВ СТРАНИЦЫ (при печати) ===== -->
-        <div class="page-break"></div>
-
-        <!-- ===== ВОПРОСЫ 5–7 (ВТОРАЯ СТРАНИЦА) ===== -->
-
-        <!-- Вопрос 5 -->
-        <div class="question-block">
-            <div class="q-title"><span class="q-number">5</span> При письме или рисовании:</div>
-            <div class="options-grid">
-                <div class="option-row"><input type="checkbox" name="q5" value="press_hard"> <label><span class="emoji-small">✍️</span> Сильно давит на ручку, рвёт бумагу</label></div>
-                <div class="option-row"><input type="checkbox" name="q5" value="press_weak"> <label><span class="emoji-small">🖐️</span> Слабо держит, буквы бледные</label></div>
-                <div class="option-row"><input type="checkbox" name="q5" value="grip_unstable"> <label><span class="emoji-small">🌀</span> Часто меняет хват, вертит ручку</label></div>
-            </div>
-        </div>
-
-        <!-- Вопрос 6 -->
-        <div class="question-block">
-            <div class="q-title"><span class="q-number">6</span> Инструкция из 2–3 шагов (принеси, положи, налей):</div>
-            <div class="options-grid">
-                <div class="option-row"><input type="checkbox" name="q6" value="seq_good"> <label><span class="emoji-small">🐒</span> Запоминает, делает по порядку</label></div>
-                <div class="option-row"><input type="checkbox" name="q6" value="seq_mid"> <label><span class="emoji-small">🐿️</span> Отвлекается, путает</label></div>
-                <div class="option-row"><input type="checkbox" name="q6" value="seq_low"> <label><span class="emoji-small">🦥</span> Смотрит растерянно, нужны повторы</label></div>
-            </div>
-        </div>
-
-        <!-- Вопрос 7 -->
-        <div class="question-block">
-            <div class="q-title"><span class="q-number">7</span> Что чаще вечером?</div>
-            <div class="options-grid">
-                <div class="option-row"><input type="checkbox" name="q7" value="hyper_evening"> <label><span class="emoji-small">🌪️</span> Перевозбуждение, скачет, не может уснуть</label></div>
-                <div class="option-row"><input type="checkbox" name="q7" value="fatigue_evening"> <label><span class="emoji-small">😩</span> Сильная усталость, капризы</label></div>
-                <div class="option-row"><input type="checkbox" name="q7" value="evening_ok"> <label><span class="emoji-small">😌</span> Спокоен, легко переключается</label></div>
-            </div>
-        </div>
-
-        <!-- Дополнительные заметки (опционально) -->
-        <div style="margin-top: 30px; color: #4a3a5c;">
-            <p style="font-weight: 600; margin-bottom: 8px;">📝 Что ещё важно отметить (поведение, привычки):</p>
-            <div style="border-bottom: 1px solid #dac0f0; min-height: 40px; margin-bottom: 20px;"></div>
-            <div style="border-bottom: 1px solid #dac0f0; min-height: 40px;"></div>
-        </div>
-
-        <div class="footer">
-            Спасибо за заполнение! Передайте анкету специалисту.
-        </div>
-
-        <!-- Кнопка печати (не печатается) -->
-        <button class="print-btn no-print" id="printBtn">🖨️ Распечатать анкету (2 стр. А4)</button>
-        <p class="no-print" style="text-align:center; margin-top:12px; color:#5e4a6e;">Анкета помещается ровно на 2 листа А4</p>
     </div>
 
-    <script>
-        (function() {
-            // Один выбор в каждом вопросе
-            const qNames = ['q1','q2','q3','q4','q5','q6','q7'];
-            qNames.forEach(name => {
-                const group = document.querySelectorAll(`input[name="${name}"]`);
-                group.forEach(chk => {
-                    chk.addEventListener('change', function() {
-                        if (this.checked) {
-                            group.forEach(other => { if (other !== this) other.checked = false; });
-                        }
-                    });
-                });
-            });
+    <!-- ЛИСТ 1: ДОРОЖКИ -->
+    <div class="page" id="page1">
+        <div class="page-header">
+            <h3>🐾 Лесные дорожки <span>Лист 1</span></h3>
+        </div>
+        <div class="instruction">
+            ✏️ Проведи по обеим дорожкам одновременно двумя руками (пальчиком или карандашом).
+        </div>
+        <div class="drawing-area">
+            <canvas id="canvasRoads" width="750" height="550"></canvas>
+        </div>
+        <div class="footer-note">
+            В гости к бабушке Сове • Нейро-квест
+        </div>
+    </div>
 
-            document.getElementById('printBtn').addEventListener('click', () => window.print());
-        })();
-    </script>
+    <!-- ЛИСТ 2: МИСОЧКА С УГОЩЕНИЕМ -->
+    <div class="page" id="page2">
+        <div class="page-header">
+            <h3>🍯 Мисочка с угощением <span>Лист 2</span></h3>
+        </div>
+        <div class="instruction">
+            🎨 Раскрась мисочку двумя руками одновременно (левая — левую половину, правая — правую).
+        </div>
+        <div class="drawing-area">
+            <canvas id="canvasBowl" width="750" height="550"></canvas>
+        </div>
+        <div class="footer-note">
+            Угощение для Совушки • Нейро-квест
+        </div>
+    </div>
+
+</div>
+
+<script>
+    (function() {
+        "use strict";
+
+        // ---------- ЛИСТ 1: ДОРОЖКИ (симметричные) ----------
+        const canvasRoads = document.getElementById('canvasRoads');
+        const ctxRoads = canvasRoads.getContext('2d');
+        
+        function drawRoads() {
+            const w = 750, h = 550;
+            canvasRoads.width = w;
+            canvasRoads.height = h;
+
+            // Фон
+            ctxRoads.fillStyle = '#fffefc';
+            ctxRoads.fillRect(0, 0, w, h);
+
+            // Центр
+            const centerX = w / 2;
+            
+            // Рисуем две симметричные дорожки
+            ctxRoads.lineWidth = 4;
+            ctxRoads.strokeStyle = '#b185db';
+            ctxRoads.setLineDash([12, 8]);
+            
+            // Левая дорожка (зеркальная)
+            ctxRoads.beginPath();
+            ctxRoads.moveTo(centerX - 40, 80);
+            ctxRoads.bezierCurveTo(centerX - 150, 150, centerX - 200, 250, centerX - 100, 350);
+            ctxRoads.bezierCurveTo(centerX - 30, 420, centerX - 120, 480, centerX - 80, 520);
+            ctxRoads.stroke();
+
+            // Правая дорожка
+            ctxRoads.beginPath();
+            ctxRoads.moveTo(centerX + 40, 80);
+            ctxRoads.bezierCurveTo(centerX + 150, 150, centerX + 200, 250, centerX + 100, 350);
+            ctxRoads.bezierCurveTo(centerX + 30, 420, centerX + 120, 480, centerX + 80, 520);
+            ctxRoads.stroke();
+
+            // Сплошные направляющие точки и элементы
+            ctxRoads.setLineDash([]);
+            ctxRoads.lineWidth = 3;
+            ctxRoads.strokeStyle = '#2d1b4e';
+            
+            // Декоративные лесные элементы вдоль дорожек
+            // Грибы слева
+            ctxRoads.fillStyle = '#c0392b';
+            ctxRoads.beginPath();
+            ctxRoads.arc(centerX - 180, 170, 14, 0, Math.PI, true);
+            ctxRoads.fill();
+            ctxRoads.fillStyle = '#f5e6d3';
+            ctxRoads.beginPath();
+            ctxRoads.arc(centerX - 180, 165, 5, 0, Math.PI*2);
+            ctxRoads.fill();
+            
+            ctxRoads.fillStyle = '#e67e22';
+            ctxRoads.beginPath();
+            ctxRoads.arc(centerX + 180, 170, 14, 0, Math.PI, true);
+            ctxRoads.fill();
+            ctxRoads.fillStyle = '#f5e6d3';
+            ctxRoads.beginPath();
+            ctxRoads.arc(centerX + 180, 165, 5, 0, Math.PI*2);
+            ctxRoads.fill();
+
+            // Шишки (слева и справа)
+            ctxRoads.fillStyle = '#8B5E3C';
+            ctxRoads.beginPath();
+            ctxRoads.ellipse(centerX - 220, 280, 12, 18, 0.2, 0, Math.PI*2);
+            ctxRoads.fill();
+            ctxRoads.fillStyle = '#6B3E1C';
+            ctxRoads.beginPath();
+            ctxRoads.ellipse(centerX + 220, 280, 12, 18, -0.2, 0, Math.PI*2);
+            ctxRoads.fill();
+
+            // Жёлуди
+            ctxRoads.fillStyle = '#A0522D';
+            ctxRoads.beginPath();
+            ctxRoads.ellipse(centerX - 130, 410, 10, 14, 0, 0, Math.PI*2);
+            ctxRoads.fill();
+            ctxRoads.fillStyle = '#5D3A1A';
+            ctxRoads.beginPath();
+            ctxRoads.arc(centerX - 130, 398, 8, 0, Math.PI*2);
+            ctxRoads.fill();
+
+            ctxRoads.fillStyle = '#A0522D';
+            ctxRoads.beginPath();
+            ctxRoads.ellipse(centerX + 130, 410, 10, 14, 0, 0, Math.PI*2);
+            ctxRoads.fill();
+            ctxRoads.fillStyle = '#5D3A1A';
+            ctxRoads.beginPath();
+            ctxRoads.arc(centerX + 130, 398, 8, 0, Math.PI*2);
+            ctxRoads.fill();
+
+            // Листочки
+            ctxRoads.fillStyle = '#6B8E23';
+            ctxRoads.beginPath();
+            ctxRoads.ellipse(centerX - 90, 480, 15, 8, -0.3, 0, Math.PI*2);
+            ctxRoads.fill();
+            ctxRoads.fillStyle = '#556B2F';
+            ctxRoads.beginPath();
+            ctxRoads.ellipse(centerX + 90, 480, 15, 8, 0.3, 0, Math.PI*2);
+            ctxRoads.fill();
+
+            // Точки старта и финиша
+            ctxRoads.fillStyle = '#b185db';
+            ctxRoads.beginPath();
+            ctxRoads.arc(centerX - 40, 70, 10, 0, Math.PI*2);
+            ctxRoads.fill();
+            ctxRoads.fillStyle = '#2d1b4e';
+            ctxRoads.font = 'bold 14px "Segoe UI", Arial';
+            ctxRoads.fillText('СТАРТ', centerX - 80, 50);
+            
+            ctxRoads.fillStyle = '#b185db';
+            ctxRoads.beginPath();
+            ctxRoads.arc(centerX + 40, 70, 10, 0, Math.PI*2);
+            ctxRoads.fill();
+            
+            ctxRoads.fillStyle = '#2d1b4e';
+            ctxRoads.beginPath();
+            ctxRoads.arc(centerX - 80, 520, 10, 0, Math.PI*2);
+            ctxRoads.fill();
+            ctxRoads.fillStyle = '#b185db';
+            ctxRoads.beginPath();
+            ctxRoads.arc(centerX + 80, 520, 10, 0, Math.PI*2);
+            ctxRoads.fill();
+            ctxRoads.fillStyle = '#2d1b4e';
+            ctxRoads.font = 'bold 14px "Segoe UI", Arial';
+            ctxRoads.fillText('ФИНИШ', centerX - 30, 545);
+        }
+
+        // ---------- ЛИСТ 2: МИСОЧКА (симметричная раскраска) ----------
+        const canvasBowl = document.getElementById('canvasBowl');
+        const ctxBowl = canvasBowl.getContext('2d');
+
+        function drawBowl() {
+            const w = 750, h = 550;
+            canvasBowl.width = w;
+            canvasBowl.height = h;
+
+            ctxBowl.fillStyle = '#fffefc';
+            ctxBowl.fillRect(0, 0, w, h);
+
+            const centerX = w / 2;
+            const bowlY = 300;
+            
+            // Миска
+            ctxBowl.fillStyle = '#f0dbb0';
+            ctxBowl.shadowColor = '#ccc';
+            ctxBowl.shadowBlur = 12;
+            ctxBowl.beginPath();
+            ctxBowl.ellipse(centerX, bowlY, 220, 140, 0, 0, Math.PI*2);
+            ctxBowl.fill();
+            ctxBowl.shadowBlur = 0;
+            
+            // Ободок
+            ctxBowl.strokeStyle = '#b185db';
+            ctxBowl.lineWidth = 6;
+            ctxBowl.beginPath();
+            ctxBowl.ellipse(centerX, bowlY-10, 200, 120, 0, 0, Math.PI*2);
+            ctxBowl.stroke();
+
+            // Разделительная линия по центру (пунктир)
+            ctxBowl.setLineDash([8, 8]);
+            ctxBowl.beginPath();
+            ctxBowl.moveTo(centerX, bowlY-120);
+            ctxBowl.lineTo(centerX, bowlY+100);
+            ctxBowl.strokeStyle = '#2d1b4e';
+            ctxBowl.lineWidth = 2;
+            ctxBowl.stroke();
+            ctxBowl.setLineDash([]);
+
+            // Угощения внутри миски (симметрично)
+            // Грибочки (слева и справа)
+            ctxBowl.fillStyle = '#e63946';
+            ctxBowl.beginPath();
+            ctxBowl.arc(centerX-90, bowlY-20, 25, 0, Math.PI, true);
+            ctxBowl.fill();
+            ctxBowl.fillStyle = '#f1dca7';
+            ctxBowl.beginPath();
+            ctxBowl.arc(centerX-90, bowlY-30, 10, 0, Math.PI*2);
+            ctxBowl.fill();
+
+            ctxBowl.fillStyle = '#e63946';
+            ctxBowl.beginPath();
+            ctxBowl.arc(centerX+90, bowlY-20, 25, 0, Math.PI, true);
+            ctxBowl.fill();
+            ctxBowl.fillStyle = '#f1dca7';
+            ctxBowl.beginPath();
+            ctxBowl.arc(centerX+90, bowlY-30, 10, 0, Math.PI*2);
+            ctxBowl.fill();
+
+            // Жёлуди
+            ctxBowl.fillStyle = '#8B4513';
+            ctxBowl.beginPath();
+            ctxBowl.ellipse(centerX-50, bowlY+30, 16, 22, 0, 0, Math.PI*2);
+            ctxBowl.fill();
+            ctxBowl.fillStyle = '#5D2E0C';
+            ctxBowl.beginPath();
+            ctxBowl.arc(centerX-50, bowlY+10, 12, 0, Math.PI*2);
+            ctxBowl.fill();
+
+            ctxBowl.fillStyle = '#8B4513';
+            ctxBowl.beginPath();
+            ctxBowl.ellipse(centerX+50, bowlY+30, 16, 22, 0, 0, Math.PI*2);
+            ctxBowl.fill();
+            ctxBowl.fillStyle = '#5D2E0C';
+            ctxBowl.beginPath();
+            ctxBowl.arc(centerX+50, bowlY+10, 12, 0, Math.PI*2);
+            ctxBowl.fill();
+
+            // Орешки/ягодки
+            ctxBowl.fillStyle = '#9b59b6';
+            ctxBowl.beginPath();
+            ctxBowl.arc(centerX-140, bowlY+10, 15, 0, Math.PI*2);
+            ctxBowl.fill();
+            ctxBowl.fillStyle = '#8e44ad';
+            ctxBowl.beginPath();
+            ctxBowl.arc(centerX+140, bowlY+10, 15, 0, Math.PI*2);
+            ctxBowl.fill();
+
+            // Листочки мяты
+            ctxBowl.fillStyle = '#27ae60';
+            ctxBowl.beginPath();
+            ctxBowl.ellipse(centerX-30, bowlY-50, 18, 8, -0.4, 0, Math.PI*2);
+            ctxBowl.fill();
+            ctxBowl.fillStyle = '#2ecc71';
+            ctxBowl.beginPath();
+            ctxBowl.ellipse(centerX+30, bowlY-50, 18, 8, 0.4, 0, Math.PI*2);
+            ctxBowl.fill();
+
+            // Подпись
+            ctxBowl.font = 'italic 16px "Segoe UI", Arial';
+            ctxBowl.fillStyle = '#4a3a5c';
+            ctxBowl.fillText('левая рука', centerX-150, bowlY+160);
+            ctxBowl.fillText('правая рука', centerX+60, bowlY+160);
+        }
+
+        // Отрисовываем оба листа
+        drawRoads();
+        drawBowl();
+
+        // Кнопка печати
+        document.getElementById('printBtn').addEventListener('click', function() {
+            window.print();
+        });
+
+        // При изменении размера окна не перерисовываем, и так canvas фиксированы
+    })();
+</script>
 </body>
 </html>
