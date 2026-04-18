@@ -3,91 +3,354 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Нейроквест — Лесные дорожки и Горшочек (2 листа А4)</title>
+    <title>Упражнение «Мост»</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: #e8dfee; display: flex; flex-direction: column; align-items: center; padding: 20px; }
-        .print-container { max-width: 800px; width: 100%; }
-        .controls { background: white; border-radius: 30px; padding: 15px 20px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(45,27,78,0.15); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; }
-        .controls h2 { color: #2d1b4e; font-size: 1.3rem; }
-        .btn { background: #2d1b4e; border: none; color: white; padding: 12px 24px; border-radius: 50px; font-size: 1rem; font-weight: 700; cursor: pointer; box-shadow: 0 8px 16px #2d1b4e40; }
-        .btn:hover { background: #412a66; }
-        .page { background: white; border-radius: 20px; box-shadow: 0 20px 40px -10px rgba(45,27,78,0.25); padding: 20px; margin-bottom: 25px; border: 1px solid #dac0f0; }
-        .page-header { display: flex; align-items: center; gap: 10px; border-bottom: 3px dashed #aaa; padding-bottom: 10px; margin-bottom: 15px; }
-        .page-header h3 { font-size: 1.4rem; color: #2d1b4e; }
-        .page-header span { background: #2d1b4e; color: white; padding: 3px 12px; border-radius: 40px; font-size: 0.8rem; }
-        .instruction { font-size: 0.95rem; color: #4a3a5c; margin-bottom: 15px; font-style: italic; background: #f5f5f5; padding: 8px 14px; border-radius: 14px; border-left: 5px solid #888; }
-        .drawing-area { display: flex; justify-content: center; }
-        canvas { max-width: 100%; height: auto; border-radius: 10px; background: white; border: 1px solid #ccc; }
-        .footer-note { margin-top: 12px; text-align: right; color: #666; font-size: 0.8rem; }
-        @media print { body { background: white; padding: 0; } .controls { display: none !important; } .page { box-shadow: none; border: 1px solid #000; padding: 0.3in; margin: 0; page-break-after: always; border-radius: 0; } .page:last-child { page-break-after: avoid; } canvas { border: 1px solid #000; } .instruction { background: #eee; border-left-color: #000; -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #2b3a67 0%, #1b2a4e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            padding: 20px;
+        }
+
+        .card {
+            max-width: 800px;
+            width: 100%;
+            background: linear-gradient(145deg, #faf8f2 0%, #f0ebe1 100%);
+            border-radius: 48px;
+            padding: 40px 35px;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+            border: 1px solid #d4c9b5;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 34px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #2b3a67;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.05);
+            word-break: break-word;
+        }
+
+        .bridge-container {
+            position: relative;
+            width: 100%;
+            margin: 20px 0 30px;
+        }
+
+        /* Берега */
+        .shores {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 5px;
+        }
+
+        .shore {
+            text-align: center;
+            width: 120px;
+        }
+
+        .shore-icon {
+            font-size: 42px;
+            margin-bottom: 8px;
+        }
+
+        .shore-label {
+            font-size: 22px;
+            font-weight: 700;
+            color: #3a4e6b;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .shore-sub {
+            font-size: 15px;
+            color: #6b7f94;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        /* Река */
+        .river-container {
+            position: relative;
+            width: 100%;
+            margin: 5px 0;
+        }
+
+        .river {
+            width: 100%;
+            height: 140px;
+            background: linear-gradient(180deg, #5b8fb9 0%, #3a6d99 50%, #2a5a82 100%);
+            border-radius: 0 0 60px 60px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 8px 15px rgba(0, 0, 0, 0.2), 0 5px 0 #1e3f5c;
+            border-left: 8px solid #8b6f4c;
+            border-right: 8px solid #8b6f4c;
+            border-bottom: 8px solid #8b6f4c;
+        }
+
+        /* Волны на реке */
+        .wave {
+            position: absolute;
+            width: 200%;
+            height: 20px;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 30px,
+                rgba(255, 255, 255, 0.15) 30px,
+                rgba(255, 255, 255, 0.15) 60px
+            );
+            bottom: 20px;
+            animation: waveMove 8s linear infinite;
+        }
+
+        .wave:nth-child(2) {
+            bottom: 50px;
+            opacity: 0.5;
+            animation: waveMove 12s linear infinite reverse;
+        }
+
+        .wave:nth-child(3) {
+            bottom: 80px;
+            opacity: 0.3;
+            animation: waveMove 10s linear infinite;
+        }
+
+        @keyframes waveMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Текст внутри реки */
+        .river-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 18px;
+            font-weight: 500;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            width: 80%;
+            letter-spacing: 1px;
+            background: rgba(0, 0, 0, 0.15);
+            padding: 12px 20px;
+            border-radius: 50px;
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 5;
+        }
+
+        /* Мост */
+        .bridge {
+            position: relative;
+            width: 100%;
+            height: 100px;
+            margin-top: -50px;
+            z-index: 20;
+        }
+
+        .bridge-svg {
+            width: 100%;
+            height: 120px;
+            filter: drop-shadow(0 8px 6px rgba(0, 0, 0, 0.2));
+        }
+
+        .bridge-arc {
+            fill: none;
+            stroke: #8b6f4c;
+            stroke-width: 12;
+            stroke-linecap: round;
+        }
+
+        .bridge-rail {
+            fill: none;
+            stroke: #a0855e;
+            stroke-width: 4;
+            stroke-dasharray: 12, 8;
+        }
+
+        .bridge-planks {
+            fill: none;
+            stroke: #c4a87a;
+            stroke-width: 3;
+            stroke-dasharray: 2, 10;
+        }
+
+        /* Пространство для надписей на мосту */
+        .bridge-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 30;
+        }
+
+        .bridge-message {
+            background: rgba(250, 248, 242, 0.9);
+            padding: 18px 30px;
+            border-radius: 60px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #2b3a67;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            border: 2px dashed #8b6f4c;
+            backdrop-filter: blur(4px);
+            max-width: 90%;
+            line-height: 1.5;
+        }
+
+        /* Подсказки внизу */
+        .hints {
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px 30px;
+        }
+
+        .hint-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 8px 18px;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+            border: 1px solid #c4b49a;
+        }
+
+        .hint-icon {
+            font-size: 22px;
+        }
+
+        .hint-text {
+            font-size: 15px;
+            color: #3a4e6b;
+            font-weight: 500;
+        }
+
+        .footer {
+            margin-top: 25px;
+            text-align: center;
+            color: #6b7f94;
+            font-size: 14px;
+            font-style: italic;
+            border-top: 1px solid #d4c9b5;
+            padding-top: 20px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 600px) {
+            .card { padding: 25px 18px; }
+            h1 { font-size: 26px; letter-spacing: 2px; }
+            .shore-label { font-size: 18px; }
+            .shore-sub { font-size: 12px; }
+            .river-text { font-size: 14px; padding: 8px 12px; }
+            .bridge-message { font-size: 16px; padding: 12px 20px; }
+        }
     </style>
 </head>
 <body>
-<div class="print-container">
-    <div class="controls"><h2>🧠 Нейроквест «В гости к бабушке Сове»</h2><button class="btn" id="printBtn">🖨️ Распечатать оба листа</button></div>
-    <div class="page"><div class="page-header"><h3>🐾 Лесные дорожки <span>Лист 1</span></h3></div><div class="instruction">✏️ Проведи линию внутри каждой дорожки от СТАРТА (внизу) к ФИНИШУ (вверху). Левую — левой рукой, правую — правой.</div><div class="drawing-area"><canvas id="canvasRoads" width="600" height="800"></canvas></div><div class="footer-note">В гости к бабушке Сове • Нейро-квест</div></div>
-    <div class="page"><div class="page-header"><h3>🍯 Горшочек с узорами <span>Лист 2</span></h3></div><div class="instruction">✏️ Обведи линии внутри горшочка. Левую половину — левой рукой, правую — правой.</div><div class="drawing-area"><canvas id="canvasBowl" width="750" height="550"></canvas></div><div class="footer-note">Угощение для Совушки • Нейро-квест</div></div>
-</div>
-<script>
-(function(){
-    "use strict";
-    // Лист 1: Дорожки
-    const canvasRoads = document.getElementById('canvasRoads');
-    const ctx = canvasRoads.getContext('2d');
-    canvasRoads.width = 600; canvasRoads.height = 800;
-    ctx.fillStyle = '#fff'; ctx.fillRect(0,0,600,800);
-    const cx = 300, rw = 36, sy = 720, ey = 80;
-    ctx.strokeStyle = '#000'; ctx.fillStyle = '#fff'; ctx.lineWidth = 2;
-    const lp = [{x:cx-130,y:sy},{x:cx-70,y:sy-100},{x:cx-140,y:sy-200},{x:cx-60,y:sy-300},{x:cx-160,y:sy-400},{x:cx-50,y:sy-500},{x:cx-150,y:sy-600},{x:cx-80,y:ey}];
-    const rp = [{x:cx+130,y:sy},{x:cx+70,y:sy-100},{x:cx+140,y:sy-200},{x:cx+60,y:sy-300},{x:cx+160,y:sy-400},{x:cx+50,y:sy-500},{x:cx+150,y:sy-600},{x:cx+80,y:ey}];
-    function drawRoad(p, off){ ctx.beginPath(); ctx.moveTo(p[0].x,p[0].y); for(let i=1;i<p.length;i++) ctx.lineTo(p[i].x,p[i].y); ctx.stroke(); ctx.beginPath(); ctx.moveTo(p[0].x+off,p[0].y); for(let i=1;i<p.length;i++) ctx.lineTo(p[i].x+off,p[i].y); ctx.stroke(); ctx.fillStyle='#fff'; ctx.beginPath(); ctx.moveTo(p[0].x,p[0].y); for(let i=1;i<p.length;i++) ctx.lineTo(p[i].x,p[i].y); for(let i=p.length-1;i>=0;i--) ctx.lineTo(p[i].x+off,p[i].y); ctx.closePath(); ctx.fill(); ctx.beginPath(); ctx.moveTo(p[0].x,p[0].y); for(let i=1;i<p.length;i++) ctx.lineTo(p[i].x,p[i].y); ctx.stroke(); ctx.beginPath(); ctx.moveTo(p[0].x+off,p[0].y); for(let i=1;i<p.length;i++) ctx.lineTo(p[i].x+off,p[i].y); ctx.stroke(); }
-    drawRoad(lp, rw); drawRoad(rp, -rw);
-    ctx.fillStyle='#000'; ctx.beginPath(); ctx.arc(cx-130,sy+15,7,0,Math.PI*2); ctx.fill(); ctx.beginPath(); ctx.arc(cx+130,sy+15,7,0,Math.PI*2); ctx.fill();
-    ctx.font='bold 12px "Segoe UI", Arial'; ctx.fillText('СТАРТ',cx-50,sy+40); ctx.fillText('СТАРТ',cx+10,sy+40);
-    ctx.beginPath(); ctx.arc(cx-80,ey-15,7,0,Math.PI*2); ctx.fill(); ctx.beginPath(); ctx.arc(cx+80,ey-15,7,0,Math.PI*2); ctx.fill();
-    ctx.fillText('ФИНИШ',cx-50,ey-25); ctx.fillText('ФИНИШ',cx+10,ey-25);
-    let my = sy-180; ctx.fillStyle='#ccc'; ctx.fillRect(cx-45,my-5,90,12); ctx.strokeStyle='#000'; ctx.strokeRect(cx-45,my-5,90,12); ctx.fillStyle='#aaa'; ctx.fillRect(cx-50,my-12,15,25); ctx.fillRect(cx+35,my-12,15,25); ctx.strokeRect(cx-50,my-12,15,25); ctx.strokeRect(cx+35,my-12,15,25);
-    ctx.beginPath(); ctx.moveTo(cx-40,my-5); ctx.lineTo(cx-40,my+7); ctx.moveTo(cx-20,my-5); ctx.lineTo(cx-20,my+7); ctx.moveTo(cx,my-5); ctx.lineTo(cx,my+7); ctx.moveTo(cx+20,my-5); ctx.lineTo(cx+20,my+7); ctx.moveTo(cx+40,my-5); ctx.lineTo(cx+40,my+7); ctx.stroke();
-    my = sy-380; ctx.fillStyle='#ddd'; ctx.beginPath(); ctx.arc(cx,my-10,25,0,Math.PI,true); ctx.fill(); ctx.stroke(); ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(cx,my-15,10,0,Math.PI*2); ctx.fill(); ctx.stroke(); ctx.fillStyle='#bbb'; ctx.fillRect(cx-6,my-10,12,25); ctx.strokeRect(cx-6,my-10,12,25);
-    my = sy-580; ctx.fillStyle='#ccc'; for(let i=0;i<5;i++){ ctx.beginPath(); ctx.arc(cx-30+i*15,my,10,0,Math.PI*2); ctx.fill(); ctx.stroke(); } ctx.fillStyle='#000'; ctx.beginPath(); ctx.arc(cx+30,my-3,4,0,Math.PI*2); ctx.fill(); ctx.beginPath(); ctx.arc(cx+30,my+5,4,0,Math.PI*2); ctx.fill();
-    ctx.font='bold 11px "Segoe UI", Arial'; ctx.fillStyle='#000'; ctx.fillText('левая рука',cx-200,sy+60); ctx.fillText('правая рука',cx+140,sy+60);
+    <div class="card">
+        <h1>🌉 МОСТ 🌉</h1>
 
-    // Лист 2: Горшочек (горизонтальные стрелки длиннее)
-    const canvasBowl = document.getElementById('canvasBowl');
-    const cb = canvasBowl.getContext('2d');
-    canvasBowl.width = 750; canvasBowl.height = 550;
-    cb.fillStyle = '#fff'; cb.fillRect(0,0,750,550);
-    cb.strokeStyle = '#000'; cb.lineWidth = 3;
-    const bcx = 375, bty = 120, br = 250, bby = bty + br;
-    cb.fillStyle = '#fafafa'; cb.beginPath(); cb.arc(bcx, bty, br, 0, Math.PI, false); cb.closePath(); cb.fill(); cb.stroke();
-    cb.fillStyle = '#fff'; cb.beginPath(); cb.ellipse(bcx, bty-5, br-15, 28, 0, 0, Math.PI*2); cb.fill(); cb.stroke();
-    cb.fillStyle = '#e8e8e8'; cb.beginPath(); cb.ellipse(bcx, bty, br+8, 18, 0, 0, Math.PI*2); cb.fill(); cb.stroke();
-    cb.setLineDash([10,8]); cb.beginPath(); cb.moveTo(bcx, bty+20); cb.lineTo(bcx, bby-15); cb.strokeStyle='#000'; cb.lineWidth=2; cb.stroke(); cb.setLineDash([]);
-    function arrow(sx,sy,ex,ey){ cb.setLineDash([8,6]); cb.lineWidth=2.5; cb.strokeStyle='#000'; cb.beginPath(); cb.moveTo(sx,sy); cb.lineTo(ex,ey); cb.stroke(); cb.setLineDash([]); cb.fillStyle='#000'; let a=Math.atan2(ey-sy,ex-sx), s=10; cb.beginPath(); cb.moveTo(ex,ey); cb.lineTo(ex-s*Math.cos(a-0.3),ey-s*Math.sin(a-0.3)); cb.lineTo(ex-s*Math.cos(a+0.3),ey-s*Math.sin(a+0.3)); cb.closePath(); cb.fill(); }
-    
-    // Горизонтальные: начинаются почти от овала (отступ 5), Y: 50, 85, 120, доходят до 180 (длиннее на ~2 см)
-    arrow(bcx+5, bty+50, bcx+180, bty+50);
-    arrow(bcx+5, bty+85, bcx+180, bty+85);
-    arrow(bcx+5, bty+120, bcx+180, bty+120);
-    arrow(bcx-5, bty+50, bcx-180, bty+50);
-    arrow(bcx-5, bty+85, bcx-180, bty+85);
-    arrow(bcx-5, bty+120, bcx-180, bty+120);
-    
-    // Вертикальные: без изменений
-    arrow(bcx+70, bby-25, bcx+70, bty+165);
-    arrow(bcx+110, bby-25, bcx+110, bty+165);
-    arrow(bcx-70, bby-25, bcx-70, bty+165);
-    arrow(bcx-110, bby-25, bcx-110, bty+165);
-    
-    // Грибочки
-    cb.fillStyle='#ddd'; cb.beginPath(); cb.arc(bcx-80,bty-18,18,0,Math.PI,true); cb.fill(); cb.stroke(); cb.fillStyle='#fff'; cb.beginPath(); cb.arc(bcx-80,bty-26,8,0,Math.PI*2); cb.fill(); cb.stroke();
-    cb.fillStyle='#ddd'; cb.beginPath(); cb.arc(bcx+80,bty-18,18,0,Math.PI,true); cb.fill(); cb.stroke(); cb.fillStyle='#fff'; cb.beginPath(); cb.arc(bcx+80,bty-26,8,0,Math.PI*2); cb.fill(); cb.stroke();
-    cb.fillStyle='#ddd'; cb.beginPath(); cb.arc(bcx,bty-12,20,0,Math.PI,true); cb.fill(); cb.stroke(); cb.fillStyle='#fff'; cb.beginPath(); cb.arc(bcx,bty-20,9,0,Math.PI*2); cb.fill(); cb.stroke();
-    cb.font='bold 13px "Segoe UI", Arial'; cb.fillStyle='#000'; cb.fillText('левая рука',bcx-280,bty+300); cb.fillText('правая рука',bcx+210,bty+300);
+        <!-- Берега -->
+        <div class="shores">
+            <div class="shore">
+                <div class="shore-icon">🧍</div>
+                <div class="shore-label">Я</div>
+                <div class="shore-sub">Мой мир<br>Мои ценности</div>
+            </div>
+            <div class="shore">
+                <div class="shore-icon">🌍</div>
+                <div class="shore-label">ДРУГОЙ</div>
+                <div class="shore-sub">Его мир<br>Его ценности</div>
+            </div>
+        </div>
 
-    document.getElementById('printBtn').onclick = () => window.print();
-})();
-</script>
+        <!-- Река -->
+        <div class="river-container">
+            <div class="river">
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="river-text">
+                    РЕКА НЕПОНИМАНИЯ<br>
+                    (страхи, стереотипы, обиды, ярлыки)
+                </div>
+            </div>
+        </div>
+
+        <!-- Мост -->
+        <div class="bridge">
+            <svg class="bridge-svg" viewBox="0 0 800 120" preserveAspectRatio="xMidYMid meet">
+                <!-- Тени -->
+                <path d="M 50,90 Q 400,-30 750,90" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="14" stroke-linecap="round" transform="translate(0, 8)"/>
+                <!-- Основная дуга моста -->
+                <path d="M 50,80 Q 400,-40 750,80" fill="none" stroke="#7a5c3a" stroke-width="14" stroke-linecap="round"/>
+                <path d="M 50,80 Q 400,-40 750,80" fill="none" stroke="#9b7e54" stroke-width="8" stroke-linecap="round"/>
+                <!-- Перила -->
+                <path d="M 50,70 Q 400,-50 750,70" fill="none" stroke="#a0855e" stroke-width="4" stroke-dasharray="14, 10" stroke-linecap="round"/>
+                <!-- Вертикальные стойки -->
+                <line x1="150" y1="35" x2="150" y2="62" stroke="#a0855e" stroke-width="3"/>
+                <line x1="250" y1="8" x2="250" y2="40" stroke="#a0855e" stroke-width="3"/>
+                <line x1="400" y1="-5" x2="400" y2="28" stroke="#a0855e" stroke-width="3"/>
+                <line x1="550" y1="8" x2="550" y2="40" stroke="#a0855e" stroke-width="3"/>
+                <line x1="650" y1="35" x2="650" y2="62" stroke="#a0855e" stroke-width="3"/>
+            </svg>
+            <div class="bridge-content">
+                <div class="bridge-message">
+                    ✏️ Напиши или нарисуй здесь то,<br>
+                    что может соединить тебя с этим человеком
+                </div>
+            </div>
+        </div>
+
+        <!-- Подсказки -->
+        <div class="hints">
+            <div class="hint-item">
+                <span class="hint-icon">💬</span>
+                <span class="hint-text">Общие чувства</span>
+            </div>
+            <div class="hint-item">
+                <span class="hint-icon">❓</span>
+                <span class="hint-text">Вопросы ему</span>
+            </div>
+            <div class="hint-item">
+                <span class="hint-icon">🤝</span>
+                <span class="hint-text">Слова поддержки</span>
+            </div>
+            <div class="hint-item">
+                <span class="hint-icon">💡</span>
+                <span class="hint-text">Что я узнал(а)</span>
+            </div>
+        </div>
+
+        <div class="footer">
+            Это твой личный мост. Строить его можешь только ты.
+        </div>
+    </div>
 </body>
 </html>
