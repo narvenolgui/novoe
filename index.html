@@ -53,7 +53,7 @@
     my = sy-580; ctx.fillStyle='#ccc'; for(let i=0;i<5;i++){ ctx.beginPath(); ctx.arc(cx-30+i*15,my,10,0,Math.PI*2); ctx.fill(); ctx.stroke(); } ctx.fillStyle='#000'; ctx.beginPath(); ctx.arc(cx+30,my-3,4,0,Math.PI*2); ctx.fill(); ctx.beginPath(); ctx.arc(cx+30,my+5,4,0,Math.PI*2); ctx.fill();
     ctx.font='bold 11px "Segoe UI", Arial'; ctx.fillStyle='#000'; ctx.fillText('левая рука',cx-200,sy+60); ctx.fillText('правая рука',cx+140,sy+60);
 
-    // Лист 2: Горшочек (идеальный вариант)
+    // Лист 2: Горшочек (горизонтальные стрелки начинаются почти от овала)
     const canvasBowl = document.getElementById('canvasBowl');
     const cb = canvasBowl.getContext('2d');
     canvasBowl.width = 750; canvasBowl.height = 550;
@@ -65,18 +65,21 @@
     cb.fillStyle = '#e8e8e8'; cb.beginPath(); cb.ellipse(bcx, bty, br+8, 18, 0, 0, Math.PI*2); cb.fill(); cb.stroke();
     cb.setLineDash([10,8]); cb.beginPath(); cb.moveTo(bcx, bty+20); cb.lineTo(bcx, bby-15); cb.strokeStyle='#000'; cb.lineWidth=2; cb.stroke(); cb.setLineDash([]);
     function arrow(sx,sy,ex,ey){ cb.setLineDash([8,6]); cb.lineWidth=2.5; cb.strokeStyle='#000'; cb.beginPath(); cb.moveTo(sx,sy); cb.lineTo(ex,ey); cb.stroke(); cb.setLineDash([]); cb.fillStyle='#000'; let a=Math.atan2(ey-sy,ex-sx), s=10; cb.beginPath(); cb.moveTo(ex,ey); cb.lineTo(ex-s*Math.cos(a-0.3),ey-s*Math.sin(a-0.3)); cb.lineTo(ex-s*Math.cos(a+0.3),ey-s*Math.sin(a+0.3)); cb.closePath(); cb.fill(); }
-    // Горизонтальные: очень плотно (Y: 90, 130, 170), до середины (X до 120)
-    arrow(bcx+25, bty+90, bcx+120, bty+90);
-    arrow(bcx+25, bty+130, bcx+120, bty+130);
-    arrow(bcx+25, bty+170, bcx+120, bty+170);
-    arrow(bcx-25, bty+90, bcx-120, bty+90);
-    arrow(bcx-25, bty+130, bcx-120, bty+130);
-    arrow(bcx-25, bty+170, bcx-120, bty+170);
-    // Вертикальные: близко друг к другу (X: 70, 110), ближе к середине, длинные до Y=165 (под нижней горизонталью)
+    
+    // Горизонтальные: начинаются почти от овала (отступ 5 от центра), Y: 50, 85, 120 (сдвинуты выше), до середины (120)
+    arrow(bcx+5, bty+50, bcx+120, bty+50);
+    arrow(bcx+5, bty+85, bcx+120, bty+85);
+    arrow(bcx+5, bty+120, bcx+120, bty+120);
+    arrow(bcx-5, bty+50, bcx-120, bty+50);
+    arrow(bcx-5, bty+85, bcx-120, bty+85);
+    arrow(bcx-5, bty+120, bcx-120, bty+120);
+    
+    // Вертикальные: без изменений
     arrow(bcx+70, bby-25, bcx+70, bty+165);
     arrow(bcx+110, bby-25, bcx+110, bty+165);
     arrow(bcx-70, bby-25, bcx-70, bty+165);
     arrow(bcx-110, bby-25, bcx-110, bty+165);
+    
     // Грибочки
     cb.fillStyle='#ddd'; cb.beginPath(); cb.arc(bcx-80,bty-18,18,0,Math.PI,true); cb.fill(); cb.stroke(); cb.fillStyle='#fff'; cb.beginPath(); cb.arc(bcx-80,bty-26,8,0,Math.PI*2); cb.fill(); cb.stroke();
     cb.fillStyle='#ddd'; cb.beginPath(); cb.arc(bcx+80,bty-18,18,0,Math.PI,true); cb.fill(); cb.stroke(); cb.fillStyle='#fff'; cb.beginPath(); cb.arc(bcx+80,bty-26,8,0,Math.PI*2); cb.fill(); cb.stroke();
