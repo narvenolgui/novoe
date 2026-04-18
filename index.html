@@ -5,12 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Нейроквест — Лесные дорожки и Горшочек (2 листа А4)</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', 'Arial', sans-serif;
             background: #e8dfee;
@@ -19,12 +14,7 @@
             align-items: center;
             padding: 20px;
         }
-
-        .print-container {
-            max-width: 750px;
-            width: 100%;
-        }
-
+        .print-container { max-width: 750px; width: 100%; }
         .controls {
             background: white;
             border-radius: 30px;
@@ -37,12 +27,7 @@
             flex-wrap: wrap;
             gap: 15px;
         }
-
-        .controls h2 {
-            color: #2d1b4e;
-            font-size: 1.3rem;
-        }
-
+        .controls h2 { color: #2d1b4e; font-size: 1.3rem; }
         .btn {
             background: #2d1b4e;
             border: none;
@@ -53,23 +38,16 @@
             font-weight: 700;
             cursor: pointer;
             box-shadow: 0 8px 16px #2d1b4e40;
-            transition: 0.15s;
         }
-
-        .btn:hover {
-            background: #412a66;
-            transform: translateY(-2px);
-        }
-
+        .btn:hover { background: #412a66; }
         .page {
             background: white;
             border-radius: 20px;
             box-shadow: 0 20px 40px -10px rgba(45, 27, 78, 0.25);
-            padding: 20px 20px;
+            padding: 20px;
             margin-bottom: 25px;
             border: 1px solid #dac0f0;
         }
-
         .page-header {
             display: flex;
             align-items: center;
@@ -78,12 +56,7 @@
             padding-bottom: 10px;
             margin-bottom: 15px;
         }
-
-        .page-header h3 {
-            font-size: 1.4rem;
-            color: #2d1b4e;
-        }
-
+        .page-header h3 { font-size: 1.4rem; color: #2d1b4e; }
         .page-header span {
             background: #2d1b4e;
             color: white;
@@ -91,7 +64,6 @@
             border-radius: 40px;
             font-size: 0.8rem;
         }
-
         .instruction {
             font-size: 0.95rem;
             color: #4a3a5c;
@@ -102,13 +74,7 @@
             border-radius: 14px;
             border-left: 5px solid #888;
         }
-
-        .drawing-area {
-            display: flex;
-            justify-content: center;
-            margin: 0;
-        }
-
+        .drawing-area { display: flex; justify-content: center; }
         canvas {
             max-width: 100%;
             height: auto;
@@ -116,22 +82,15 @@
             background: white;
             border: 1px solid #ccc;
         }
-
         .footer-note {
             margin-top: 12px;
             text-align: right;
             color: #666;
             font-size: 0.8rem;
         }
-
         @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-            .controls {
-                display: none !important;
-            }
+            body { background: white; padding: 0; }
+            .controls { display: none !important; }
             .page {
                 box-shadow: none;
                 border: 1px solid #000;
@@ -140,12 +99,8 @@
                 page-break-after: always;
                 border-radius: 0;
             }
-            .page:last-child {
-                page-break-after: avoid;
-            }
-            canvas {
-                border: 1px solid #000;
-            }
+            .page:last-child { page-break-after: avoid; }
+            canvas { border: 1px solid #000; }
             .instruction {
                 background: #eee;
                 border-left-color: #000;
@@ -157,7 +112,6 @@
 </head>
 <body>
 <div class="print-container">
-    
     <div class="controls">
         <h2>🧠 Нейроквест «В гости к бабушке Сове»</h2>
         <button class="btn" id="printBtn">🖨️ Распечатать оба листа</button>
@@ -174,9 +128,7 @@
         <div class="drawing-area">
             <canvas id="canvasRoads" width="600" height="800"></canvas>
         </div>
-        <div class="footer-note">
-            В гости к бабушке Сове • Нейро-квест
-        </div>
+        <div class="footer-note">В гости к бабушке Сове • Нейро-квест</div>
     </div>
 
     <!-- ЛИСТ 2: ГОРШОЧЕК -->
@@ -188,13 +140,10 @@
             ✏️ Обведи линии внутри горшочка. Левую половину — левой рукой, правую — правой.
         </div>
         <div class="drawing-area">
-            <canvas id="canvasBowl" width="750" height="550"></canvas>
+            <canvas id="canvasBowl" width="700" height="500"></canvas>
         </div>
-        <div class="footer-note">
-            Угощение для Совушки • Нейро-квест
-        </div>
+        <div class="footer-note">Угощение для Совушки • Нейро-квест</div>
     </div>
-
 </div>
 
 <script>
@@ -206,215 +155,127 @@
         const ctxRoads = canvasRoads.getContext('2d');
         
         function drawRoads() {
-            const w = 600, h =800;
-            canvasRoads.width = w;
-            canvasRoads.height = h;
-
-            ctxRoads.fillStyle = '#ffffff';
-            ctxRoads.fillRect(0, 0, w, h);
-
-            const centerX = w / 2;
-            const roadWidth = 36;
-            
-            const startY = 720;
-            const endY = 80;
-            
-            ctxRoads.strokeStyle = '#000000';
-            ctxRoads.fillStyle = '#ffffff';
-            ctxRoads.lineWidth = 2;
+            const w = 600, h = 800;
+            canvasRoads.width = w; canvasRoads.height = h;
+            ctxRoads.fillStyle = '#ffffff'; ctxRoads.fillRect(0, 0, w, h);
+            const centerX = w / 2, roadWidth = 36;
+            const startY = 720, endY = 80;
+            ctxRoads.strokeStyle = '#000000'; ctxRoads.fillStyle = '#ffffff'; ctxRoads.lineWidth = 2;
             
             const leftPoints = [
-                {x: centerX - 130, y: startY},
-                {x: centerX - 70, y: startY - 100},
-                {x: centerX - 140, y: startY - 200},
-                {x: centerX - 60, y: startY - 300},
-                {x: centerX - 160, y: startY - 400},
-                {x: centerX - 50, y: startY - 500},
-                {x: centerX - 150, y: startY - 600},
-                {x: centerX - 80, y: endY}
+                {x: centerX - 130, y: startY}, {x: centerX - 70, y: startY - 100},
+                {x: centerX - 140, y: startY - 200}, {x: centerX - 60, y: startY - 300},
+                {x: centerX - 160, y: startY - 400}, {x: centerX - 50, y: startY - 500},
+                {x: centerX - 150, y: startY - 600}, {x: centerX - 80, y: endY}
             ];
-            
             const rightPoints = [
-                {x: centerX + 130, y: startY},
-                {x: centerX + 70, y: startY - 100},
-                {x: centerX + 140, y: startY - 200},
-                {x: centerX + 60, y: startY - 300},
-                {x: centerX + 160, y: startY - 400},
-                {x: centerX + 50, y: startY - 500},
-                {x: centerX + 150, y: startY - 600},
-                {x: centerX + 80, y: endY}
+                {x: centerX + 130, y: startY}, {x: centerX + 70, y: startY - 100},
+                {x: centerX + 140, y: startY - 200}, {x: centerX + 60, y: startY - 300},
+                {x: centerX + 160, y: startY - 400}, {x: centerX + 50, y: startY - 500},
+                {x: centerX + 150, y: startY - 600}, {x: centerX + 80, y: endY}
             ];
 
             function drawRoad(points, offsetX) {
-                ctxRoads.beginPath();
-                ctxRoads.moveTo(points[0].x, points[0].y);
-                for (let i = 1; i < points.length; i++) {
-                    ctxRoads.lineTo(points[i].x, points[i].y);
-                }
+                ctxRoads.beginPath(); ctxRoads.moveTo(points[0].x, points[0].y);
+                for (let i = 1; i < points.length; i++) ctxRoads.lineTo(points[i].x, points[i].y);
                 ctxRoads.stroke();
-
-                ctxRoads.beginPath();
-                ctxRoads.moveTo(points[0].x + offsetX, points[0].y);
-                for (let i = 1; i < points.length; i++) {
-                    ctxRoads.lineTo(points[i].x + offsetX, points[i].y);
-                }
+                ctxRoads.beginPath(); ctxRoads.moveTo(points[0].x + offsetX, points[0].y);
+                for (let i = 1; i < points.length; i++) ctxRoads.lineTo(points[i].x + offsetX, points[i].y);
                 ctxRoads.stroke();
-
                 ctxRoads.fillStyle = '#ffffff';
-                ctxRoads.beginPath();
-                ctxRoads.moveTo(points[0].x, points[0].y);
-                for (let i = 1; i < points.length; i++) {
-                    ctxRoads.lineTo(points[i].x, points[i].y);
-                }
-                for (let i = points.length - 1; i >= 0; i--) {
-                    ctxRoads.lineTo(points[i].x + offsetX, points[i].y);
-                }
-                ctxRoads.closePath();
-                ctxRoads.fill();
-                
-                ctxRoads.beginPath();
-                ctxRoads.moveTo(points[0].x, points[0].y);
-                for (let i = 1; i < points.length; i++) {
-                    ctxRoads.lineTo(points[i].x, points[i].y);
-                }
+                ctxRoads.beginPath(); ctxRoads.moveTo(points[0].x, points[0].y);
+                for (let i = 1; i < points.length; i++) ctxRoads.lineTo(points[i].x, points[i].y);
+                for (let i = points.length - 1; i >= 0; i--) ctxRoads.lineTo(points[i].x + offsetX, points[i].y);
+                ctxRoads.closePath(); ctxRoads.fill();
+                ctxRoads.beginPath(); ctxRoads.moveTo(points[0].x, points[0].y);
+                for (let i = 1; i < points.length; i++) ctxRoads.lineTo(points[i].x, points[i].y);
                 ctxRoads.stroke();
-                
-                ctxRoads.beginPath();
-                ctxRoads.moveTo(points[0].x + offsetX, points[0].y);
-                for (let i = 1; i < points.length; i++) {
-                    ctxRoads.lineTo(points[i].x + offsetX, points[i].y);
-                }
+                ctxRoads.beginPath(); ctxRoads.moveTo(points[0].x + offsetX, points[0].y);
+                for (let i = 1; i < points.length; i++) ctxRoads.lineTo(points[i].x + offsetX, points[i].y);
                 ctxRoads.stroke();
             }
+            drawRoad(leftPoints, roadWidth); drawRoad(rightPoints, -roadWidth);
 
-            drawRoad(leftPoints, roadWidth);
-            drawRoad(rightPoints, -roadWidth);
-
-            // СТАРТ
             ctxRoads.fillStyle = '#000000';
-            ctxRoads.beginPath();
-            ctxRoads.arc(centerX - 130, startY + 15, 7, 0, Math.PI*2);
-            ctxRoads.fill();
-            ctxRoads.beginPath();
-            ctxRoads.arc(centerX + 130, startY + 15, 7, 0, Math.PI*2);
-            ctxRoads.fill();
-            
+            ctxRoads.beginPath(); ctxRoads.arc(centerX - 130, startY + 15, 7, 0, Math.PI*2); ctxRoads.fill();
+            ctxRoads.beginPath(); ctxRoads.arc(centerX + 130, startY + 15, 7, 0, Math.PI*2); ctxRoads.fill();
             ctxRoads.font = 'bold 12px "Segoe UI", Arial';
             ctxRoads.fillText('СТАРТ', centerX - 50, startY + 40);
             ctxRoads.fillText('СТАРТ', centerX + 10, startY + 40);
-
-            // ФИНИШ
-            ctxRoads.beginPath();
-            ctxRoads.arc(centerX - 80, endY - 15, 7, 0, Math.PI*2);
-            ctxRoads.fill();
-            ctxRoads.beginPath();
-            ctxRoads.arc(centerX + 80, endY - 15, 7, 0, Math.PI*2);
-            ctxRoads.fill();
+            ctxRoads.beginPath(); ctxRoads.arc(centerX - 80, endY - 15, 7, 0, Math.PI*2); ctxRoads.fill();
+            ctxRoads.beginPath(); ctxRoads.arc(centerX + 80, endY - 15, 7, 0, Math.PI*2); ctxRoads.fill();
             ctxRoads.fillText('ФИНИШ', centerX - 50, endY - 25);
             ctxRoads.fillText('ФИНИШ', centerX + 10, endY - 25);
 
-            // Мостик
             const midY1 = startY - 180;
-            ctxRoads.fillStyle = '#cccccc';
-            ctxRoads.fillRect(centerX - 45, midY1 - 5, 90, 12);
-            ctxRoads.strokeStyle = '#000000';
-            ctxRoads.strokeRect(centerX - 45, midY1 - 5, 90, 12);
+            ctxRoads.fillStyle = '#cccccc'; ctxRoads.fillRect(centerX - 45, midY1 - 5, 90, 12);
+            ctxRoads.strokeStyle = '#000000'; ctxRoads.strokeRect(centerX - 45, midY1 - 5, 90, 12);
             ctxRoads.fillStyle = '#aaaaaa';
-            ctxRoads.fillRect(centerX - 50, midY1 - 12, 15, 25);
-            ctxRoads.fillRect(centerX + 35, midY1 - 12, 15, 25);
-            ctxRoads.strokeRect(centerX - 50, midY1 - 12, 15, 25);
-            ctxRoads.strokeRect(centerX + 35, midY1 - 12, 15, 25);
+            ctxRoads.fillRect(centerX - 50, midY1 - 12, 15, 25); ctxRoads.fillRect(centerX + 35, midY1 - 12, 15, 25);
+            ctxRoads.strokeRect(centerX - 50, midY1 - 12, 15, 25); ctxRoads.strokeRect(centerX + 35, midY1 - 12, 15, 25);
             ctxRoads.beginPath();
-            ctxRoads.moveTo(centerX - 40, midY1 - 5);
-            ctxRoads.lineTo(centerX - 40, midY1 + 7);
-            ctxRoads.moveTo(centerX - 20, midY1 - 5);
-            ctxRoads.lineTo(centerX - 20, midY1 + 7);
-            ctxRoads.moveTo(centerX, midY1 - 5);
-            ctxRoads.lineTo(centerX, midY1 + 7);
-            ctxRoads.moveTo(centerX + 20, midY1 - 5);
-            ctxRoads.lineTo(centerX + 20, midY1 + 7);
-            ctxRoads.moveTo(centerX + 40, midY1 - 5);
-            ctxRoads.lineTo(centerX + 40, midY1 + 7);
+            ctxRoads.moveTo(centerX - 40, midY1 - 5); ctxRoads.lineTo(centerX - 40, midY1 + 7);
+            ctxRoads.moveTo(centerX - 20, midY1 - 5); ctxRoads.lineTo(centerX - 20, midY1 + 7);
+            ctxRoads.moveTo(centerX, midY1 - 5); ctxRoads.lineTo(centerX, midY1 + 7);
+            ctxRoads.moveTo(centerX + 20, midY1 - 5); ctxRoads.lineTo(centerX + 20, midY1 + 7);
+            ctxRoads.moveTo(centerX + 40, midY1 - 5); ctxRoads.lineTo(centerX + 40, midY1 + 7);
             ctxRoads.stroke();
 
-            // Гриб
             const midY2 = startY - 380;
             ctxRoads.fillStyle = '#dddddd';
-            ctxRoads.beginPath();
-            ctxRoads.arc(centerX, midY2 - 10, 25, 0, Math.PI, true);
-            ctxRoads.fill();
-            ctxRoads.stroke();
+            ctxRoads.beginPath(); ctxRoads.arc(centerX, midY2 - 10, 25, 0, Math.PI, true); ctxRoads.fill(); ctxRoads.stroke();
             ctxRoads.fillStyle = '#ffffff';
-            ctxRoads.beginPath();
-            ctxRoads.arc(centerX, midY2 - 15, 10, 0, Math.PI*2);
-            ctxRoads.fill();
-            ctxRoads.stroke();
+            ctxRoads.beginPath(); ctxRoads.arc(centerX, midY2 - 15, 10, 0, Math.PI*2); ctxRoads.fill(); ctxRoads.stroke();
             ctxRoads.fillStyle = '#bbbbbb';
-            ctxRoads.fillRect(centerX - 6, midY2 - 10, 12, 25);
-            ctxRoads.strokeRect(centerX - 6, midY2 - 10, 12, 25);
+            ctxRoads.fillRect(centerX - 6, midY2 - 10, 12, 25); ctxRoads.strokeRect(centerX - 6, midY2 - 10, 12, 25);
 
-            // Гусеница
             const midY3 = startY - 580;
             ctxRoads.fillStyle = '#cccccc';
             for (let i = 0; i < 5; i++) {
-                ctxRoads.beginPath();
-                ctxRoads.arc(centerX - 30 + i * 15, midY3, 10, 0, Math.PI*2);
-                ctxRoads.fill();
-                ctxRoads.stroke();
+                ctxRoads.beginPath(); ctxRoads.arc(centerX - 30 + i * 15, midY3, 10, 0, Math.PI*2); ctxRoads.fill(); ctxRoads.stroke();
             }
             ctxRoads.fillStyle = '#000000';
-            ctxRoads.beginPath();
-            ctxRoads.arc(centerX + 30, midY3 - 3, 4, 0, Math.PI*2);
-            ctxRoads.fill();
-            ctxRoads.beginPath();
-            ctxRoads.arc(centerX + 30, midY3 + 5, 4, 0, Math.PI*2);
-            ctxRoads.fill();
-
-            ctxRoads.font = 'bold 11px "Segoe UI", Arial';
-            ctxRoads.fillStyle = '#000000';
+            ctxRoads.beginPath(); ctxRoads.arc(centerX + 30, midY3 - 3, 4, 0, Math.PI*2); ctxRoads.fill();
+            ctxRoads.beginPath(); ctxRoads.arc(centerX + 30, midY3 + 5, 4, 0, Math.PI*2); ctxRoads.fill();
+            ctxRoads.font = 'bold 11px "Segoe UI", Arial'; ctxRoads.fillStyle = '#000000';
             ctxRoads.fillText('левая рука', centerX - 200, startY + 60);
             ctxRoads.fillText('правая рука', centerX + 140, startY + 60);
         }
 
-        // ---------- ЛИСТ 2: ГОРШОЧЕК (ПОЛУКРУГ ПЛОСКОЙ СТОРОНОЙ ВВЕРХ + ОВАЛ + 2 СТРЕЛКИ) ----------
+        // ---------- ЛИСТ 2: ГОРШОЧЕК (ПОЛУКРУГ ВНИЗ, ОВАЛ СВЕРХУ, 2 СТРЕЛКИ ВНУТРИ) ----------
         const canvasBowl = document.getElementById('canvasBowl');
         const ctxBowl = canvasBowl.getContext('2d');
 
         function drawBowl() {
-            const w = 750, h = 550;
-            canvasBowl.width = w;
-            canvasBowl.height = h;
-
-            ctxBowl.fillStyle = '#ffffff';
-            ctxBowl.fillRect(0, 0, w, h);
-            
-            ctxBowl.strokeStyle = '#000000';
-            ctxBowl.lineWidth = 3;
+            const w = 700, h = 500;
+            canvasBowl.width = w; canvasBowl.height = h;
+            ctxBowl.fillStyle = '#ffffff'; ctxBowl.fillRect(0, 0, w, h);
+            ctxBowl.strokeStyle = '#000000'; ctxBowl.lineWidth = 3;
 
             const centerX = w / 2;
-            const bowlTopY = 140;
-            const bowlRadius = 200;
-            const bowlBottomY = bowlTopY + bowlRadius;
+            const bowlTopY = 130;          // верх горшка (плоская часть)
+            const bowlRadius = 170;         // радиус полукруга
+            const bowlBottomY = bowlTopY + bowlRadius; // низ горшка
 
-            // === ПОЛУКРУГ (плоской стороной ВВЕРХ) ===
+            // === ПОЛУКРУГ (выпуклостью ВНИЗ) ===
             ctxBowl.fillStyle = '#fafafa';
             ctxBowl.beginPath();
-            ctxBowl.arc(centerX, bowlTopY, bowlRadius, 0, Math.PI, true);
+            ctxBowl.arc(centerX, bowlTopY, bowlRadius, 0, Math.PI, false);
             ctxBowl.closePath();
             ctxBowl.fill();
             ctxBowl.stroke();
 
-            // === ОВАЛ СВЕРХУ ===
+            // === ПЛОСКИЙ ОВАЛ СВЕРХУ ===
             ctxBowl.fillStyle = '#ffffff';
             ctxBowl.beginPath();
-            ctxBowl.ellipse(centerX, bowlTopY - 5, bowlRadius - 10, 25, 0, 0, Math.PI*2);
+            ctxBowl.ellipse(centerX, bowlTopY - 5, bowlRadius - 12, 22, 0, 0, Math.PI*2);
             ctxBowl.fill();
             ctxBowl.stroke();
 
             // === ОБОДОК ===
             ctxBowl.fillStyle = '#e8e8e8';
             ctxBowl.beginPath();
-            ctxBowl.ellipse(centerX, bowlTopY, bowlRadius + 8, 16, 0, 0, Math.PI*2);
+            ctxBowl.ellipse(centerX, bowlTopY, bowlRadius + 6, 14, 0, 0, Math.PI*2);
             ctxBowl.fill();
             ctxBowl.stroke();
 
@@ -428,7 +289,7 @@
             ctxBowl.stroke();
             ctxBowl.setLineDash([]);
 
-            // === ФУНКЦИЯ ДЛЯ ЛИНИЙ СО СТРЕЛОЧКАМИ ===
+            // === ФУНКЦИЯ ЛИНИЙ СО СТРЕЛКАМИ ===
             function drawLineWithArrow(startX, startY, endX, endY) {
                 ctxBowl.setLineDash([8, 6]);
                 ctxBowl.lineWidth = 2.5;
@@ -437,13 +298,10 @@
                 ctxBowl.moveTo(startX, startY);
                 ctxBowl.lineTo(endX, endY);
                 ctxBowl.stroke();
-                
                 ctxBowl.setLineDash([]);
                 ctxBowl.fillStyle = '#000000';
-                
                 const angle = Math.atan2(endY - startY, endX - startX);
                 const arrowSize = 10;
-                
                 ctxBowl.beginPath();
                 ctxBowl.moveTo(endX, endY);
                 ctxBowl.lineTo(endX - arrowSize * Math.cos(angle - 0.3), endY - arrowSize * Math.sin(angle - 0.3));
@@ -452,68 +310,49 @@
                 ctxBowl.fill();
             }
 
-            // === 2 ГОРИЗОНТАЛЬНЫЕ ЛИНИИ ВПРАВО ===
-            drawLineWithArrow(centerX + 30, bowlTopY + 70, centerX + 160, bowlTopY + 70);
-            drawLineWithArrow(centerX + 30, bowlTopY + 160, centerX + 160, bowlTopY + 160);
+            // === 2 ГОРИЗОНТАЛЬНЫЕ ВПРАВО (внутри полукруга) ===
+            drawLineWithArrow(centerX + 25, bowlTopY + 60, centerX + 140, bowlTopY + 60);
+            drawLineWithArrow(centerX + 25, bowlTopY + 130, centerX + 140, bowlTopY + 130);
 
-            // === 2 ГОРИЗОНТАЛЬНЫЕ ЛИНИИ ВЛЕВО ===
-            drawLineWithArrow(centerX - 30, bowlTopY + 70, centerX - 160, bowlTopY + 70);
-            drawLineWithArrow(centerX - 30, bowlTopY + 160, centerX - 160, bowlTopY + 160);
+            // === 2 ГОРИЗОНТАЛЬНЫЕ ВЛЕВО (внутри полукруга) ===
+            drawLineWithArrow(centerX - 25, bowlTopY + 60, centerX - 140, bowlTopY + 60);
+            drawLineWithArrow(centerX - 25, bowlTopY + 130, centerX - 140, bowlTopY + 130);
 
-            // === 2 ВЕРТИКАЛЬНЫЕ ЛИНИИ ВВЕРХ (справа и слева, ближе к низу) ===
-            drawLineWithArrow(centerX + 80, bowlBottomY - 30, centerX + 80, bowlBottomY - 100);
-            drawLineWithArrow(centerX + 130, bowlBottomY - 30, centerX + 130, bowlBottomY - 100);
-            
-            drawLineWithArrow(centerX - 80, bowlBottomY - 30, centerX - 80, bowlBottomY - 100);
-            drawLineWithArrow(centerX - 130, bowlBottomY - 30, centerX - 130, bowlBottomY - 100);
+            // === 2 ВЕРТИКАЛЬНЫЕ ВВЕРХ СПРАВА (внутри полукруга, ближе к низу) ===
+            drawLineWithArrow(centerX + 70, bowlBottomY - 30, centerX + 70, bowlBottomY - 90);
+            drawLineWithArrow(centerX + 120, bowlBottomY - 30, centerX + 120, bowlBottomY - 90);
+
+            // === 2 ВЕРТИКАЛЬНЫЕ ВВЕРХ СЛЕВА (внутри полукруга, ближе к низу) ===
+            drawLineWithArrow(centerX - 70, bowlBottomY - 30, centerX - 70, bowlBottomY - 90);
+            drawLineWithArrow(centerX - 120, bowlBottomY - 30, centerX - 120, bowlBottomY - 90);
 
             // === ГРИБОЧКИ В ОТВЕРСТИИ ===
             ctxBowl.fillStyle = '#dddddd';
-            ctxBowl.beginPath();
-            ctxBowl.arc(centerX - 60, bowlTopY - 15, 14, 0, Math.PI, true);
-            ctxBowl.fill();
-            ctxBowl.stroke();
+            ctxBowl.beginPath(); ctxBowl.arc(centerX - 55, bowlTopY - 15, 13, 0, Math.PI, true); ctxBowl.fill(); ctxBowl.stroke();
             ctxBowl.fillStyle = '#ffffff';
-            ctxBowl.beginPath();
-            ctxBowl.arc(centerX - 60, bowlTopY - 21, 6, 0, Math.PI*2);
-            ctxBowl.fill();
-            ctxBowl.stroke();
+            ctxBowl.beginPath(); ctxBowl.arc(centerX - 55, bowlTopY - 20, 6, 0, Math.PI*2); ctxBowl.fill(); ctxBowl.stroke();
             
             ctxBowl.fillStyle = '#dddddd';
-            ctxBowl.beginPath();
-            ctxBowl.arc(centerX + 60, bowlTopY - 15, 14, 0, Math.PI, true);
-            ctxBowl.fill();
-            ctxBowl.stroke();
+            ctxBowl.beginPath(); ctxBowl.arc(centerX + 55, bowlTopY - 15, 13, 0, Math.PI, true); ctxBowl.fill(); ctxBowl.stroke();
             ctxBowl.fillStyle = '#ffffff';
-            ctxBowl.beginPath();
-            ctxBowl.arc(centerX + 60, bowlTopY - 21, 6, 0, Math.PI*2);
-            ctxBowl.fill();
-            ctxBowl.stroke();
+            ctxBowl.beginPath(); ctxBowl.arc(centerX + 55, bowlTopY - 20, 6, 0, Math.PI*2); ctxBowl.fill(); ctxBowl.stroke();
             
             ctxBowl.fillStyle = '#dddddd';
-            ctxBowl.beginPath();
-            ctxBowl.arc(centerX, bowlTopY - 11, 16, 0, Math.PI, true);
-            ctxBowl.fill();
-            ctxBowl.stroke();
+            ctxBowl.beginPath(); ctxBowl.arc(centerX, bowlTopY - 10, 15, 0, Math.PI, true); ctxBowl.fill(); ctxBowl.stroke();
             ctxBowl.fillStyle = '#ffffff';
-            ctxBowl.beginPath();
-            ctxBowl.arc(centerX, bowlTopY - 17, 7, 0, Math.PI*2);
-            ctxBowl.fill();
-            ctxBowl.stroke();
+            ctxBowl.beginPath(); ctxBowl.arc(centerX, bowlTopY - 16, 7, 0, Math.PI*2); ctxBowl.fill(); ctxBowl.stroke();
 
             // === ПОДПИСИ ===
-            ctxBowl.font = 'bold 13px "Segoe UI", Arial';
+            ctxBowl.font = 'bold 12px "Segoe UI", Arial';
             ctxBowl.fillStyle = '#000000';
-            ctxBowl.fillText('левая рука', centerX - 270, bowlTopY + 260);
-            ctxBowl.fillText('правая рука', centerX + 200, bowlTopY + 260);
+            ctxBowl.fillText('левая рука', centerX - 240, bowlTopY + 230);
+            ctxBowl.fillText('правая рука', centerX + 180, bowlTopY + 230);
         }
 
         drawRoads();
         drawBowl();
 
-        document.getElementById('printBtn').addEventListener('click', function() {
-            window.print();
-        });
+        document.getElementById('printBtn').addEventListener('click', function() { window.print(); });
     })();
 </script>
 </body>
