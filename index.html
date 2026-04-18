@@ -53,7 +53,7 @@
     my = sy-580; ctx.fillStyle='#ccc'; for(let i=0;i<5;i++){ ctx.beginPath(); ctx.arc(cx-30+i*15,my,10,0,Math.PI*2); ctx.fill(); ctx.stroke(); } ctx.fillStyle='#000'; ctx.beginPath(); ctx.arc(cx+30,my-3,4,0,Math.PI*2); ctx.fill(); ctx.beginPath(); ctx.arc(cx+30,my+5,4,0,Math.PI*2); ctx.fill();
     ctx.font='bold 11px "Segoe UI", Arial'; ctx.fillStyle='#000'; ctx.fillText('левая рука',cx-200,sy+60); ctx.fillText('правая рука',cx+140,sy+60);
 
-    // Лист 2: Горшочек (горизонтальные стрелки начинаются почти от овала)
+    // Лист 2: Горшочек (горизонтальные стрелки длиннее)
     const canvasBowl = document.getElementById('canvasBowl');
     const cb = canvasBowl.getContext('2d');
     canvasBowl.width = 750; canvasBowl.height = 550;
@@ -66,13 +66,13 @@
     cb.setLineDash([10,8]); cb.beginPath(); cb.moveTo(bcx, bty+20); cb.lineTo(bcx, bby-15); cb.strokeStyle='#000'; cb.lineWidth=2; cb.stroke(); cb.setLineDash([]);
     function arrow(sx,sy,ex,ey){ cb.setLineDash([8,6]); cb.lineWidth=2.5; cb.strokeStyle='#000'; cb.beginPath(); cb.moveTo(sx,sy); cb.lineTo(ex,ey); cb.stroke(); cb.setLineDash([]); cb.fillStyle='#000'; let a=Math.atan2(ey-sy,ex-sx), s=10; cb.beginPath(); cb.moveTo(ex,ey); cb.lineTo(ex-s*Math.cos(a-0.3),ey-s*Math.sin(a-0.3)); cb.lineTo(ex-s*Math.cos(a+0.3),ey-s*Math.sin(a+0.3)); cb.closePath(); cb.fill(); }
     
-    // Горизонтальные: начинаются почти от овала (отступ 5 от центра), Y: 50, 85, 120 (сдвинуты выше), до середины (120)
-    arrow(bcx+5, bty+50, bcx+120, bty+50);
-    arrow(bcx+5, bty+85, bcx+120, bty+85);
-    arrow(bcx+5, bty+120, bcx+120, bty+120);
-    arrow(bcx-5, bty+50, bcx-120, bty+50);
-    arrow(bcx-5, bty+85, bcx-120, bty+85);
-    arrow(bcx-5, bty+120, bcx-120, bty+120);
+    // Горизонтальные: начинаются почти от овала (отступ 5), Y: 50, 85, 120, доходят до 180 (длиннее на ~2 см)
+    arrow(bcx+5, bty+50, bcx+180, bty+50);
+    arrow(bcx+5, bty+85, bcx+180, bty+85);
+    arrow(bcx+5, bty+120, bcx+180, bty+120);
+    arrow(bcx-5, bty+50, bcx-180, bty+50);
+    arrow(bcx-5, bty+85, bcx-180, bty+85);
+    arrow(bcx-5, bty+120, bcx-180, bty+120);
     
     // Вертикальные: без изменений
     arrow(bcx+70, bby-25, bcx+70, bty+165);
