@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Бланк «Мост» — Лист А4 для подростка</title>
+    <title>Бланк «Мост» — А4 для печати</title>
     <style>
         * {
             margin: 0;
@@ -12,8 +12,9 @@
         }
 
         body {
-            background: #6b7f8f;
+            background: #e0e0e0;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
@@ -21,43 +22,68 @@
             font-family: 'Arial', 'Helvetica', sans-serif;
         }
 
+        /* Кнопка печати */
+        .print-button {
+            margin-bottom: 25px;
+            padding: 16px 40px;
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a1a;
+            background: #ffffff;
+            border: 3px solid #1a1a1a;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #1a1a1a;
+            transition: all 0.1s ease;
+            letter-spacing: 2px;
+        }
+
+        .print-button:hover {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #1a1a1a;
+            background: #f0f0f0;
+        }
+
+        .print-button:active {
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+
         /* Лист А4 */
         .a4-sheet {
-            width: 800px;
-            min-height: 1100px;
+            width: 210mm;
+            min-height: 297mm;
             background: #ffffff;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-            border-radius: 4px;
-            padding: 45px 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 20mm 20mm 15mm 20mm;
             position: relative;
-            page-break-after: avoid;
+            margin: 0 auto;
         }
 
         /* Заголовок */
         .header {
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 15mm;
         }
 
         h1 {
-            font-size: 48px;
+            font-size: 42px;
             font-weight: 700;
             letter-spacing: 8px;
             text-transform: uppercase;
-            color: #1a1a1a;
-            border-bottom: 3px solid #333;
+            color: #000;
+            border-bottom: 3px solid #000;
             display: inline-block;
-            padding-bottom: 15px;
+            padding-bottom: 12px;
             padding-left: 20px;
             padding-right: 20px;
         }
 
         .subtitle {
             text-align: center;
-            font-size: 18px;
-            color: #444;
-            margin-top: 15px;
-            margin-bottom: 30px;
+            font-size: 16px;
+            color: #333;
+            margin-top: 8px;
             font-style: italic;
         }
 
@@ -66,87 +92,75 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            margin-bottom: 10px;
-            padding: 0 20px;
+            margin-bottom: 8px;
+            padding: 0 10px;
         }
 
         .shore {
             text-align: center;
-            width: 200px;
-        }
-
-        .shore-left {
-            margin-right: auto;
-        }
-
-        .shore-right {
-            margin-left: auto;
+            width: 180px;
         }
 
         .shore-label {
-            font-size: 36px;
+            font-size: 34px;
             font-weight: 700;
             text-transform: uppercase;
-            color: #1a1a1a;
-            margin-bottom: 8px;
+            color: #000;
+            margin-bottom: 6px;
         }
 
         .shore-desc {
-            font-size: 18px;
-            color: #333;
+            font-size: 16px;
+            color: #000;
             line-height: 1.4;
-            border: 2px solid #1a1a1a;
-            padding: 12px 10px;
-            background: #fafafa;
+            border: 2px solid #000;
+            padding: 12px 8px;
+            background: #fff;
         }
 
-        /* Река — большой серый блок */
+        /* Река */
         .river-block {
             width: 100%;
-            background: #d0d0d0;
-            border: 4px solid #1a1a1a;
-            padding: 30px 25px;
-            margin: 15px 0 25px;
-            position: relative;
+            background: #e8e8e8;
+            border: 3px solid #000;
+            padding: 20px 20px;
+            margin: 12px 0 20px;
         }
 
         .river-title {
             text-align: center;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            color: #1a1a1a;
-            margin-bottom: 20px;
+            letter-spacing: 4px;
+            color: #000;
+            margin-bottom: 15px;
         }
 
         .river-items {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 12px;
         }
 
         .river-item {
-            background: #b0b0b0;
-            padding: 10px 20px;
+            background: #d0d0d0;
+            padding: 8px 22px;
             font-size: 18px;
-            font-weight: 500;
-            color: #1a1a1a;
-            border: 2px solid #1a1a1a;
+            font-weight: 600;
+            color: #000;
+            border: 2px solid #000;
             text-align: center;
-            min-width: 140px;
         }
 
-        /* Мост — центральный элемент */
+        /* Мост SVG */
         .bridge-section {
-            margin: 30px 0 25px;
-            position: relative;
+            margin: 20px 0 15px;
         }
 
         .bridge-svg-container {
             width: 100%;
-            margin-bottom: -5px;
         }
 
         svg {
@@ -155,20 +169,20 @@
             display: block;
         }
 
-        /* Блок для заполнения подростком */
+        /* Блок для заполнения */
         .fill-area {
-            background: #f5f5f5;
-            border: 3px dashed #1a1a1a;
-            padding: 35px 30px;
-            margin: 30px 0 35px;
+            background: #fff;
+            border: 3px solid #000;
+            padding: 20px 25px;
+            margin: 25px 0 20px;
             text-align: center;
         }
 
         .fill-title {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 700;
             margin-bottom: 25px;
-            color: #1a1a1a;
+            color: #000;
         }
 
         .fill-lines {
@@ -176,8 +190,8 @@
         }
 
         .line {
-            border-bottom: 2px solid #888;
-            margin-bottom: 25px;
+            border-bottom: 2px solid #666;
+            margin-bottom: 22px;
             height: 2px;
         }
 
@@ -185,19 +199,19 @@
             margin-bottom: 5px;
         }
 
-        /* Подсказки внизу */
+        /* Подсказки */
         .hints-box {
-            border: 2px solid #1a1a1a;
-            padding: 25px 30px;
-            background: #f9f9f9;
-            margin-top: 30px;
+            border: 2px solid #000;
+            padding: 18px 20px;
+            background: #fff;
+            margin-top: 15px;
         }
 
         .hints-title {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-transform: uppercase;
         }
 
@@ -205,40 +219,76 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 25px 40px;
+            gap: 15px 25px;
         }
 
         .hint {
-            font-size: 18px;
-            color: #1a1a1a;
+            font-size: 16px;
+            color: #000;
         }
 
         .hint span {
             font-weight: 700;
-            margin-right: 8px;
+            margin-right: 6px;
         }
 
         /* Футер */
         .footer {
-            margin-top: 35px;
+            margin-top: 20px;
             text-align: right;
-            font-size: 16px;
-            color: #555;
-            border-top: 1px solid #aaa;
-            padding-top: 20px;
+            font-size: 14px;
+            color: #333;
+            border-top: 1px solid #999;
+            padding-top: 12px;
         }
 
-        /* Адаптивность */
-        @media (max-width: 850px) {
+        /* Стили для печати */
+        @media print {
+            body {
+                background: #fff;
+                padding: 0;
+                margin: 0;
+            }
+            .print-button {
+                display: none;
+            }
+            .a4-sheet {
+                box-shadow: none;
+                width: 100%;
+                min-height: auto;
+                padding: 15mm 15mm 10mm 15mm;
+                margin: 0;
+            }
+            .river-block {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .river-item {
+                background: #e0e0e0 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            h1, .shore-label, .shore-desc, .river-block, .fill-area, .hints-box {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        /* Для экрана — чтобы вписывалось */
+        @media screen and (max-width: 230mm) {
             .a4-sheet {
                 width: 100%;
-                padding: 30px 20px;
             }
-            h1 { font-size: 36px; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Кнопка печати -->
+    <button class="print-button" onclick="window.print()">🖨️ РАСПЕЧАТАТЬ БЛАНК</button>
+
+    <!-- Лист А4 -->
     <div class="a4-sheet">
         
         <!-- Заголовок -->
@@ -249,14 +299,14 @@
 
         <!-- Берега -->
         <div class="shores-row">
-            <div class="shore shore-left">
+            <div class="shore">
                 <div class="shore-label">Я</div>
                 <div class="shore-desc">
                     Мой мир<br>
                     Мои ценности
                 </div>
             </div>
-            <div class="shore shore-right">
+            <div class="shore">
                 <div class="shore-label">ДРУГОЙ</div>
                 <div class="shore-desc">
                     Его мир<br>
@@ -265,7 +315,7 @@
             </div>
         </div>
 
-        <!-- Река (статичная, чёрно-белая) -->
+        <!-- Река -->
         <div class="river-block">
             <div class="river-title">РЕКА НЕПОНИМАНИЯ</div>
             <div class="river-items">
@@ -276,31 +326,31 @@
             </div>
         </div>
 
-        <!-- Мост (SVG) -->
+        <!-- Мост SVG -->
         <div class="bridge-section">
             <div class="bridge-svg-container">
                 <svg viewBox="0 0 800 120" preserveAspectRatio="xMidYMid meet">
-                    <!-- Тень моста -->
-                    <path d="M 40,90 Q 400,-20 760,90" fill="none" stroke="#999" stroke-width="10" stroke-linecap="round" transform="translate(0, 6)"/>
-                    <!-- Основная арка моста -->
-                    <path d="M 40,80 Q 400,-30 760,80" fill="none" stroke="#1a1a1a" stroke-width="12" stroke-linecap="round"/>
+                    <!-- Тень -->
+                    <path d="M 40,90 Q 400,-20 760,90" fill="none" stroke="#aaa" stroke-width="8" stroke-linecap="round" transform="translate(0, 5)"/>
+                    <!-- Основная арка -->
+                    <path d="M 40,80 Q 400,-30 760,80" fill="none" stroke="#000" stroke-width="10" stroke-linecap="round"/>
                     <!-- Внутренняя арка -->
-                    <path d="M 40,80 Q 400,-30 760,80" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M 40,80 Q 400,-30 760,80" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
                     <!-- Перила -->
-                    <path d="M 40,68 Q 400,-42 760,68" fill="none" stroke="#1a1a1a" stroke-width="4" stroke-dasharray="16, 12" stroke-linecap="round"/>
-                    <!-- Вертикальные стойки перил -->
-                    <line x1="140" y1="32" x2="140" y2="58" stroke="#1a1a1a" stroke-width="3"/>
-                    <line x1="240" y1="2" x2="240" y2="32" stroke="#1a1a1a" stroke-width="3"/>
-                    <line x1="400" y1="-8" x2="400" y2="22" stroke="#1a1a1a" stroke-width="3"/>
-                    <line x1="560" y1="2" x2="560" y2="32" stroke="#1a1a1a" stroke-width="3"/>
-                    <line x1="660" y1="32" x2="660" y2="58" stroke="#1a1a1a" stroke-width="3"/>
+                    <path d="M 40,68 Q 400,-42 760,68" fill="none" stroke="#000" stroke-width="4" stroke-dasharray="14, 10" stroke-linecap="round"/>
+                    <!-- Стойки перил -->
+                    <line x1="140" y1="32" x2="140" y2="58" stroke="#000" stroke-width="3"/>
+                    <line x1="240" y1="2" x2="240" y2="32" stroke="#000" stroke-width="3"/>
+                    <line x1="400" y1="-8" x2="400" y2="22" stroke="#000" stroke-width="3"/>
+                    <line x1="560" y1="2" x2="560" y2="32" stroke="#000" stroke-width="3"/>
+                    <line x1="660" y1="32" x2="660" y2="58" stroke="#000" stroke-width="3"/>
                     <!-- Доски моста -->
-                    <path d="M 80,80 L 80,95 M 160,70 L 160,88 M 240,58 L 240,78 M 320,46 L 320,68 M 400,40 L 400,62 M 480,46 L 480,68 M 560,58 L 560,78 M 640,70 L 640,88 M 720,80 L 720,95" stroke="#1a1a1a" stroke-width="3"/>
+                    <path d="M 80,80 L 80,95 M 160,70 L 160,88 M 240,58 L 240,78 M 320,46 L 320,68 M 400,40 L 400,62 M 480,46 L 480,68 M 560,58 L 560,78 M 640,70 L 640,88 M 720,80 L 720,95" stroke="#000" stroke-width="3"/>
                 </svg>
             </div>
         </div>
 
-        <!-- Блок для заполнения (то, что подросток пишет от руки) -->
+        <!-- Блок для заполнения -->
         <div class="fill-area">
             <div class="fill-title">✏️ Напиши или нарисуй здесь то,<br>что может соединить тебя с этим человеком</div>
             <div class="fill-lines">
@@ -320,7 +370,7 @@
                 <div class="hint"><span>❓</span> Вопросы, которые хочешь задать</div>
                 <div class="hint"><span>🤝</span> Слова поддержки</div>
                 <div class="hint"><span>💡</span> Что ты узнал(а) о нём</div>
-                <div class="hint"><span>🕊️</span> Символ (сердце, рукопожатие...)</div>
+                <div class="hint"><span>🕊️</span> Символ (сердце, рукопожатие)</div>
             </div>
         </div>
 
@@ -330,5 +380,11 @@
         </div>
 
     </div>
+
+    <script>
+        // Дополнительный обработчик для кнопки (уже есть onclick)
+        // Можно добавить автоматическое скрытие кнопки при печати — это уже в CSS
+    </script>
+
 </body>
 </html>
