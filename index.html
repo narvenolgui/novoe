@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Упражнение «Мост»</title>
+    <title>Бланк «Мост» — Лист А4 для подростка</title>
     <style>
         * {
             margin: 0;
@@ -12,345 +12,323 @@
         }
 
         body {
-            background: linear-gradient(145deg, #2b3a67 0%, #1b2a4e 100%);
-            min-height: 100vh;
+            background: #6b7f8f;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Segoe UI', 'Arial', sans-serif;
-            padding: 20px;
+            min-height: 100vh;
+            padding: 30px;
+            font-family: 'Arial', 'Helvetica', sans-serif;
         }
 
-        .card {
-            max-width: 800px;
-            width: 100%;
-            background: linear-gradient(145deg, #faf8f2 0%, #f0ebe1 100%);
-            border-radius: 48px;
-            padding: 40px 35px;
-            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.5);
-            border: 1px solid #d4c9b5;
+        /* Лист А4 */
+        .a4-sheet {
+            width: 800px;
+            min-height: 1100px;
+            background: #ffffff;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            border-radius: 4px;
+            padding: 45px 50px;
+            position: relative;
+            page-break-after: avoid;
+        }
+
+        /* Заголовок */
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
         }
 
         h1 {
-            text-align: center;
-            font-size: 34px;
-            font-weight: 600;
-            letter-spacing: 4px;
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: 8px;
             text-transform: uppercase;
-            color: #2b3a67;
+            color: #1a1a1a;
+            border-bottom: 3px solid #333;
+            display: inline-block;
+            padding-bottom: 15px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #444;
+            margin-top: 15px;
             margin-bottom: 30px;
-            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.05);
-            word-break: break-word;
+            font-style: italic;
         }
 
-        .bridge-container {
-            position: relative;
-            width: 100%;
-            margin: 20px 0 30px;
-        }
-
-        /* Берега */
-        .shores {
+        /* Два берега */
+        .shores-row {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
+            padding: 0 20px;
         }
 
         .shore {
             text-align: center;
-            width: 120px;
+            width: 200px;
         }
 
-        .shore-icon {
-            font-size: 42px;
-            margin-bottom: 8px;
+        .shore-left {
+            margin-right: auto;
+        }
+
+        .shore-right {
+            margin-left: auto;
         }
 
         .shore-label {
+            font-size: 36px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .shore-desc {
+            font-size: 18px;
+            color: #333;
+            line-height: 1.4;
+            border: 2px solid #1a1a1a;
+            padding: 12px 10px;
+            background: #fafafa;
+        }
+
+        /* Река — большой серый блок */
+        .river-block {
+            width: 100%;
+            background: #d0d0d0;
+            border: 4px solid #1a1a1a;
+            padding: 30px 25px;
+            margin: 15px 0 25px;
+            position: relative;
+        }
+
+        .river-title {
+            text-align: center;
             font-size: 22px;
             font-weight: 700;
-            color: #3a4e6b;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+
+        .river-items {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .river-item {
+            background: #b0b0b0;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #1a1a1a;
+            border: 2px solid #1a1a1a;
+            text-align: center;
+            min-width: 140px;
+        }
+
+        /* Мост — центральный элемент */
+        .bridge-section {
+            margin: 30px 0 25px;
+            position: relative;
+        }
+
+        .bridge-svg-container {
+            width: 100%;
+            margin-bottom: -5px;
+        }
+
+        svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Блок для заполнения подростком */
+        .fill-area {
+            background: #f5f5f5;
+            border: 3px dashed #1a1a1a;
+            padding: 35px 30px;
+            margin: 30px 0 35px;
+            text-align: center;
+        }
+
+        .fill-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #1a1a1a;
+        }
+
+        .fill-lines {
+            width: 100%;
+        }
+
+        .line {
+            border-bottom: 2px solid #888;
+            margin-bottom: 25px;
+            height: 2px;
+        }
+
+        .line:last-child {
             margin-bottom: 5px;
         }
 
-        .shore-sub {
-            font-size: 15px;
-            color: #6b7f94;
-            font-style: italic;
-            line-height: 1.4;
-        }
-
-        /* Река */
-        .river-container {
-            position: relative;
-            width: 100%;
-            margin: 5px 0;
-        }
-
-        .river {
-            width: 100%;
-            height: 140px;
-            background: linear-gradient(180deg, #5b8fb9 0%, #3a6d99 50%, #2a5a82 100%);
-            border-radius: 0 0 60px 60px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: inset 0 8px 15px rgba(0, 0, 0, 0.2), 0 5px 0 #1e3f5c;
-            border-left: 8px solid #8b6f4c;
-            border-right: 8px solid #8b6f4c;
-            border-bottom: 8px solid #8b6f4c;
-        }
-
-        /* Волны на реке */
-        .wave {
-            position: absolute;
-            width: 200%;
-            height: 20px;
-            background: repeating-linear-gradient(
-                90deg,
-                transparent,
-                transparent 30px,
-                rgba(255, 255, 255, 0.15) 30px,
-                rgba(255, 255, 255, 0.15) 60px
-            );
-            bottom: 20px;
-            animation: waveMove 8s linear infinite;
-        }
-
-        .wave:nth-child(2) {
-            bottom: 50px;
-            opacity: 0.5;
-            animation: waveMove 12s linear infinite reverse;
-        }
-
-        .wave:nth-child(3) {
-            bottom: 80px;
-            opacity: 0.3;
-            animation: waveMove 10s linear infinite;
-        }
-
-        @keyframes waveMove {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* Текст внутри реки */
-        .river-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 18px;
-            font-weight: 500;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            width: 80%;
-            letter-spacing: 1px;
-            background: rgba(0, 0, 0, 0.15);
-            padding: 12px 20px;
-            border-radius: 50px;
-            backdrop-filter: blur(2px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            z-index: 5;
-        }
-
-        /* Мост */
-        .bridge {
-            position: relative;
-            width: 100%;
-            height: 100px;
-            margin-top: -50px;
-            z-index: 20;
-        }
-
-        .bridge-svg {
-            width: 100%;
-            height: 120px;
-            filter: drop-shadow(0 8px 6px rgba(0, 0, 0, 0.2));
-        }
-
-        .bridge-arc {
-            fill: none;
-            stroke: #8b6f4c;
-            stroke-width: 12;
-            stroke-linecap: round;
-        }
-
-        .bridge-rail {
-            fill: none;
-            stroke: #a0855e;
-            stroke-width: 4;
-            stroke-dasharray: 12, 8;
-        }
-
-        .bridge-planks {
-            fill: none;
-            stroke: #c4a87a;
-            stroke-width: 3;
-            stroke-dasharray: 2, 10;
-        }
-
-        /* Пространство для надписей на мосту */
-        .bridge-content {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 30;
-        }
-
-        .bridge-message {
-            background: rgba(250, 248, 242, 0.9);
-            padding: 18px 30px;
-            border-radius: 60px;
-            font-size: 20px;
-            font-weight: 600;
-            color: #2b3a67;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-            border: 2px dashed #8b6f4c;
-            backdrop-filter: blur(4px);
-            max-width: 90%;
-            line-height: 1.5;
-        }
-
         /* Подсказки внизу */
-        .hints {
-            margin-top: 40px;
+        .hints-box {
+            border: 2px solid #1a1a1a;
+            padding: 25px 30px;
+            background: #f9f9f9;
+            margin-top: 30px;
+        }
+
+        .hints-title {
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hints-list {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px 30px;
+            gap: 25px 40px;
         }
 
-        .hint-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.5);
-            padding: 8px 18px;
-            border-radius: 40px;
-            backdrop-filter: blur(4px);
-            border: 1px solid #c4b49a;
+        .hint {
+            font-size: 18px;
+            color: #1a1a1a;
         }
 
-        .hint-icon {
-            font-size: 22px;
+        .hint span {
+            font-weight: 700;
+            margin-right: 8px;
         }
 
-        .hint-text {
-            font-size: 15px;
-            color: #3a4e6b;
-            font-weight: 500;
-        }
-
+        /* Футер */
         .footer {
-            margin-top: 25px;
-            text-align: center;
-            color: #6b7f94;
-            font-size: 14px;
-            font-style: italic;
-            border-top: 1px solid #d4c9b5;
+            margin-top: 35px;
+            text-align: right;
+            font-size: 16px;
+            color: #555;
+            border-top: 1px solid #aaa;
             padding-top: 20px;
         }
 
         /* Адаптивность */
-        @media (max-width: 600px) {
-            .card { padding: 25px 18px; }
-            h1 { font-size: 26px; letter-spacing: 2px; }
-            .shore-label { font-size: 18px; }
-            .shore-sub { font-size: 12px; }
-            .river-text { font-size: 14px; padding: 8px 12px; }
-            .bridge-message { font-size: 16px; padding: 12px 20px; }
+        @media (max-width: 850px) {
+            .a4-sheet {
+                width: 100%;
+                padding: 30px 20px;
+            }
+            h1 { font-size: 36px; }
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>🌉 МОСТ 🌉</h1>
+    <div class="a4-sheet">
+        
+        <!-- Заголовок -->
+        <div class="header">
+            <h1>МОСТ</h1>
+            <div class="subtitle">бланк для самостоятельной работы</div>
+        </div>
 
         <!-- Берега -->
-        <div class="shores">
-            <div class="shore">
-                <div class="shore-icon">🧍</div>
+        <div class="shores-row">
+            <div class="shore shore-left">
                 <div class="shore-label">Я</div>
-                <div class="shore-sub">Мой мир<br>Мои ценности</div>
+                <div class="shore-desc">
+                    Мой мир<br>
+                    Мои ценности
+                </div>
             </div>
-            <div class="shore">
-                <div class="shore-icon">🌍</div>
+            <div class="shore shore-right">
                 <div class="shore-label">ДРУГОЙ</div>
-                <div class="shore-sub">Его мир<br>Его ценности</div>
-            </div>
-        </div>
-
-        <!-- Река -->
-        <div class="river-container">
-            <div class="river">
-                <div class="wave"></div>
-                <div class="wave"></div>
-                <div class="wave"></div>
-                <div class="river-text">
-                    РЕКА НЕПОНИМАНИЯ<br>
-                    (страхи, стереотипы, обиды, ярлыки)
+                <div class="shore-desc">
+                    Его мир<br>
+                    Его ценности
                 </div>
             </div>
         </div>
 
-        <!-- Мост -->
-        <div class="bridge">
-            <svg class="bridge-svg" viewBox="0 0 800 120" preserveAspectRatio="xMidYMid meet">
-                <!-- Тени -->
-                <path d="M 50,90 Q 400,-30 750,90" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="14" stroke-linecap="round" transform="translate(0, 8)"/>
-                <!-- Основная дуга моста -->
-                <path d="M 50,80 Q 400,-40 750,80" fill="none" stroke="#7a5c3a" stroke-width="14" stroke-linecap="round"/>
-                <path d="M 50,80 Q 400,-40 750,80" fill="none" stroke="#9b7e54" stroke-width="8" stroke-linecap="round"/>
-                <!-- Перила -->
-                <path d="M 50,70 Q 400,-50 750,70" fill="none" stroke="#a0855e" stroke-width="4" stroke-dasharray="14, 10" stroke-linecap="round"/>
-                <!-- Вертикальные стойки -->
-                <line x1="150" y1="35" x2="150" y2="62" stroke="#a0855e" stroke-width="3"/>
-                <line x1="250" y1="8" x2="250" y2="40" stroke="#a0855e" stroke-width="3"/>
-                <line x1="400" y1="-5" x2="400" y2="28" stroke="#a0855e" stroke-width="3"/>
-                <line x1="550" y1="8" x2="550" y2="40" stroke="#a0855e" stroke-width="3"/>
-                <line x1="650" y1="35" x2="650" y2="62" stroke="#a0855e" stroke-width="3"/>
-            </svg>
-            <div class="bridge-content">
-                <div class="bridge-message">
-                    ✏️ Напиши или нарисуй здесь то,<br>
-                    что может соединить тебя с этим человеком
-                </div>
+        <!-- Река (статичная, чёрно-белая) -->
+        <div class="river-block">
+            <div class="river-title">РЕКА НЕПОНИМАНИЯ</div>
+            <div class="river-items">
+                <div class="river-item">страхи</div>
+                <div class="river-item">стереотипы</div>
+                <div class="river-item">обиды</div>
+                <div class="river-item">ярлыки</div>
+            </div>
+        </div>
+
+        <!-- Мост (SVG) -->
+        <div class="bridge-section">
+            <div class="bridge-svg-container">
+                <svg viewBox="0 0 800 120" preserveAspectRatio="xMidYMid meet">
+                    <!-- Тень моста -->
+                    <path d="M 40,90 Q 400,-20 760,90" fill="none" stroke="#999" stroke-width="10" stroke-linecap="round" transform="translate(0, 6)"/>
+                    <!-- Основная арка моста -->
+                    <path d="M 40,80 Q 400,-30 760,80" fill="none" stroke="#1a1a1a" stroke-width="12" stroke-linecap="round"/>
+                    <!-- Внутренняя арка -->
+                    <path d="M 40,80 Q 400,-30 760,80" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+                    <!-- Перила -->
+                    <path d="M 40,68 Q 400,-42 760,68" fill="none" stroke="#1a1a1a" stroke-width="4" stroke-dasharray="16, 12" stroke-linecap="round"/>
+                    <!-- Вертикальные стойки перил -->
+                    <line x1="140" y1="32" x2="140" y2="58" stroke="#1a1a1a" stroke-width="3"/>
+                    <line x1="240" y1="2" x2="240" y2="32" stroke="#1a1a1a" stroke-width="3"/>
+                    <line x1="400" y1="-8" x2="400" y2="22" stroke="#1a1a1a" stroke-width="3"/>
+                    <line x1="560" y1="2" x2="560" y2="32" stroke="#1a1a1a" stroke-width="3"/>
+                    <line x1="660" y1="32" x2="660" y2="58" stroke="#1a1a1a" stroke-width="3"/>
+                    <!-- Доски моста -->
+                    <path d="M 80,80 L 80,95 M 160,70 L 160,88 M 240,58 L 240,78 M 320,46 L 320,68 M 400,40 L 400,62 M 480,46 L 480,68 M 560,58 L 560,78 M 640,70 L 640,88 M 720,80 L 720,95" stroke="#1a1a1a" stroke-width="3"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Блок для заполнения (то, что подросток пишет от руки) -->
+        <div class="fill-area">
+            <div class="fill-title">✏️ Напиши или нарисуй здесь то,<br>что может соединить тебя с этим человеком</div>
+            <div class="fill-lines">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
             </div>
         </div>
 
         <!-- Подсказки -->
-        <div class="hints">
-            <div class="hint-item">
-                <span class="hint-icon">💬</span>
-                <span class="hint-text">Общие чувства</span>
-            </div>
-            <div class="hint-item">
-                <span class="hint-icon">❓</span>
-                <span class="hint-text">Вопросы ему</span>
-            </div>
-            <div class="hint-item">
-                <span class="hint-icon">🤝</span>
-                <span class="hint-text">Слова поддержки</span>
-            </div>
-            <div class="hint-item">
-                <span class="hint-icon">💡</span>
-                <span class="hint-text">Что я узнал(а)</span>
+        <div class="hints-box">
+            <div class="hints-title">Что может быть на мосту?</div>
+            <div class="hints-list">
+                <div class="hint"><span>💬</span> Общие чувства</div>
+                <div class="hint"><span>❓</span> Вопросы, которые хочешь задать</div>
+                <div class="hint"><span>🤝</span> Слова поддержки</div>
+                <div class="hint"><span>💡</span> Что ты узнал(а) о нём</div>
+                <div class="hint"><span>🕊️</span> Символ (сердце, рукопожатие...)</div>
             </div>
         </div>
 
+        <!-- Футер -->
         <div class="footer">
             Это твой личный мост. Строить его можешь только ты.
         </div>
+
     </div>
 </body>
 </html>
