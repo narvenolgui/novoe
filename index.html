@@ -242,7 +242,7 @@
             ctxRoads.fillText('правая рука', centerX + 140, startY + 60);
         }
 
-        // ---------- ЛИСТ 2: ГОРШОЧЕК (УВЕЛИЧЕН В 1.5 РАЗА, 3 ГОРИЗОНТАЛЬНЫЕ, 2 ВЕРТИКАЛЬНЫЕ) ----------
+        // ---------- ЛИСТ 2: ГОРШОЧЕК (СТРЕЛКИ ПЛОТНЕЕ, ВЕРТИКАЛЬНЫЕ ДЛИННЕЕ) ----------
         const canvasBowl = document.getElementById('canvasBowl');
         const ctxBowl = canvasBowl.getContext('2d');
 
@@ -253,11 +253,11 @@
             ctxBowl.strokeStyle = '#000000'; ctxBowl.lineWidth = 3;
 
             const centerX = w / 2;
-            const bowlTopY = 120;           // верх горшка
-            const bowlRadius = 250;          // радиус (был 170, увеличен в ~1.5 раза)
+            const bowlTopY = 120;
+            const bowlRadius = 250;
             const bowlBottomY = bowlTopY + bowlRadius;
 
-            // === ПОЛУКРУГ (выпуклостью ВНИЗ) ===
+            // === ПОЛУКРУГ ===
             ctxBowl.fillStyle = '#fafafa';
             ctxBowl.beginPath();
             ctxBowl.arc(centerX, bowlTopY, bowlRadius, 0, Math.PI, false);
@@ -265,7 +265,7 @@
             ctxBowl.fill();
             ctxBowl.stroke();
 
-            // === ПЛОСКИЙ ОВАЛ СВЕРХУ ===
+            // === ОВАЛ СВЕРХУ ===
             ctxBowl.fillStyle = '#ffffff';
             ctxBowl.beginPath();
             ctxBowl.ellipse(centerX, bowlTopY - 5, bowlRadius - 15, 28, 0, 0, Math.PI*2);
@@ -310,34 +310,33 @@
                 ctxBowl.fill();
             }
 
-            // Горизонтальные линии занимают ~2/3 ширины полукруга
-            // Полуширина = 250, 2/3 от 250 ≈ 165
-            const horizStart = 30;
-            const horizEnd = 170;
+            // Горизонтальные: до середины (до ~120), расположены плотнее
+            // Y: 80, 130, 180 (разница 50 вместо 80)
+            const horizStart = 25;
+            const horizEnd = 120; // середина полукруга
 
-            // === 3 ГОРИЗОНТАЛЬНЫЕ ВПРАВО ===
-            drawLineWithArrow(centerX + horizStart, bowlTopY + 70, centerX + horizEnd, bowlTopY + 70);
-            drawLineWithArrow(centerX + horizStart, bowlTopY + 150, centerX + horizEnd, bowlTopY + 150);
-            drawLineWithArrow(centerX + horizStart, bowlTopY + 230, centerX + horizEnd, bowlTopY + 230);
+            // === 3 ГОРИЗОНТАЛЬНЫЕ ВПРАВО (плотнее) ===
+            drawLineWithArrow(centerX + horizStart, bowlTopY + 80, centerX + horizEnd, bowlTopY + 80);
+            drawLineWithArrow(centerX + horizStart, bowlTopY + 130, centerX + horizEnd, bowlTopY + 130);
+            drawLineWithArrow(centerX + horizStart, bowlTopY + 180, centerX + horizEnd, bowlTopY + 180);
 
-            // === 3 ГОРИЗОНТАЛЬНЫЕ ВЛЕВО ===
-            drawLineWithArrow(centerX - horizStart, bowlTopY + 70, centerX - horizEnd, bowlTopY + 70);
-            drawLineWithArrow(centerX - horizStart, bowlTopY + 150, centerX - horizEnd, bowlTopY + 150);
-            drawLineWithArrow(centerX - horizStart, bowlTopY + 230, centerX - horizEnd, bowlTopY + 230);
+            // === 3 ГОРИЗОНТАЛЬНЫЕ ВЛЕВО (плотнее) ===
+            drawLineWithArrow(centerX - horizStart, bowlTopY + 80, centerX - horizEnd, bowlTopY + 80);
+            drawLineWithArrow(centerX - horizStart, bowlTopY + 130, centerX - horizEnd, bowlTopY + 130);
+            drawLineWithArrow(centerX - horizStart, bowlTopY + 180, centerX - horizEnd, bowlTopY + 180);
 
-            // Вертикальные линии: начинаются снизу и доходят до НИЖНЕЙ горизонтальной (Y = 230), но не пересекают
-            // Нижняя горизонталь на Y = bowlTopY + 230 = 350
-            const vertEndY = bowlTopY + 225; // чуть ниже, чтобы не пересекать
+            // Вертикальные: длиннее, доходят почти до нижней горизонтали (Y=180), но не пересекают
+            const vertEndY = bowlTopY + 175; // чуть ниже 180, чтобы не было пересечения
 
-            // === 2 ВЕРТИКАЛЬНЫЕ ВВЕРХ СПРАВА ===
-            drawLineWithArrow(centerX + 90, bowlBottomY - 30, centerX + 90, vertEndY);
-            drawLineWithArrow(centerX + 150, bowlBottomY - 30, centerX + 150, vertEndY);
+            // === 2 ВЕРТИКАЛЬНЫЕ ВВЕРХ СПРАВА (длинные) ===
+            drawLineWithArrow(centerX + 80, bowlBottomY - 25, centerX + 80, vertEndY);
+            drawLineWithArrow(centerX + 140, bowlBottomY - 25, centerX + 140, vertEndY);
 
-            // === 2 ВЕРТИКАЛЬНЫЕ ВВЕРХ СЛЕВА ===
-            drawLineWithArrow(centerX - 90, bowlBottomY - 30, centerX - 90, vertEndY);
-            drawLineWithArrow(centerX - 150, bowlBottomY - 30, centerX - 150, vertEndY);
+            // === 2 ВЕРТИКАЛЬНЫЕ ВВЕРХ СЛЕВА (длинные) ===
+            drawLineWithArrow(centerX - 80, bowlBottomY - 25, centerX - 80, vertEndY);
+            drawLineWithArrow(centerX - 140, bowlBottomY - 25, centerX - 140, vertEndY);
 
-            // === ГРИБОЧКИ В ОТВЕРСТИИ ===
+            // === ГРИБОЧКИ ===
             ctxBowl.fillStyle = '#dddddd';
             ctxBowl.beginPath(); ctxBowl.arc(centerX - 80, bowlTopY - 18, 18, 0, Math.PI, true); ctxBowl.fill(); ctxBowl.stroke();
             ctxBowl.fillStyle = '#ffffff';
