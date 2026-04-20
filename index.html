@@ -2,545 +2,452 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Парные согласные в корне слова | 2 класс | Русский язык</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подбор творческой терапии для подростка</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            user-select: none;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            background: #d9e6db;
-            font-family: 'Segoe UI', 'Comic Neue', 'Comic Sans MS', 'Arial', sans-serif;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #f6f9fc 0%, #e9f2f9 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            margin: 0;
         }
-        .game-container {
+        .app-container {
             max-width: 800px;
             width: 100%;
-            background: #fffef7;
-            border-radius: 64px;
-            box-shadow: 0 20px 35px rgba(0,0,0,0.15);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 40px;
+            box-shadow: 0 20px 40px rgba(0, 20, 50, 0.15);
+            padding: 32px 28px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #1a3e60;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .subhead {
+            font-size: 1rem;
+            color: #4a627a;
+            margin-bottom: 28px;
+            border-left: 4px solid #7aa5c2;
+            padding-left: 18px;
+            font-weight: 400;
+        }
+        .progress-container {
+            margin-bottom: 30px;
+        }
+        .progress-bar {
+            height: 8px;
+            background: #d9e2ec;
+            border-radius: 20px;
             overflow: hidden;
         }
-        .header {
-            background: #7fa87f;
-            padding: 20px 28px;
-            text-align: center;
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #3a8ab3, #5fa3c9);
+            border-radius: 20px;
+            transition: width 0.4s ease;
         }
-        .header h1 {
-            font-size: 1.5rem;
-            color: #fff3e0;
+        .question-card {
+            background: white;
+            border-radius: 28px;
+            padding: 28px 24px;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
+            margin-bottom: 28px;
+            border: 1px solid #edf2f7;
         }
-        .header p {
-            font-size: 1rem;
-            background: #fff0e0;
-            display: inline-block;
-            padding: 5px 20px;
-            border-radius: 60px;
-            font-weight: bold;
-            color: #3a6b4a;
-            margin-top: 8px;
-        }
-        .stats {
-            display: flex;
-            justify-content: space-between;
-            background: #fef3da;
-            padding: 12px 25px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #7fa87f;
-            border-bottom: 3px solid #c9b68b;
-        }
-        .score-box, .question-counter {
-            background: #ffffff;
-            padding: 6px 20px;
-            border-radius: 60px;
-        }
-        .content {
-            padding: 25px;
-        }
-        .intro-slide, .pair-rule {
-            background: #fffaf0;
-            border-radius: 48px;
-            padding: 25px;
-            text-align: center;
-        }
-        .intro-slide h2, .pair-rule h2 {
-            font-size: 1.6rem;
-            color: #7fa87f;
-            margin-bottom: 20px;
-        }
-        .intro-slide p, .pair-rule p {
-            font-size: 1.2rem;
+        .question-text {
+            font-size: 1.35rem;
+            font-weight: 500;
+            color: #1e3b5c;
+            margin-bottom: 28px;
             line-height: 1.4;
-            color: #2c3e2e;
-            margin-bottom: 20px;
-        }
-        .intro-slide ul {
-            text-align: left;
-            font-size: 1.2rem;
-            padding-left: 30px;
-            margin: 20px 0;
-            list-style: none;
-        }
-        .intro-slide li {
-            margin: 12px 0;
-        }
-        .example-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin: 25px 0;
-        }
-        .example-item {
-            font-size: 1.3rem;
-            background: #e6f6f3;
-            padding: 10px 20px;
-            border-radius: 60px;
-            font-weight: bold;
-            color: #1e5a4a;
-        }
-        .pair-badge {
-            font-size: 1.8rem;
-            font-weight: bold;
-            background: #ffe0b5;
-            display: inline-block;
-            padding: 8px 30px;
-            border-radius: 80px;
-            margin: 15px 0;
-            color: #b45f1b;
-        }
-        .task-card {
-            background: #fffaf0;
-            border-radius: 60px;
-            padding: 25px;
-            text-align: center;
-        }
-        .task-word {
-            font-size: 2.5rem;
-            font-weight: bold;
-            background: #e6f6f3;
-            padding: 25px 20px;
-            border-radius: 70px;
-            letter-spacing: 6px;
-            color: #1e5a4a;
-            margin: 20px 0;
         }
         .options {
             display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 25px 0;
+            flex-direction: column;
+            gap: 14px;
         }
-        .opt-btn {
-            background: #7fa87f;
-            border: none;
-            font-size: 2rem;
-            font-weight: bold;
-            padding: 12px 30px;
-            border-radius: 80px;
-            cursor: pointer;
-            font-family: inherit;
-            box-shadow: 0 5px 0 #3a6b4a;
-            color: white;
-            min-width: 100px;
-            transition: 0.05s linear;
-        }
-        .opt-btn:active {
-            transform: translateY(3px);
-            box-shadow: 0 2px 0 #3a6b4a;
-        }
-        .opt-btn:disabled {
-            opacity: 0.6;
-            transform: none;
-            cursor: default;
-        }
-        .feedback {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: bold;
-        }
-        .correct-feedback {
-            background: #d9f0da;
-            color: #1e5a2a;
-            border-left: 10px solid #2e7d32;
-        }
-        .wrong-feedback {
-            background: #ffe0e0;
-            color: #a1131e;
-            border-left: 10px solid #d32f2f;
-        }
-        .next-btn {
-            background: #f4a261;
-            border: none;
-            width: 100%;
-            padding: 14px;
-            font-size: 1.3rem;
-            font-weight: bold;
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            background: #f9fcff;
             border-radius: 60px;
-            margin-top: 25px;
+            border: 1.5px solid #e2ebf3;
             cursor: pointer;
-            font-family: inherit;
-            color: white;
-            box-shadow: 0 5px 0 #c45c2c;
+            transition: all 0.2s;
+            font-size: 1.05rem;
         }
-        .final-screen {
-            background: #fffaf0;
+        .option:hover {
+            background: #e7f0f9;
+            border-color: #9fbdd6;
+        }
+        .option input[type="radio"] {
+            margin-right: 18px;
+            accent-color: #3a8ab3;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        .option.selected {
+            background: #d4e7f7;
+            border-color: #3a8ab3;
+            box-shadow: 0 3px 8px rgba(58, 138, 179, 0.1);
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+        }
+        button {
+            background: white;
+            border: 1.5px solid #b8cfde;
+            color: #1e3b5c;
+            padding: 14px 28px;
             border-radius: 60px;
-            padding: 25px;
-            text-align: center;
+            font-size: 1.05rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.02);
+            min-width: 120px;
         }
-        .final-screen h2 {
-            font-size: 1.6rem;
-            color: #7fa87f;
+        button.primary {
+            background: #1e3b5c;
+            border-color: #1e3b5c;
+            color: white;
+            box-shadow: 0 10px 18px -8px rgba(30, 59, 92, 0.3);
         }
-        .final-score {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin: 20px 0;
-            color: #1e5a2a;
-            background: #fef3da;
+        button.primary:hover {
+            background: #15324e;
+            transform: translateY(-2px);
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        .result-card {
+            background: white;
+            border-radius: 28px;
+            padding: 28px 24px;
+            margin-top: 15px;
+        }
+        .therapy-badge {
             display: inline-block;
-            padding: 8px 30px;
-            border-radius: 60px;
-        }
-        .bright-rules {
-            background: #ffe0b5;
-            border-radius: 50px;
-            padding: 20px;
-            margin: 20px 0;
-            text-align: left;
-        }
-        .bright-rules p {
-            font-size: 1rem;
-            margin: 12px 0;
-            font-weight: bold;
-            color: #4a2e2a;
-        }
-        .restart-btn {
-            background: #7fa87f;
-            border: none;
-            width: 100%;
-            padding: 14px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            border-radius: 60px;
-            cursor: pointer;
+            background: #1e3b5c;
             color: white;
+            padding: 8px 22px;
+            border-radius: 60px;
+            font-weight: 600;
+            margin-bottom: 22px;
+            font-size: 1.5rem;
         }
-        @media (max-width: 550px) {
-            .task-word { font-size: 1.8rem; letter-spacing: 4px; }
-            .opt-btn { font-size: 1.5rem; padding: 8px 20px; min-width: 80px; }
-            .next-btn { font-size: 1.1rem; }
-            .example-item { font-size: 1rem; padding: 6px 15px; }
+        .reason {
+            background: #f1f7fd;
+            padding: 22px;
+            border-radius: 20px;
+            margin: 22px 0;
+            border-left: 6px solid #3a8ab3;
+        }
+        .scores-detail {
+            font-size: 0.9rem;
+            color: #4a627a;
+            margin-top: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .score-item {
+            background: #ecf3f9;
+            padding: 5px 16px;
+            border-radius: 40px;
+        }
+        .reset-btn {
+            margin-top: 24px;
+            width: 100%;
+        }
+        .error-message {
+            color: #c23b3b;
+            margin: 10px 0;
+        }
+        .footer-note {
+            margin-top: 28px;
+            font-size: 0.8rem;
+            color: #6b8aa3;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-<div class="game-container" id="app">
-    <div class="header">
-        <h1>Парные согласные в корне слова</h1>
-        <p>2 класс · Русский язык</p>
+<div class="app-container">
+    <h1>🎭 Терапия творчеством</h1>
+    <div class="subhead">научно-ориентированный подбор для подростков</div>
+
+    <!-- Экран вопросов -->
+    <div id="quiz-screen">
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill" style="width: 0%;"></div>
+            </div>
+        </div>
+        <div id="question-card" class="question-card">
+            <div id="question-text" class="question-text">Загрузка...</div>
+            <div id="options-container" class="options"></div>
+        </div>
+        <div class="nav-buttons">
+            <button id="prev-btn" disabled>← Назад</button>
+            <button id="next-btn" class="primary">Далее →</button>
+        </div>
+        <div id="error-message" class="error-message"></div>
     </div>
-    <div class="stats">
-        <div class="score-box">⭐ Очки: <span id="scoreValue">0</span></div>
-        <div class="question-counter">📋 <span id="phaseInfo">Вступление</span></div>
+
+    <!-- Экран результатов -->
+    <div id="result-screen" style="display: none;">
+        <div class="result-card">
+            <div style="font-size: 1.8rem; margin-bottom: 8px;">✨ Рекомендация</div>
+            <div id="therapy-badge" class="therapy-badge"></div>
+            <div id="therapy-description" style="font-size: 1.1rem; margin: 15px 0;"></div>
+            <div id="reason-block" class="reason"></div>
+            <div id="scores-detail" class="scores-detail"></div>
+            <button id="reset-btn" class="primary reset-btn">🔄 Пройти заново</button>
+        </div>
     </div>
-    <div class="content" id="mainContent"></div>
+    <div class="footer-note">
+        * Рекомендация основана на анализе показаний к арт-, театральной, игровой и кинотерапии
+    </div>
 </div>
 
 <script>
-    // --------------------------------------------------------------
-    // ПАРЫ СОГЛАСНЫХ: примеры для объяснения и отдельные слова для заданий
-    // Исправлено: убраны верблюд, берёза
-    // --------------------------------------------------------------
-    const pairsData = [
-        { 
-            name: "б–п",
-            examples: "зуб – зубы",
-            tasks: [
-                { word: "гри_", correct: "б", hint: "Проверочное слово: грибы", image: "🍄" },
-                { word: "су_", correct: "п", hint: "Проверочное слово: супы", image: "🍲" },
-                { word: "хле_", correct: "б", hint: "Проверочное слово: хлеба", image: "🍞" }
-            ]
-        },
-        { 
-            name: "в–ф",
-            examples: "рукав – рукава, жираф – жирафы",
-            tasks: [
-                { word: "шар_", correct: "ф", hint: "Проверочное слово: шарфы", image: "🧣" },
-                { word: "рука_", correct: "в", hint: "Проверочное слово: рукава", image: "👕" },
-                { word: "шка_", correct: "ф", hint: "Проверочное слово: шкафы", image: "🗄️" }
-            ]
-        },
-        { 
-            name: "г–к",
-            examples: "снег – снега, сапог – сапоги",
-            tasks: [
-                { word: "дру_", correct: "г", hint: "Проверочное слово: друзья", image: "👫" },
-                { word: "сапо_", correct: "г", hint: "Проверочное слово: сапоги", image: "👢" },
-                { word: "лу_", correct: "к", hint: "Проверочное слово: луки", image: "🏹" }
-            ]
-        },
-        { 
-            name: "д–т",
-            examples: "след – следы, город – города",
-            tasks: [
-                { word: "горо_", correct: "д", hint: "Проверочное слово: города", image: "🏙️" },
-                { word: "са_", correct: "д", hint: "Проверочное слово: сады", image: "🌳" },
-                { word: "кро_", correct: "т", hint: "Проверочное слово: кроты", image: "🐭" }
-            ]
-        },
-        { 
-            name: "ж–ш",
-            examples: "этаж – этажи, карандаш – карандаши",
-            tasks: [
-                { word: "ё_", correct: "ж", hint: "Проверочное слово: ежи", image: "🦔" },
-                { word: "каранда_", correct: "ш", hint: "Проверочное слово: карандаши", image: "✏️" },
-                { word: "стри_", correct: "ж", hint: "Проверочное слово: стрижи", image: "🐦" }
-            ]
-        },
-        { 
-            name: "з–с",
-            examples: "глаз – глаза, ананас – ананасы",
-            tasks: [
-                { word: "арбу_", correct: "з", hint: "Проверочное слово: арбузы", image: "🍉" },
-                { word: "анана_", correct: "с", hint: "Проверочное слово: ананасы", image: "🍍" },
-                { word: "голо_", correct: "с", hint: "Проверочное слово: голоса", image: "🗣️" }
-            ]
-        }
-    ];
+    (function(){
+        "use strict";
 
-    // ВСТУПИТЕЛЬНЫЕ СЛАЙДЫ
-    const introSlides = [
-        { title: "Здравствуй, ученик!",
-          text: "В русском языке есть парные согласные буквы: б–п, в–ф, г–к, д–т, ж–ш, з–с. В конце слова парную согласную нужно проверять, чтобы не ошибиться в написании.",
-          list: null },
-        { title: "Как проверить парную согласную?",
-          text: "Чтобы правильно написать парную согласную в конце слова, измени слово так, чтобы после этой буквы стоял гласный. Например:",
-          list: ["зуб – зубы (буква б)", "глаз – глаза (буква з)", "рукав – рукава (буква в)"] }
-    ];
+        // ---------- НАУЧНО-ОБОСНОВАННЫЙ ОПРОСНИК ----------
+        // Вопросы сгруппированы по терапевтическим шкалам.
+        const questions = [
+            // АРТ-ТЕРАПИЯ (art)
+            { text: "Подростку трудно выражать свои чувства словами, он замыкается или становится раздражительным.", category: "art" },
+            { text: "Ребёнок часто испытывает тревогу, подавленность или резкие перепады настроения.", category: "art" },
+            { text: "Есть склонность к творчеству: любит рисовать, лепить, заниматься рукоделием.", category: "art" },
+            // ТЕАТРАЛЬНАЯ ТЕРАПИЯ (theatre)
+            { text: "У подростка проблемы с общением: ему сложно заводить друзей, он стесняется выступать перед классом.", category: "theatre" },
+            { text: "Ребёнку нравится примерять на себя разные роли, участвовать в сценках, он эмоционально подвижен.", category: "theatre" },
+            { text: "Подросток часто чувствует себя неуверенно в социуме, боится осуждения.", category: "theatre" },
+            // ИГРОВАЯ ТЕРАПИЯ (play)
+            { text: "Ребёнок склонен к агрессивным вспышкам, импульсивен, с трудом контролирует гнев.", category: "play" },
+            { text: "Подросток испытывает сильные страхи, тревожность, возможно, пережил стрессовую ситуацию.", category: "play" },
+            { text: "Ему/ей нравится играть (настольные, видеоигры, ролевые игры) и через игру он/а лучше расслабляется.", category: "play" },
+            // КИНОТЕРАПИЯ (cinema)
+            { text: "Подростку трудно анализировать свои эмоции и поступки, он не всегда понимает мотивы окружающих.", category: "cinema" },
+            { text: "Ребёнок любит смотреть фильмы/сериалы и способен долго обсуждать персонажей и сюжеты.", category: "cinema" },
+            { text: "Есть проблемы с самоконтролем, поведением или адаптацией в коллективе.", category: "cinema" }
+        ];
 
-    // ПОСТРОЕНИЕ ЭТАПОВ
-    let stages = [
-        { type: "intro", index: 0 },
-        { type: "intro", index: 1 }
-    ];
-    for (let pi = 0; pi < pairsData.length; pi++) {
-        stages.push({ type: "pairRule", pairIndex: pi });
-        for (let ti = 0; ti < pairsData[pi].tasks.length; ti++) {
-            stages.push({ type: "task", pairIndex: pi, taskIndex: ti });
-        }
-    }
+        const categories = ['art', 'theatre', 'play', 'cinema'];
+        const categoryNames = {
+            art: 'Арт-терапия',
+            theatre: 'Театральная терапия',
+            play: 'Игровая терапия',
+            cinema: 'Кинотерапия'
+        };
 
-    let currentStage = 0;
-    let totalScore = 0;
-    let taskAnswers = {};
-    const maxScore = (() => {
-        let cnt = 0;
-        for (let st of stages) if (st.type === "task") cnt++;
-        return cnt * 20;
-    })();
+        // Баллы по шкалам (0-3 за каждый вопрос)
+        let scores = { art: 0, theatre: 0, play: 0, cinema: 0 };
+        let currentIndex = 0;
+        let answers = new Array(questions.length).fill(null);
 
-    const contentDiv = document.getElementById('mainContent');
-    const scoreSpan = document.getElementById('scoreValue');
-    const phaseInfoSpan = document.getElementById('phaseInfo');
+        // DOM элементы
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultScreen = document.getElementById('result-screen');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const progressFill = document.getElementById('progress-fill');
+        const errorMsg = document.getElementById('error-message');
+        const resetBtn = document.getElementById('reset-btn');
+        const therapyBadge = document.getElementById('therapy-badge');
+        const therapyDescription = document.getElementById('therapy-description');
+        const reasonBlock = document.getElementById('reason-block');
+        const scoresDetail = document.getElementById('scores-detail');
 
-    function updateUI() {
-        scoreSpan.innerText = totalScore;
-        if (currentStage < stages.length) {
-            const stage = stages[currentStage];
-            if (stage.type === "task") {
-                let done = Object.keys(taskAnswers).length;
-                let total = stages.filter(s => s.type === "task").length;
-                phaseInfoSpan.innerText = `Задание ${done+1} из ${total}`;
-            } else if (stage.type === "pairRule") {
-                phaseInfoSpan.innerText = `Правило ${stage.pairIndex+1} из ${pairsData.length}`;
-            } else if (stage.type === "intro") {
-                phaseInfoSpan.innerText = `Вступление ${stage.index+1} из 2`;
-            }
-        } else {
-            phaseInfoSpan.innerText = "Результат";
-        }
-    }
+        // Варианты ответов (Ликерт)
+        const answerOptions = [
+            { value: 0, label: "Совсем не подходит" },
+            { value: 1, label: "Скорее не подходит" },
+            { value: 2, label: "Отчасти подходит" },
+            { value: 3, label: "Полностью подходит" }
+        ];
 
-    function render() {
-        if (currentStage >= stages.length) {
-            showFinalScreen();
-            return;
-        }
-        const stage = stages[currentStage];
-        if (stage.type === "intro") renderIntro(stage.index);
-        else if (stage.type === "pairRule") renderPairRule(stage.pairIndex);
-        else if (stage.type === "task") renderTask(stage.pairIndex, stage.taskIndex);
-        updateUI();
-    }
+        function renderQuestion() {
+            const q = questions[currentIndex];
+            questionText.textContent = `${currentIndex+1}. ${q.text}`;
+            
+            let html = '';
+            const selectedVal = answers[currentIndex];
+            answerOptions.forEach(opt => {
+                const checked = (selectedVal === opt.value) ? 'checked' : '';
+                html += `
+                    <label class="option ${selectedVal === opt.value ? 'selected' : ''}">
+                        <input type="radio" name="answer" value="${opt.value}" ${checked}> ${opt.label}
+                    </label>
+                `;
+            });
+            optionsContainer.innerHTML = html;
 
-    function renderIntro(idx) {
-        const slide = introSlides[idx];
-        let html = `<div class="intro-slide"><h2>${slide.title}</h2><p>${slide.text}</p>`;
-        if (slide.list) {
-            html += `<ul>${slide.list.map(item => `<li>• ${item}</li>`).join('')}</ul>`;
-        }
-        html += `<button class="next-btn" id="introNextBtn">➡ ДАЛЬШЕ</button></div>`;
-        contentDiv.innerHTML = html;
-        document.getElementById('introNextBtn')?.addEventListener('click', () => {
-            currentStage++;
-            render();
-        });
-    }
-
-    function renderPairRule(pairIndex) {
-        const pair = pairsData[pairIndex];
-        const examplesHtml = pair.examples.split(',').map(ex => `<span class="example-item">${ex.trim()}</span>`).join('');
-        const html = `
-            <div class="pair-rule">
-                <h2>Правило ${pair.name}</h2>
-                <div class="pair-badge">${pair.name}</div>
-                <p>Парные согласные буквы <strong>${pair.name}</strong> в конце слова нужно проверять. Измени слово: поставь его во множественное число или подбери однокоренное слово, чтобы после согласной буквы стояла гласная буква.</p>
-                <div class="example-list">
-                    ${examplesHtml}
-                </div>
-                <button class="next-btn" id="nextRuleBtn">➡ ТРЕНИРУЕМСЯ</button>
-            </div>
-        `;
-        contentDiv.innerHTML = html;
-        document.getElementById('nextRuleBtn')?.addEventListener('click', () => {
-            currentStage++;
-            render();
-        });
-    }
-
-    function renderTask(pairIndex, taskIndex) {
-        const pair = pairsData[pairIndex];
-        const task = pair.tasks[taskIndex];
-        const answerKey = `${pairIndex}_${taskIndex}`;
-        const alreadyAnswered = taskAnswers[answerKey] !== undefined;
-
-        const displayWord = task.word.replace('_', '_');
-        let feedbackHtml = '';
-        let disabled = false;
-
-        if (alreadyAnswered) {
-            const chosen = taskAnswers[answerKey];
-            const isCorrect = (chosen === task.correct);
-            disabled = true;
-            feedbackHtml = `
-                <div class="feedback ${isCorrect ? 'correct-feedback' : 'wrong-feedback'}">
-                    ${isCorrect ? '✅ Верно! ' + task.hint : '❌ Неверно. ' + task.hint + ' Правильная буква — ' + task.correct + '.'}
-                </div>
-            `;
-        }
-
-        let wrongLetter = '';
-        if (task.correct === 'б') wrongLetter = 'п';
-        else if (task.correct === 'п') wrongLetter = 'б';
-        else if (task.correct === 'в') wrongLetter = 'ф';
-        else if (task.correct === 'ф') wrongLetter = 'в';
-        else if (task.correct === 'г') wrongLetter = 'к';
-        else if (task.correct === 'к') wrongLetter = 'г';
-        else if (task.correct === 'д') wrongLetter = 'т';
-        else if (task.correct === 'т') wrongLetter = 'д';
-        else if (task.correct === 'ж') wrongLetter = 'ш';
-        else if (task.correct === 'ш') wrongLetter = 'ж';
-        else if (task.correct === 'з') wrongLetter = 'с';
-        else if (task.correct === 'с') wrongLetter = 'з';
-
-        let optionsHtml = `
-            <div class="options">
-                <button class="opt-btn" data-letter="${task.correct}" ${disabled ? 'disabled' : ''}>${task.correct}</button>
-                <button class="opt-btn" data-letter="${wrongLetter}" ${disabled ? 'disabled' : ''}>${wrongLetter}</button>
-            </div>
-        `;
-
-        let nextButtonHtml = '';
-        if (alreadyAnswered) {
-            nextButtonHtml = `<button class="next-btn" id="nextTaskBtn">➡ ДАЛЬШЕ</button>`;
-        }
-
-        const html = `
-            <div class="task-card">
-                <div style="font-size: 1.2rem; margin-bottom: 10px;">${task.image} Пара: ${pair.name}</div>
-                <div class="task-word">${displayWord}</div>
-                ${optionsHtml}
-                ${feedbackHtml}
-                ${nextButtonHtml}
-            </div>
-        `;
-        contentDiv.innerHTML = html;
-
-        if (!alreadyAnswered) {
-            const btns = document.querySelectorAll('.opt-btn');
-            btns.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    if (taskAnswers[answerKey] !== undefined) return;
-                    const chosen = btn.getAttribute('data-letter');
-                    taskAnswers[answerKey] = chosen;
-                    const isCorrect = (chosen === task.correct);
-                    if (isCorrect) {
-                        totalScore += 20;
-                        updateUI();
-                    }
-                    renderTask(pairIndex, taskIndex);
+            // Навесить слушатели на radio
+            document.querySelectorAll('input[name="answer"]').forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    const val = parseInt(e.target.value);
+                    answers[currentIndex] = val;
+                    // убрать ошибку
+                    errorMsg.textContent = '';
+                    // визуально подсветить выбранную опцию
+                    document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+                    e.target.closest('.option').classList.add('selected');
+                    // обновить состояние кнопок
+                    updateNavButtons();
                 });
             });
-        } else {
-            const nextBtn = document.getElementById('nextTaskBtn');
-            if (nextBtn) {
-                nextBtn.addEventListener('click', () => {
-                    currentStage++;
-                    render();
-                });
+
+            // обновить прогресс
+            const progress = ((currentIndex) / questions.length) * 100;
+            progressFill.style.width = progress + '%';
+            updateNavButtons();
+        }
+
+        function updateNavButtons() {
+            prevBtn.disabled = (currentIndex === 0);
+            if (currentIndex === questions.length - 1) {
+                nextBtn.textContent = 'Результат 🎯';
+            } else {
+                nextBtn.textContent = 'Далее →';
+            }
+            // если ответ не выбран, блокировать next? можно разрешить пропускать, но лучше подсветить ошибку
+            const hasAnswer = answers[currentIndex] !== null;
+            if (!hasAnswer && currentIndex < questions.length) {
+                // не блокируем кнопку, но при клике покажем ошибку
+                nextBtn.disabled = false;
+            } else {
+                nextBtn.disabled = false;
             }
         }
-    }
 
-    function showFinalScreen() {
-        const earned = totalScore;
-        let message = '';
-        if (earned === maxScore) {
-            message = '🎉🎉🎉 Ты молодец! Отлично знаешь парные согласные! 🎉🎉🎉';
-        } else if (earned >= maxScore - 20) {
-            message = '👍 Хорошо! Повтори правило и будет ещё лучше!';
-        } else {
-            message = '📚 Попробуй пройти игру ещё раз. Вспомни, как проверять буквы: измени слово. У тебя получится!';
+        function calculateScores() {
+            // сброс
+            categories.forEach(c => scores[c] = 0);
+            for (let i = 0; i < questions.length; i++) {
+                const q = questions[i];
+                const ans = answers[i];
+                if (ans !== null) {
+                    scores[q.category] += ans;
+                }
+            }
         }
-        const finalHtml = `
-            <div class="final-screen">
-                <h2>🏆 Твой результат</h2>
-                <div class="final-score">${earned} / ${maxScore}</div>
-                <p style="font-size:1.2rem;">${message}</p>
-                <div class="bright-rules">
-                    <p>🐢 Запомни правила проверки парных согласных:</p>
-                    <p>1️⃣ Парные согласные буквы: б–п, в–ф, г–к, д–т, ж–ш, з–с.</p>
-                    <p>2️⃣ Чтобы проверить парную согласную в конце слова, измени слово: поставь его во множественное число или подбери однокоренное слово так, чтобы после согласной буквы стояла гласная буква.</p>
-                    <p>3️⃣ Примеры: зуб – зубы, глаз – глаза, рукав – рукава.</p>
-                    <p>4️⃣ Тренируйся, и у тебя всё получится!</p>
-                </div>
-                <button class="restart-btn" id="restartGameBtn">🔄 Пройти заново</button>
-            </div>
-        `;
-        contentDiv.innerHTML = finalHtml;
-        document.getElementById('restartGameBtn')?.addEventListener('click', () => {
-            currentStage = 0;
-            totalScore = 0;
-            taskAnswers = {};
-            render();
-            updateUI();
-        });
-    }
 
-    render();
-    updateUI();
+        function getTopCategory() {
+            let maxCat = 'art';
+            let maxScore = -1;
+            categories.forEach(c => {
+                if (scores[c] > maxScore) {
+                    maxScore = scores[c];
+                    maxCat = c;
+                }
+            });
+            return { category: maxCat, score: maxScore };
+        }
+
+        function generateReason(category) {
+            const reasons = {
+                art: "Арт-терапия рекомендована, поскольку у подростка выражены трудности эмоционального выражения, тревожность или интерес к творчеству. Исследования показывают, что арт-терапия помогает безопасно выражать сложные чувства и снижать тревожность.",
+                theatre: "Театральная терапия подходит, так как присутствуют сложности в общении и социализации. Драматерапия позволяет в безопасной обстановке развивать эмпатию и коммуникативные навыки.",
+                play: "Игровая терапия показана при агрессивных проявлениях и тревожности. Через игру подросток учится управлять эмоциями и справляться со стрессом.",
+                cinema: "Кинотерапия эффективна при трудностях с анализом эмоций и поведенческих проблемах. Обсуждение фильмов развивает самосознание и эмпатию."
+            };
+            return reasons[category] || "Рекомендация основана на научных показаниях.";
+        }
+
+        function showResult() {
+            calculateScores();
+            const top = getTopCategory();
+            const catName = categoryNames[top.category];
+            
+            therapyBadge.textContent = catName;
+            therapyDescription.textContent = `Наиболее выражены показания к ${catName.toLowerCase()}.`;
+            reasonBlock.innerHTML = `<strong>🔬 Обоснование:</strong> ${generateReason(top.category)}`;
+            
+            let detailHtml = '';
+            categories.forEach(c => {
+                detailHtml += `<span class="score-item">${categoryNames[c]}: ${scores[c]} баллов</span>`;
+            });
+            scoresDetail.innerHTML = detailHtml;
+            
+            quizScreen.style.display = 'none';
+            resultScreen.style.display = 'block';
+        }
+
+        function resetQuiz() {
+            currentIndex = 0;
+            answers = new Array(questions.length).fill(null);
+            categories.forEach(c => scores[c] = 0);
+            quizScreen.style.display = 'block';
+            resultScreen.style.display = 'none';
+            errorMsg.textContent = '';
+            renderQuestion();
+        }
+
+        function handleNext() {
+            if (answers[currentIndex] === null) {
+                errorMsg.textContent = 'Пожалуйста, выберите вариант ответа.';
+                return;
+            }
+            if (currentIndex === questions.length - 1) {
+                // Проверим, все ли ответы даны (можно пропускать, но предупредим)
+                const missing = answers.some(a => a === null);
+                if (missing) {
+                    if (!confirm('Не на все вопросы даны ответы. Продолжить?')) {
+                        return;
+                    }
+                }
+                showResult();
+            } else {
+                currentIndex++;
+                renderQuestion();
+            }
+        }
+
+        function handlePrev() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderQuestion();
+            }
+        }
+
+        // Инициализация и обработчики
+        function init() {
+            renderQuestion();
+            nextBtn.addEventListener('click', handleNext);
+            prevBtn.addEventListener('click', handlePrev);
+            resetBtn.addEventListener('click', resetQuiz);
+        }
+
+        init();
+    })();
 </script>
 </body>
 </html>
