@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>жи–ши, ча–ща, чу–щу | 1 класс | русский язык</title>
+    <title>Жи–ши, ча–ща, чу–щу | 1 класс | Русский язык</title>
     <style>
         * {
             margin: 0;
@@ -176,46 +176,45 @@
 <body>
 <div class="game-container" id="app">
     <div class="header">
-        <h1>волшебные правила</h1>
-        <p>жи–ши · ча–ща · чу–щу</p>
+        <h1>Волшебные правила</h1>
+        <p>Жи–ши · Ча–ща · Чу–щу</p>
     </div>
     <div class="stats">
-        <div class="score-box">⭐ очки: <span id="scoreValue">0</span></div>
-        <div class="question-counter">📋 <span id="phaseInfo">вступление</span></div>
+        <div class="score-box">⭐ Очки: <span id="scoreValue">0</span></div>
+        <div class="question-counter">📋 <span id="phaseInfo">Вступление</span></div>
     </div>
     <div class="content" id="mainContent"></div>
 </div>
 
 <script>
     // --------------------------------------------------------------
-    //  ЗАДАНИЯ ДЛЯ 1 КЛАССА (только жи–ши, ча–ща, чу–щу)
-    //  Все требования модерации соблюдены:
-    //  - строчные буквы
-    //  - одно нижнее подчеркивание для пропуска
-    //  - после двоеточия слово со строчной буквы
-    //  - предложения с точкой
-    //  - дефис заменён на тире (жи–ши, ча–ща, чу–щу)
+    //  ЗАДАНИЯ ДЛЯ 1 КЛАССА (жи–ши, ча–ща, чу–щу)
+    //  - Строчные буквы в словах, предложения начинаются с большой буквы
+    //  - Одно нижнее подчеркивание для пропуска
+    //  - После двоеточия слово со строчной буквы
+    //  - Предложения с точкой
+    //  - В жи–ши добавлен вариант с буквой Ы (ловушка)
     // --------------------------------------------------------------
     const tasks = [
-        { word: "ж_знь", correct: "и", hint: "жи–ши пиши с буквой и", rule: "жи–ши" },
-        { word: "малыш_", correct: "и", hint: "жи–ши пиши с буквой и", rule: "жи–ши" },
-        { word: "ш_шка", correct: "и", hint: "жи–ши пиши с буквой и", rule: "жи–ши" },
-        { word: "ч_йка", correct: "а", hint: "ча–ща пиши с буквой а", rule: "ча–ща" },
-        { word: "площ_дь", correct: "а", hint: "ча–ща пиши с буквой а", rule: "ча–ща" },
-        { word: "ч_до", correct: "у", hint: "чу–щу пиши с буквой у", rule: "чу–щу" },
-        { word: "щ_ка", correct: "у", hint: "чу–щу пиши с буквой у", rule: "чу–щу" }
+        { word: "ж_знь", correct: "и", wrongLetters: ["ы"], hint: "Жи–ши пиши с буквой и", rule: "жи–ши" },
+        { word: "малыш_", correct: "и", wrongLetters: ["ы"], hint: "Жи–ши пиши с буквой и", rule: "жи–ши" },
+        { word: "ш_шка", correct: "и", wrongLetters: ["ы"], hint: "Жи–ши пиши с буквой и", rule: "жи–ши" },
+        { word: "ч_йка", correct: "а", wrongLetters: ["я"], hint: "Ча–ща пиши с буквой а", rule: "ча–ща" },
+        { word: "площ_дь", correct: "а", wrongLetters: ["я"], hint: "Ча–ща пиши с буквой а", rule: "ча–ща" },
+        { word: "ч_до", correct: "у", wrongLetters: ["ю"], hint: "Чу–щу пиши с буквой у", rule: "чу–щу" },
+        { word: "щ_ка", correct: "у", wrongLetters: ["ю"], hint: "Чу–щу пиши с буквой у", rule: "чу–щу" }
     ];
 
     const introSlides = [
-        { title: "здравствуй, ученик!",
-          text: "сегодня мы будем учиться писать слова с буквосочетаниями жи–ши, ча–ща, чу–щу.",
+        { title: "Здравствуй, ученик!",
+          text: "Сегодня мы будем учиться писать слова с буквосочетаниями жи–ши, ча–ща, чу–щу.",
           list: null },
-        { title: "запомни правила",
-          text: "жи–ши пиши с буквой и. ча–ща пиши с буквой а. чу–щу пиши с буквой у.",
-          list: ["жи–ши: пиши с и", "ча–ща: пиши с а", "чу–щу: пиши с у"] }
+        { title: "Запомни правила",
+          text: "Жи–ши пиши с буквой и. Ча–ща пиши с буквой а. Чу–щу пиши с буквой у.",
+          list: ["Жи–ши: пиши с и (не с ы!)", "Ча–ща: пиши с а (не с я!)", "Чу–щу: пиши с у (не с ю!)"] }
     ];
 
-    let currentStage = 0;       // 0-1 вступление, потом задания
+    let currentStage = 0;
     let currentTask = 0;
     let totalScore = 0;
     let answersState = [];
@@ -227,11 +226,11 @@
     function updateUI() {
         scoreSpan.innerText = totalScore;
         if (currentStage < introSlides.length) {
-            phaseInfoSpan.innerText = `вступление ${currentStage+1} из ${introSlides.length}`;
+            phaseInfoSpan.innerText = `Вступление ${currentStage+1} из ${introSlides.length}`;
         } else if (currentTask < tasks.length) {
-            phaseInfoSpan.innerText = `задание ${currentTask+1} из ${tasks.length}`;
+            phaseInfoSpan.innerText = `Задание ${currentTask+1} из ${tasks.length}`;
         } else {
-            phaseInfoSpan.innerText = `результат`;
+            phaseInfoSpan.innerText = `Результат`;
         }
     }
 
@@ -253,7 +252,7 @@
         if (slide.list) {
             html += `<ul style="text-align:left; margin-left:20px;">${slide.list.map(item => `<li>${item}</li>`).join('')}</ul>`;
         }
-        html += `<button class="next-btn" id="introNextBtn">➡ дальше</button></div>`;
+        html += `<button class="next-btn" id="introNextBtn">➡ Дальше</button></div>`;
         contentDiv.innerHTML = html;
         document.getElementById('introNextBtn')?.addEventListener('click', () => {
             currentStage++;
@@ -266,7 +265,7 @@
     function renderTask(taskIdx) {
         const task = tasks[taskIdx];
         const alreadyAnswered = answersState[taskIdx] !== undefined;
-        const displayWord = task.word.replace('_', '_'); // одно подчеркивание
+        const displayWord = task.word.replace('_', '_');
 
         let feedbackHtml = '';
         let disabled = false;
@@ -276,14 +275,31 @@
             disabled = true;
             feedbackHtml = `
                 <div class="feedback ${isCorrect ? 'correct-feedback' : 'wrong-feedback'}">
-                    ${isCorrect ? '✅ верно: ' + task.hint + '.' : '❌ неверно. ' + task.hint + '. правильная буква — ' + task.correct + '.'}
+                    ${isCorrect ? '✅ Верно: ' + task.hint + '.' : '❌ Неверно. ' + task.hint + '. Правильная буква — ' + task.correct + '.'}
                 </div>
             `;
         }
 
-        // варианты: буквы а, у, и (все три правила)
+        // Формируем варианты ответов: правильная буква + неправильные из wrongLetters
+        let letters = [task.correct, ...task.wrongLetters];
+        // Добавляем остальные буквы для разнообразия (но не перегружаем)
+        if (task.rule === "жи–ши") {
+            if (!letters.includes('а')) letters.push('а');
+            if (!letters.includes('у')) letters.push('у');
+        } else if (task.rule === "ча–ща") {
+            if (!letters.includes('у')) letters.push('у');
+            if (!letters.includes('и')) letters.push('и');
+        } else if (task.rule === "чу–щу") {
+            if (!letters.includes('а')) letters.push('а');
+            if (!letters.includes('и')) letters.push('и');
+        }
+        // Перемешиваем массив
+        for (let i = letters.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [letters[i], letters[j]] = [letters[j], letters[i]];
+        }
+
         let optionsHtml = `<div class="options">`;
-        const letters = ['а', 'у', 'и'];
         for (let l of letters) {
             optionsHtml += `<button class="opt-btn" data-letter="${l}" ${disabled ? 'disabled' : ''}>${l}</button>`;
         }
@@ -291,12 +307,12 @@
 
         let nextButtonHtml = '';
         if (alreadyAnswered) {
-            nextButtonHtml = `<button class="next-btn" id="nextTaskBtn">➡ дальше</button>`;
+            nextButtonHtml = `<button class="next-btn" id="nextTaskBtn">➡ Дальше</button>`;
         }
 
         const html = `
             <div class="task-card">
-                <div class="rule-badge">правило: ${task.rule}</div>
+                <div class="rule-badge">Правило: ${task.rule}</div>
                 <div class="task-word">${displayWord}</div>
                 ${optionsHtml}
                 ${feedbackHtml}
@@ -338,24 +354,24 @@
         const earned = totalScore;
         let message = '';
         if (earned === maxScore) {
-            message = '🎉 молодец! ты отлично знаешь правила жи–ши, ча–ща, чу–щу. 🎉';
+            message = '🎉 Молодец! Ты отлично знаешь правила жи–ши, ча–ща, чу–щу. 🎉';
         } else if (earned >= maxScore - 40) {
-            message = '👍 хорошо! повтори правила и будет ещё лучше.';
+            message = '👍 Хорошо! Повтори правила и будет ещё лучше.';
         } else {
-            message = '📚 попробуй ещё раз. запомни: жи–ши пиши с и, ча–ща с а, чу–щу с у.';
+            message = '📚 Попробуй ещё раз. Запомни: жи–ши пиши с и, ча–ща с а, чу–щу с у.';
         }
         const finalHtml = `
             <div class="final-screen">
-                <h2>🏆 твой результат</h2>
+                <h2>🏆 Твой результат</h2>
                 <p style="font-size:2rem; margin:15px;">${earned} / ${maxScore}</p>
                 <p>${message}</p>
                 <div class="bright-rules">
-                    <p>📌 запомни правила:</p>
-                    <p>жи–ши пиши с буквой и.</p>
-                    <p>ча–ща пиши с буквой а.</p>
-                    <p>чу–щу пиши с буквой у.</p>
+                    <p>📌 Запомни правила:</p>
+                    <p>Жи–ши пиши с буквой и (не с ы!).</p>
+                    <p>Ча–ща пиши с буквой а (не с я!).</p>
+                    <p>Чу–щу пиши с буквой у (не с ю!).</p>
                 </div>
-                <button class="restart-btn" id="restartGameBtn">🔄 пройти заново</button>
+                <button class="restart-btn" id="restartGameBtn">🔄 Пройти заново</button>
             </div>
         `;
         contentDiv.innerHTML = finalHtml;
