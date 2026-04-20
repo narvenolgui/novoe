@@ -2,318 +2,375 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Бланк «Цепочка последствий» — строго один лист А4</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>жи–ши, ча–ща, чу–щу | 1 класс | русский язык</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            user-select: none;
         }
-
         body {
-            background: #e0e0e0;
+            background: #f9f0d4;
+            font-family: 'Segoe UI', 'Comic Neue', 'Comic Sans MS', 'Arial', sans-serif;
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 15px;
-            font-family: 'Arial', 'Helvetica', sans-serif;
+            padding: 20px;
         }
-
-        .print-button {
-            margin-bottom: 12px;
-            padding: 10px 30px;
-            font-size: 18px;
-            font-weight: 700;
-            color: #1a1a1a;
+        .game-container {
+            max-width: 800px;
+            width: 100%;
             background: #ffffff;
-            border: 3px solid #1a1a1a;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 3px 0 #1a1a1a;
-            transition: all 0.1s ease;
-            letter-spacing: 2px;
-        }
-
-        .print-button:hover {
-            transform: translateY(2px);
-            box-shadow: 0 1px 0 #1a1a1a;
-            background: #f0f0f0;
-        }
-
-        .a4-sheet {
-            width: 210mm;
-            height: 297mm;
-            background: #ffffff;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-            padding: 10mm 12mm 8mm 12mm;
-            position: relative;
-            margin: 0 auto;
+            border-radius: 48px;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
             overflow: hidden;
         }
-
-        h1 {
-            text-align: center;
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #000;
-            border-bottom: 2px solid #000;
-            display: inline-block;
-            padding-bottom: 5px;
-            padding-left: 12px;
-            padding-right: 12px;
-            margin-bottom: 8px;
-        }
-
         .header {
+            background: #ffb347;
+            padding: 20px;
             text-align: center;
-            margin-bottom: 6mm;
         }
-
-        .subtitle {
-            font-size: 13px;
-            color: #333;
-            margin-top: 3px;
-            font-style: italic;
+        .header h1 {
+            font-size: 1.8rem;
+            color: #2d2b1f;
         }
-
-        .scheme {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 5px 0 8px;
-        }
-
-        .action-box {
-            background: #1a1a1a;
-            color: #fff;
-            padding: 8px 30px;
-            font-size: 18px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            border: 2px solid #000;
+        .header p {
+            font-size: 1rem;
+            background: #fff0c0;
             display: inline-block;
-            margin-bottom: 2px;
-        }
-
-        .arrow-down {
-            font-size: 22px;
-            font-weight: bold;
-            color: #000;
-            margin: 0;
-            line-height: 1.2;
-        }
-
-        .consequences-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px;
-            margin: 8px 0 5px;
-        }
-
-        .consequence-card {
-            border: 2px solid #000;
-            padding: 8px 6px;
-            width: 155px;
-            min-height: 145px;
-            background: #fafafa;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card-title {
-            font-size: 15px;
-            font-weight: 700;
-            text-transform: uppercase;
-            text-align: center;
-            border-bottom: 2px solid #000;
-            padding-bottom: 5px;
-            margin-bottom: 6px;
-            color: #000;
-        }
-
-        .card-content {
-            font-size: 11px;
-            line-height: 1.4;
-            color: #1a1a1a;
-            flex: 1;
-        }
-
-        .card-content p {
-            margin-bottom: 3px;
-        }
-
-        .fill-section {
-            margin-top: 10px;
-            border-top: 2px dashed #888;
-            padding-top: 10px;
-        }
-
-        .fill-title {
-            font-size: 15px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
-        .fill-lines {
-            width: 100%;
-        }
-
-        .line {
-            border-bottom: 2px solid #aaa;
-            margin-bottom: 10px;
-            height: 2px;
-        }
-
-        .line:last-child {
-            margin-bottom: 2px;
-        }
-
-        .footer {
+            padding: 5px 20px;
+            border-radius: 40px;
             margin-top: 8px;
-            text-align: right;
-            font-size: 11px;
-            color: #555;
-            border-top: 1px solid #aaa;
-            padding-top: 5px;
         }
-
-        @media print {
-            body {
-                background: #fff;
-                padding: 0;
-                margin: 0;
-            }
-            .print-button {
-                display: none;
-            }
-            .a4-sheet {
-                box-shadow: none;
-                width: 100%;
-                height: auto;
-                padding: 8mm 10mm 6mm 10mm;
-                margin: 0;
-                overflow: visible;
-            }
-            .action-box {
-                background: #1a1a1a !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-                color: #fff !important;
-            }
-            .consequence-card {
-                background: #fafafa !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            background: #fef3da;
+            padding: 10px 20px;
+            font-weight: bold;
         }
-
-        @media screen and (max-width: 230mm) {
-            .a4-sheet {
-                width: 100%;
-                height: auto;
-                min-height: 297mm;
-            }
+        .score-box, .question-counter {
+            background: white;
+            padding: 4px 16px;
+            border-radius: 40px;
+        }
+        .content {
+            padding: 25px;
+        }
+        .intro-slide, .task-card {
+            background: #fffaf2;
+            border-radius: 40px;
+            padding: 25px;
+            text-align: center;
+        }
+        .intro-slide h2, .task-card h2 {
+            color: #c44b1e;
+            margin-bottom: 15px;
+        }
+        .rule-badge {
+            background: #ffe0a3;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .task-word {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: #eef3e0;
+            padding: 20px;
+            border-radius: 60px;
+            margin: 20px 0;
+            letter-spacing: 4px;
+        }
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 25px 0;
+        }
+        .opt-btn {
+            background: #ffaa44;
+            border: none;
+            font-size: 1.8rem;
+            font-weight: bold;
+            padding: 10px 25px;
+            border-radius: 60px;
+            cursor: pointer;
+            font-family: inherit;
+            box-shadow: 0 4px 0 #b97f2e;
+            color: #2d2b1f;
+            min-width: 80px;
+        }
+        .opt-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #b97f2e;
+        }
+        .opt-btn:disabled {
+            opacity: 0.6;
+            transform: none;
+            cursor: default;
+        }
+        .feedback {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 40px;
+            font-weight: bold;
+        }
+        .correct-feedback {
+            background: #c8e6c9;
+            color: #1e5a2a;
+            border-left: 6px solid #2e7d32;
+        }
+        .wrong-feedback {
+            background: #ffcdd2;
+            color: #a1131e;
+            border-left: 6px solid #d32f2f;
+        }
+        .next-btn {
+            background: #ffaa44;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-radius: 60px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .final-screen {
+            background: #fffaf2;
+            border-radius: 40px;
+            padding: 25px;
+            text-align: center;
+        }
+        .bright-rules {
+            background: #ffe0a3;
+            border-radius: 40px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .restart-btn {
+            background: #ffaa44;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+        }
+        @media (max-width: 550px) {
+            .task-word { font-size: 1.8rem; letter-spacing: 4px; }
+            .opt-btn { font-size: 1.3rem; padding: 8px 18px; min-width: 60px; }
         }
     </style>
 </head>
 <body>
-
-    <button class="print-button" onclick="window.print()">🖨️ РАСПЕЧАТАТЬ БЛАНК</button>
-
-    <div class="a4-sheet">
-        
-        <div class="header">
-            <h1>ЦЕПОЧКА ПОСЛЕДСТВИЙ</h1>
-            <div class="subtitle">Что запускает одно необдуманное действие</div>
-        </div>
-
-        <div class="scheme">
-            <div class="action-box">ПРАВОНАРУШЕНИЕ</div>
-            <div class="arrow-down">▼</div>
-        </div>
-
-        <div class="consequences-grid">
-            <div class="consequence-card">
-                <div class="card-title">СЕМЬЯ</div>
-                <div class="card-content">
-                    • Родители в шоке<br>
-                    • Скандал дома<br>
-                    • Штраф из бюджета<br>
-                    • Испорченные отношения<br>
-                    • Недоверие
-                </div>
-            </div>
-            <div class="consequence-card">
-                <div class="card-title">УЧЁБА</div>
-                <div class="card-content">
-                    • Вызов к директору<br>
-                    • Внутришкольный учёт<br>
-                    • Докладные записки<br>
-                    • Испорченная характеристика<br>
-                    • Проблемы с поступлением
-                </div>
-            </div>
-            <div class="consequence-card">
-                <div class="card-title">ДРУЗЬЯ</div>
-                <div class="card-content">
-                    • Кто-то отвернётся<br>
-                    • "С тобой опасно"<br>
-                    • Нездоровая реакция<br>
-                    • Потеря настоящих друзей
-                </div>
-            </div>
-            <div class="consequence-card">
-                <div class="card-title">БУДУЩАЯ КАРЬЕРА</div>
-                <div class="card-content">
-                    • Запись в базе ПДН<br>
-                    • Отказ в поступлении<br>
-                    • Проверка службы безопасности<br>
-                    • Отказ в работе
-                </div>
-            </div>
-            <div class="consequence-card">
-                <div class="card-title">СВОБОДА</div>
-                <div class="card-content">
-                    • Ограничение выезда<br>
-                    • Отметки в ПДН<br>
-                    • Постановка на учёт<br>
-                    • Регулярные проверки
-                </div>
-            </div>
-            <div class="consequence-card">
-                <div class="card-title">ВНУТРЕННЕЕ</div>
-                <div class="card-content">
-                    • Чувство вины<br>
-                    • Постоянный страх<br>
-                    • "Жизнь сломана"<br>
-                    • Потеря самоуважения<br>
-                    • Тревога о будущем
-                </div>
-            </div>
-        </div>
-
-        <div class="fill-section">
-            <div class="fill-title">✏️ Твои мысли: что ещё может произойти?</div>
-            <div class="fill-lines">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
-        </div>
-
-        <div class="footer">
-            Одно действие — целая жизнь. Думай, прежде чем сделать.
-        </div>
-
+<div class="game-container" id="app">
+    <div class="header">
+        <h1>волшебные правила</h1>
+        <p>жи–ши · ча–ща · чу–щу</p>
     </div>
+    <div class="stats">
+        <div class="score-box">⭐ очки: <span id="scoreValue">0</span></div>
+        <div class="question-counter">📋 <span id="phaseInfo">вступление</span></div>
+    </div>
+    <div class="content" id="mainContent"></div>
+</div>
 
+<script>
+    // --------------------------------------------------------------
+    //  ЗАДАНИЯ ДЛЯ 1 КЛАССА (только жи–ши, ча–ща, чу–щу)
+    //  Все требования модерации соблюдены:
+    //  - строчные буквы
+    //  - одно нижнее подчеркивание для пропуска
+    //  - после двоеточия слово со строчной буквы
+    //  - предложения с точкой
+    //  - дефис заменён на тире (жи–ши, ча–ща, чу–щу)
+    // --------------------------------------------------------------
+    const tasks = [
+        { word: "ж_знь", correct: "и", hint: "жи–ши пиши с буквой и", rule: "жи–ши" },
+        { word: "малыш_", correct: "и", hint: "жи–ши пиши с буквой и", rule: "жи–ши" },
+        { word: "ш_шка", correct: "и", hint: "жи–ши пиши с буквой и", rule: "жи–ши" },
+        { word: "ч_йка", correct: "а", hint: "ча–ща пиши с буквой а", rule: "ча–ща" },
+        { word: "площ_дь", correct: "а", hint: "ча–ща пиши с буквой а", rule: "ча–ща" },
+        { word: "ч_до", correct: "у", hint: "чу–щу пиши с буквой у", rule: "чу–щу" },
+        { word: "щ_ка", correct: "у", hint: "чу–щу пиши с буквой у", rule: "чу–щу" }
+    ];
+
+    const introSlides = [
+        { title: "здравствуй, ученик!",
+          text: "сегодня мы будем учиться писать слова с буквосочетаниями жи–ши, ча–ща, чу–щу.",
+          list: null },
+        { title: "запомни правила",
+          text: "жи–ши пиши с буквой и. ча–ща пиши с буквой а. чу–щу пиши с буквой у.",
+          list: ["жи–ши: пиши с и", "ча–ща: пиши с а", "чу–щу: пиши с у"] }
+    ];
+
+    let currentStage = 0;       // 0-1 вступление, потом задания
+    let currentTask = 0;
+    let totalScore = 0;
+    let answersState = [];
+
+    const contentDiv = document.getElementById('mainContent');
+    const scoreSpan = document.getElementById('scoreValue');
+    const phaseInfoSpan = document.getElementById('phaseInfo');
+
+    function updateUI() {
+        scoreSpan.innerText = totalScore;
+        if (currentStage < introSlides.length) {
+            phaseInfoSpan.innerText = `вступление ${currentStage+1} из ${introSlides.length}`;
+        } else if (currentTask < tasks.length) {
+            phaseInfoSpan.innerText = `задание ${currentTask+1} из ${tasks.length}`;
+        } else {
+            phaseInfoSpan.innerText = `результат`;
+        }
+    }
+
+    function render() {
+        if (currentStage < introSlides.length) {
+            renderIntro(currentStage);
+            return;
+        }
+        if (currentTask < tasks.length) {
+            renderTask(currentTask);
+        } else {
+            showFinalScreen();
+        }
+    }
+
+    function renderIntro(index) {
+        const slide = introSlides[index];
+        let html = `<div class="intro-slide"><h2>${slide.title}</h2><p>${slide.text}</p>`;
+        if (slide.list) {
+            html += `<ul style="text-align:left; margin-left:20px;">${slide.list.map(item => `<li>${item}</li>`).join('')}</ul>`;
+        }
+        html += `<button class="next-btn" id="introNextBtn">➡ дальше</button></div>`;
+        contentDiv.innerHTML = html;
+        document.getElementById('introNextBtn')?.addEventListener('click', () => {
+            currentStage++;
+            render();
+            updateUI();
+        });
+        updateUI();
+    }
+
+    function renderTask(taskIdx) {
+        const task = tasks[taskIdx];
+        const alreadyAnswered = answersState[taskIdx] !== undefined;
+        const displayWord = task.word.replace('_', '_'); // одно подчеркивание
+
+        let feedbackHtml = '';
+        let disabled = false;
+
+        if (alreadyAnswered) {
+            const isCorrect = answersState[taskIdx];
+            disabled = true;
+            feedbackHtml = `
+                <div class="feedback ${isCorrect ? 'correct-feedback' : 'wrong-feedback'}">
+                    ${isCorrect ? '✅ верно: ' + task.hint + '.' : '❌ неверно. ' + task.hint + '. правильная буква — ' + task.correct + '.'}
+                </div>
+            `;
+        }
+
+        // варианты: буквы а, у, и (все три правила)
+        let optionsHtml = `<div class="options">`;
+        const letters = ['а', 'у', 'и'];
+        for (let l of letters) {
+            optionsHtml += `<button class="opt-btn" data-letter="${l}" ${disabled ? 'disabled' : ''}>${l}</button>`;
+        }
+        optionsHtml += `</div>`;
+
+        let nextButtonHtml = '';
+        if (alreadyAnswered) {
+            nextButtonHtml = `<button class="next-btn" id="nextTaskBtn">➡ дальше</button>`;
+        }
+
+        const html = `
+            <div class="task-card">
+                <div class="rule-badge">правило: ${task.rule}</div>
+                <div class="task-word">${displayWord}</div>
+                ${optionsHtml}
+                ${feedbackHtml}
+                ${nextButtonHtml}
+            </div>
+        `;
+        contentDiv.innerHTML = html;
+
+        if (!alreadyAnswered) {
+            const btns = document.querySelectorAll('.opt-btn');
+            btns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    if (answersState[taskIdx] !== undefined) return;
+                    const chosen = btn.getAttribute('data-letter');
+                    const isCorrect = (chosen === task.correct);
+                    answersState[taskIdx] = isCorrect;
+                    if (isCorrect) {
+                        totalScore += 20;
+                        updateUI();
+                    }
+                    renderTask(taskIdx);
+                });
+            });
+        } else {
+            const nextBtn = document.getElementById('nextTaskBtn');
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    currentTask++;
+                    render();
+                    updateUI();
+                });
+            }
+        }
+        updateUI();
+    }
+
+    function showFinalScreen() {
+        const maxScore = tasks.length * 20;
+        const earned = totalScore;
+        let message = '';
+        if (earned === maxScore) {
+            message = '🎉 молодец! ты отлично знаешь правила жи–ши, ча–ща, чу–щу. 🎉';
+        } else if (earned >= maxScore - 40) {
+            message = '👍 хорошо! повтори правила и будет ещё лучше.';
+        } else {
+            message = '📚 попробуй ещё раз. запомни: жи–ши пиши с и, ча–ща с а, чу–щу с у.';
+        }
+        const finalHtml = `
+            <div class="final-screen">
+                <h2>🏆 твой результат</h2>
+                <p style="font-size:2rem; margin:15px;">${earned} / ${maxScore}</p>
+                <p>${message}</p>
+                <div class="bright-rules">
+                    <p>📌 запомни правила:</p>
+                    <p>жи–ши пиши с буквой и.</p>
+                    <p>ча–ща пиши с буквой а.</p>
+                    <p>чу–щу пиши с буквой у.</p>
+                </div>
+                <button class="restart-btn" id="restartGameBtn">🔄 пройти заново</button>
+            </div>
+        `;
+        contentDiv.innerHTML = finalHtml;
+        document.getElementById('restartGameBtn')?.addEventListener('click', () => {
+            currentStage = 0;
+            currentTask = 0;
+            totalScore = 0;
+            answersState = [];
+            render();
+            updateUI();
+        });
+    }
+
+    render();
+    updateUI();
+</script>
 </body>
 </html>
