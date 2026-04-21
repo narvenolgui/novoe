@@ -3,291 +3,436 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ёжик Понимайка · талисман ГППЦ</title>
+    <title>КЛУБ АНОНИМНЫХ ПРОРОКОВ — раздатка (16+)</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            background: #f2eee9;
+            background: #f5f7fa;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            color: #1e1e2a;
+            padding: 2rem 1.5rem;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            font-family: 'Segoe UI', 'Arial', sans-serif;
-            padding: 20px;
         }
-        .card {
-            max-width: 780px;
+
+        .document {
+            max-width: 900px;
             width: 100%;
-            background: #fefcf9;
-            border-radius: 48px;
-            box-shadow: 0 20px 30px -8px rgba(60, 40, 30, 0.08);
-            padding: 30px 20px 35px;
-            border: 1px solid #e2d5cc;
-            text-align: center;
+            background: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border-radius: 24px;
+            padding: 2.5rem 2.8rem;
         }
+
+        /* Стили для печати */
+        @media print {
+            body {
+                background: white;
+                padding: 0.2in;
+            }
+            .document {
+                box-shadow: none;
+                border-radius: 0;
+                padding: 0;
+                max-width: 100%;
+            }
+            .page-break {
+                page-break-before: always;
+            }
+            .no-break {
+                page-break-inside: avoid;
+            }
+            h2, h3 {
+                page-break-after: avoid;
+            }
+            .card, .leader-note {
+                border: 1px solid #ccc;
+                box-shadow: none;
+                background: white;
+                break-inside: avoid;
+            }
+        }
+
+        /* заголовки */
         h1 {
-            font-weight: 450;
-            font-size: 2.6rem;
-            color: #4a3a31;
-            margin-bottom: 6px;
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            color: #0b0c10;
         }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-top: 2rem;
+            margin-bottom: 1.2rem;
+            border-left: 6px solid #2d7a4b;
+            padding-left: 1rem;
+            color: #1e293b;
+        }
+
+        h3 {
+            font-weight: 600;
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem;
+            color: #2c3e50;
+        }
+
         .subhead {
-            color: #7e6b5e;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            border-bottom: 2px dashed #cfc0b5;
-            padding-bottom: 14px;
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 1.8rem;
+            font-weight: 400;
+            border-bottom: 1px dashed #cbd5e1;
+            padding-bottom: 0.8rem;
         }
-        .mascot-container {
-            background: #f7f2ed;
-            border-radius: 80px 80px 60px 60px;
-            padding: 30px 15px 20px;
-            margin: 15px 0 24px;
-            border: 2px solid #e0d2c7;
+
+        /* карточки */
+        .card {
+            background: #fafbfc;
+            border-radius: 20px;
+            padding: 1.6rem 2rem;
+            margin: 1.5rem 0;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
         }
-        svg {
-            display: block;
-            width: 100%;
-            height: auto;
-            max-height: 500px;
-            margin: 0 auto;
-            filter: drop-shadow(0 6px 8px rgba(0,0,0,0.04));
-        }
-        .legend {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            gap: 28px;
-            margin: 20px 0 8px;
-            color: #55443a;
-        }
-        .legend-item {
+
+        .card-title {
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 1rem;
         }
-        .color-dot {
-            width: 24px;
-            height: 24px;
-            border-radius: 20px;
-            background: #b59d8b;
-            border: 2px solid white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+        .emoji-badge {
+            font-size: 1.8rem;
+            margin-right: 8px;
         }
-        .dot2 { background: #9db87f; }
-        .dot3 { background: #f0cf9c; }
-        .footer-note {
-            margin-top: 20px;
-            color: #6b5a4e;
-            font-size: 0.95rem;
-            background: #eae0d8;
-            padding: 10px 24px;
-            border-radius: 40px;
+
+        .question-box {
+            background: #eef2ff;
+            padding: 1.2rem 1.5rem;
+            border-radius: 16px;
+            margin: 1rem 0;
+            border-left: 4px solid #2563eb;
+        }
+
+        .leader-note {
+            background: #f1f5f9;
+            padding: 1.2rem 1.5rem;
+            border-radius: 16px;
+            margin: 1.2rem 0;
+            border: 1px dashed #64748b;
+        }
+
+        .leader-note strong {
+            color: #0f172a;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            font-size: 0.9rem;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1.2rem 0;
+        }
+
+        .scale {
+            font-weight: 600;
+            color: #b45309;
+        }
+
+        .fill-line {
+            border-bottom: 1.5px solid #94a3b8;
+            min-width: 120px;
             display: inline-block;
+            margin: 0 5px;
         }
-        .signature {
-            margin-top: 18px;
-            color: #9b887b;
+
+        .page-break {
+            margin-top: 3rem;
+        }
+
+        /* таблица */
+        .answer-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+        .answer-table th {
+            background: #1e293b;
+            color: white;
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .answer-table td {
+            border: 1px solid #cbd5e1;
+            padding: 12px;
+            vertical-align: top;
+        }
+        .answer-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #a0aec0, transparent);
+            margin: 2rem 0;
+        }
+
+        .footer-note {
+            margin-top: 2.5rem;
             font-style: italic;
+            color: #475569;
+            text-align: right;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1rem;
         }
-        @media print {
-            body { background: white; padding: 0.2in; }
-            .card { box-shadow: none; border: 1px solid #ccc; background: white; }
-            .footer-note { background: #f5f5f5; }
+
+        /* утилиты */
+        .text-center {
+            text-align: center;
+        }
+        .bold {
+            font-weight: 700;
+        }
+        .mb-2 {
+            margin-bottom: 1rem;
+        }
+        .mt-3 {
+            margin-top: 2rem;
         }
     </style>
 </head>
 <body>
-<div class="card">
-    <h1>🦔 Ёжик Понимайка</h1>
-    <div class="subhead">талисман Городского психолого-педагогического центра</div>
+<div class="document">
 
-    <div class="mascot-container">
-        <svg viewBox="0 0 600 520" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ёжик Понимайка — сидит на травке, держит сердечко">
-            <defs>
-                <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#C9B09D"/>
-                    <stop offset="100%" stop-color="#A88E7C"/>
-                </linearGradient>
-                <linearGradient id="bellyGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#F3E4D8"/>
-                    <stop offset="100%" stop-color="#E5CEBD"/>
-                </linearGradient>
-                <radialGradient id="noseGrad" cx="40%" cy="40%" r="50%">
-                    <stop offset="0%" stop-color="#8B5E4A"/>
-                    <stop offset="100%" stop-color="#5E3D30"/>
-                </radialGradient>
-                <radialGradient id="eyeGrad" cx="40%" cy="40%" r="50%">
-                    <stop offset="0%" stop-color="#4A3528"/>
-                    <stop offset="100%" stop-color="#2C1E16"/>
-                </radialGradient>
-                <!-- Свечение от листочков -->
-                <filter id="glow">
-                    <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-                    <feMerge>
-                        <feMergeNode in="coloredBlur"/>
-                        <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                </filter>
-            </defs>
-
-            <!-- ===== ФОН: ТРАВКА И ЗЕМЛЯ ===== -->
-            <!-- Земля (овальная тень) -->
-            <ellipse cx="300" cy="480" rx="190" ry="25" fill="#C4B4A6" opacity="0.6" />
-            <!-- Трава (несколько зелёных дуг) -->
-            <g stroke="#8CA67C" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.7">
-                <path d="M 140 475 Q 145 450, 150 475" />
-                <path d="M 160 478 Q 165 455, 170 478" />
-                <path d="M 430 478 Q 435 455, 440 478" />
-                <path d="M 450 475 Q 455 450, 460 475" />
-                <path d="M 200 480 Q 205 460, 210 480" />
-                <path d="M 390 480 Q 395 460, 400 480" />
-                <path d="M 260 482 Q 265 465, 270 482" />
-                <path d="M 330 482 Q 335 465, 340 482" />
-            </g>
-
-            <!-- ===== ЗАДНИЕ ЛАПЫ (сидит) ===== -->
-            <!-- Левая задняя лапа -->
-            <ellipse cx="230" cy="460" rx="30" ry="20" fill="url(#bodyGrad)" stroke="#7A685A" stroke-width="3" />
-            <ellipse cx="230" cy="465" rx="15" ry="10" fill="#D8C0B0" />
-            <!-- Правая задняя лапа -->
-            <ellipse cx="370" cy="460" rx="30" ry="20" fill="url(#bodyGrad)" stroke="#7A685A" stroke-width="3" />
-            <ellipse cx="370" cy="465" rx="15" ry="10" fill="#D8C0B0" />
-
-            <!-- ===== ИГОЛКИ (мягкие, закруглённые) ===== -->
-            <g fill="none" stroke="#9B8474" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-                <!-- Верхний ряд -->
-                <path d="M 240 240 L 230 190" />
-                <path d="M 265 230 L 260 175" />
-                <path d="M 290 225 L 290 170" />
-                <path d="M 315 225 L 320 170" />
-                <path d="M 340 230 L 345 175" />
-                <path d="M 360 240 L 370 190" />
-                <!-- Боковые -->
-                <path d="M 200 270 L 160 245" />
-                <path d="M 190 300 L 145 285" />
-                <path d="M 195 330 L 150 325" />
-                <path d="M 400 270 L 440 245" />
-                <path d="M 410 300 L 455 285" />
-                <path d="M 405 330 L 450 325" />
-                <!-- Задние (короче) -->
-                <path d="M 220 250 L 205 215" />
-                <path d="M 380 250 L 395 215" />
-            </g>
-            <!-- Дополнительные иголочки (посветлее) -->
-            <g fill="none" stroke="#B5A292" stroke-width="4.5" stroke-linecap="round">
-                <path d="M 250 235 L 240 200" />
-                <path d="M 305 220 L 305 185" />
-                <path d="M 350 235 L 360 200" />
-                <path d="M 210 285 L 180 270" />
-                <path d="M 390 285 L 420 270" />
-            </g>
-
-            <!-- ===== ТЕЛО (овальное, сидя) ===== -->
-            <ellipse cx="300" cy="370" rx="115" ry="105" fill="url(#bodyGrad)" stroke="#7A685A" stroke-width="3.5" />
-            <!-- Животик -->
-            <ellipse cx="300" cy="390" rx="80" ry="75" fill="url(#bellyGrad)" />
-
-            <!-- ===== ЛИСТОЧКИ-СТИКЕРЫ НА СПИНЕ ===== -->
-            <g filter="url(#glow)">
-                <!-- Листок 1 (зелёный) -->
-                <path d="M 240 285 Q 230 265, 240 255 Q 250 265, 240 285 Z" fill="#9DB87F" stroke="#6F8C5E" stroke-width="1.5" />
-                <!-- Листок 2 (оранжевый) -->
-                <path d="M 275 265 Q 270 245, 280 235 Q 290 245, 275 265 Z" fill="#F0AA6B" stroke="#C9854A" stroke-width="1.5" />
-                <!-- Листок 3 (голубой) -->
-                <path d="M 305 260 Q 305 240, 315 235 Q 325 245, 305 260 Z" fill="#8FC0C9" stroke="#619AA6" stroke-width="1.5" />
-                <!-- Листок 4 (жёлтый) -->
-                <path d="M 335 265 Q 335 245, 345 240 Q 355 250, 335 265 Z" fill="#F2D87B" stroke="#C9B14E" stroke-width="1.5" />
-                <!-- Листок 5 (розовый) -->
-                <path d="M 355 285 Q 365 265, 360 255 Q 350 265, 355 285 Z" fill="#E6A3B6" stroke="#C47A8E" stroke-width="1.5" />
-            </g>
-
-            <!-- ===== ПЕРЕДНИЕ ЛАПКИ (держат сердечко) ===== -->
-            <!-- Левая передняя лапка -->
-            <path d="M 240 410 Q 230 440, 260 450" fill="url(#bodyGrad)" stroke="#7A685A" stroke-width="3" />
-            <ellipse cx="260" cy="450" rx="15" ry="12" fill="#C9B09D" />
-            <!-- Правая передняя лапка -->
-            <path d="M 360 410 Q 370 440, 340 450" fill="url(#bodyGrad)" stroke="#7A685A" stroke-width="3" />
-            <ellipse cx="340" cy="450" rx="15" ry="12" fill="#C9B09D" />
-
-            <!-- ===== СЕРДЕЧКО В ЛАПКАХ ===== -->
-            <path d="M 300 430 C 300 420, 285 415, 280 420 C 275 425, 300 450, 300 450 C 300 450, 325 425, 320 420 C 315 415, 300 420, 300 430 Z" 
-                  fill="#FF8A7A" stroke="#D94A3A" stroke-width="2" opacity="0.95" />
-            <!-- Блик на сердечке -->
-            <path d="M 290 430 Q 295 425, 300 430" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.6" />
-
-            <!-- ===== ГОЛОВА (повёрнута немного вправо) ===== -->
-            <ellipse cx="310" cy="290" rx="90" ry="80" fill="#D8C0B0" stroke="#7A685A" stroke-width="3.5" transform="rotate(5 310 290)" />
-
-            <!-- МОРДОЧКА (светлая) -->
-            <ellipse cx="320" cy="315" rx="55" ry="40" fill="#F3E4D8" transform="rotate(5 320 315)" />
-
-            <!-- НОС -->
-            <ellipse cx="335" cy="305" rx="14" ry="10" fill="url(#noseGrad)" stroke="#3D281E" stroke-width="1.5" transform="rotate(5 335 305)" />
-            <ellipse cx="331" cy="302" rx="4" ry="3" fill="white" opacity="0.4" />
-
-            <!-- РОТ (улыбка) -->
-            <path d="M 315 325 Q 335 340, 355 325" fill="none" stroke="#7A685A" stroke-width="3" stroke-linecap="round" />
-
-            <!-- ЩЁЧКИ -->
-            <ellipse cx="280" cy="315" rx="16" ry="11" fill="#E2A98B" opacity="0.5" />
-            <ellipse cx="360" cy="315" rx="16" ry="11" fill="#E2A98B" opacity="0.5" />
-
-            <!-- ГЛАЗА -->
-            <!-- Левый глаз (дальний) -->
-            <g transform="translate(270, 280)">
-                <ellipse cx="0" cy="0" rx="18" ry="21" fill="white" stroke="#7A685A" stroke-width="2" />
-                <ellipse cx="2" cy="2" rx="12" ry="15" fill="url(#eyeGrad)" />
-                <circle cx="6" cy="-3" r="5" fill="white" opacity="0.9" />
-                <circle cx="-2" cy="6" r="2.5" fill="white" opacity="0.5" />
-                <path d="M -12 -8 L -20 -14 M -6 -16 L -10 -25 M 4 -20 L 4 -29" stroke="#7A685A" stroke-width="2.5" stroke-linecap="round" fill="none" />
-            </g>
-            <!-- Правый глаз (ближний) -->
-            <g transform="translate(350, 280)">
-                <ellipse cx="0" cy="0" rx="20" ry="23" fill="white" stroke="#7A685A" stroke-width="2" />
-                <ellipse cx="-2" cy="2" rx="14" ry="17" fill="url(#eyeGrad)" />
-                <circle cx="-6" cy="-3" r="5" fill="white" opacity="0.9" />
-                <circle cx="2" cy="6" r="2.5" fill="white" opacity="0.5" />
-                <path d="M 14 -10 L 22 -16 M 8 -18 L 12 -27 M -2 -22 L -2 -31" stroke="#7A685A" stroke-width="2.5" stroke-linecap="round" fill="none" />
-            </g>
-
-            <!-- БРОВКИ -->
-            <path d="M 245 260 Q 265 250, 280 258" fill="none" stroke="#7A685A" stroke-width="3" stroke-linecap="round" />
-            <path d="M 355 260 Q 375 250, 390 258" fill="none" stroke="#7A685A" stroke-width="3" stroke-linecap="round" />
-
-            <!-- УШКИ (маленькие, круглые) -->
-            <ellipse cx="235" cy="250" rx="16" ry="14" fill="#D8C0B0" stroke="#7A685A" stroke-width="2.5" />
-            <ellipse cx="235" cy="250" rx="8" ry="7" fill="#E5CEBD" />
-            <ellipse cx="385" cy="250" rx="16" ry="14" fill="#D8C0B0" stroke="#7A685A" stroke-width="2.5" />
-            <ellipse cx="385" cy="250" rx="8" ry="7" fill="#E5CEBD" />
-
-            <!-- Несколько травинок спереди для уюта -->
-            <g stroke="#8CA67C" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6">
-                <path d="M 280 480 Q 275 465, 280 480" />
-                <path d="M 320 480 Q 325 465, 320 480" />
-            </g>
-        </svg>
+    <!-- ТИТУЛ -->
+    <div style="text-align: center; margin-bottom: 2rem;">
+        <h1>КЛУБ АНОНИМНЫХ<br>ПРОРОКОВ</h1>
+        <div style="font-size: 1.3rem; font-weight: 300; letter-spacing: 2px; margin: 10px 0;">ИНСТРУКЦИЯ ПО ЭКСПЛУАТАЦИИ МОЗГА (ВЕРСИЯ 16+)</div>
+        <div class="subhead" style="border-bottom: none; margin-top: 0.5rem;">Раздаточный материал к тренингу осознанности</div>
+        <div style="margin: 30px 0 15px; font-size: 1.1rem; background: #e6f0e6; padding: 12px 20px; border-radius: 40px; display: inline-block;">
+            «Если ты дочитаешь и применишь хотя бы один пункт завтра — ты уже на 10% осознаннее, чем 90% людей в метро»
+        </div>
     </div>
 
-    <div class="legend">
-        <div class="legend-item"><span class="color-dot"></span> уют</div>
-        <div class="legend-item"><span class="color-dot dot2"></span> понимание</div>
-        <div class="legend-item"><span class="color-dot dot3"></span> тепло</div>
+    <!-- ПАМЯТКА: 6 ИНСТРУМЕНТОВ (сетка) -->
+    <h2>🧰 ШЕСТЬ ИНСТРУМЕНТОВ ОСОЗНАННОСТИ</h2>
+    <div class="grid-2col">
+        <div class="card" style="margin:0;">
+            <div class="card-title"><span class="emoji-badge">🎭</span> Эффект Даннинга-Крюгера</div>
+            <p>«Если кажется, что легко объяснишь, как работает Wi-Fi или почему люди влюбляются — стоп. Мозг путает поверхностное знакомство с глубоким пониманием. Первый шаг: <strong>«Я этого не знаю, но могу узнать»</strong>. Это апгрейд.»</p>
+        </div>
+        <div class="card" style="margin:0;">
+            <div class="card-title"><span class="emoji-badge">🔦</span> Эффект прожектора</div>
+            <p>«Тот момент, когда споткнулся в столовой или сказал глупость? Никто не вспомнит через 20 минут. Мозг транслирует тебя в HD, а остальных — в 144p. Ты не в центре чужой вселенной.»</p>
+        </div>
+        <div class="card" style="margin:0;">
+            <div class="card-title"><span class="emoji-badge">🧠</span> Тормозной тумблер</div>
+            <p><strong>Против паники на экзамене:</strong><br>
+            1. Положи ручку.<br>
+            2. Дотронься правой рукой до левого плеча.<br>
+            3. Замри на 3 секунды.<br>
+            <em>Это прерывает цепочку «паника → ступор».</em></p>
+        </div>
+        <div class="card" style="margin:0;">
+            <div class="card-title"><span class="emoji-badge">📺</span> Битва нарративов</div>
+            <p><strong>Перевод с эмоционального на русский:</strong><br>
+            Ситуация бесит → переключи канал.<br>
+            ▪️ Канал «ДРАМА»: «Они сговорились, я никому не нужен».<br>
+            ▪️ Канал «ФАКТЫ»: «Опубликовано фото в 21:15. Причины неизвестны».<br>
+            Реагируй только на ФАКТЫ.</p>
+        </div>
+        <div class="card" style="margin:0;">
+            <div class="card-title"><span class="emoji-badge">🎬</span> Диван Режиссёра</div>
+            <p><strong>Против ярости и обид:</strong><br>
+            Мысленно скажи: <strong>«СНЯТО! Дубль так себе».</strong> Представь себя режиссёром в кресле. Спроси себя-актёра: «Может, попробуем сцену по-другому?»</p>
+        </div>
+        <div class="card" style="margin:0;">
+            <div class="card-title"><span class="emoji-badge">💊</span> Капсула экстренной помощи</div>
+            <p>Создай в заметках файл <strong>«ВСКРЫТЬ В ДЕНЬ, КОГДА ВСЁ ПЛОХО»</strong>.<br>
+            Внутри три пункта:<br>
+            1. Доказательство мощи.<br>
+            2. Мой личный баг.<br>
+            3. Запах спокойствия.</p>
+        </div>
     </div>
 
-    <p style="margin: 16px 0 8px; font-size: 1.2rem; color:#4a3a31;">🍂 «Понимайка примет все твои мысли и согреет»</p>
+    <div class="divider"></div>
+
+    <!-- БЛОК 1: КАРТОЧКИ ДАННИНГА-КРЮГЕРА (вопросы) -->
+    <h2>📋 БЛОК 1 · ЭФФЕКТ ДАННИНГА-КРЮГЕРА</h2>
+    <p><strong>Карточки участника (разрезать, раздать текстом вниз)</strong></p>
+
+    <div class="grid-2col">
+        <div class="question-box">
+            <span style="font-weight:700;">Карточка 1</span><br>
+            <strong>Вопрос:</strong> Почему небо голубое?<br>
+            <strong>Ваша уверенность (1-10):</strong> _______<br>
+            <strong>Объяснение (как пятилетнему):</strong><br>
+            ___________________________________
+        </div>
+        <div class="question-box">
+            <span style="font-weight:700;">Карточка 2</span><br>
+            <strong>Вопрос:</strong> Как работает бесконтактная оплата (NFC)?<br>
+            <strong>Уверенность (1-10):</strong> _______<br>
+            <strong>Объяснение:</strong><br>
+            ___________________________________
+        </div>
+        <div class="question-box">
+            <span style="font-weight:700;">Карточка 3</span><br>
+            <strong>Вопрос:</strong> Почему при зевании хочется зевать в ответ?<br>
+            <strong>Уверенность (1-10):</strong> _______<br>
+            <strong>Объяснение:</strong><br>
+            ___________________________________
+        </div>
+        <div class="question-box">
+            <span style="font-weight:700;">Карточка 4</span><br>
+            <strong>Вопрос:</strong> Почему вода в унитазе закручивается в воронку?<br>
+            <strong>Уверенность (1-10):</strong> _______<br>
+            <strong>Объяснение:</strong><br>
+            ___________________________________
+        </div>
+        <div class="question-box">
+            <span style="font-weight:700;">Карточка 5</span><br>
+            <strong>Вопрос:</strong> Как работает антипригарное покрытие?<br>
+            <strong>Уверенность (1-10):</strong> _______<br>
+            <strong>Объяснение:</strong><br>
+            ___________________________________
+        </div>
+        <div class="question-box">
+            <span style="font-weight:700;">Карточка 6</span><br>
+            <strong>Вопрос:</strong> Почему на холоде изо рта идет пар?<br>
+            <strong>Уверенность (1-10):</strong> _______<br>
+            <strong>Объяснение:</strong><br>
+            ___________________________________
+        </div>
+    </div>
+
+    <!-- ШПАРГАЛКА ВЕДУЩЕГО (ОТВЕТЫ) -->
+    <div class="leader-note no-break">
+        <strong>🎤 ШПАРГАЛКА ВЕДУЩЕГО (зачитать после того, как все написали)</strong><br>
+        <em>«Сейчас я зачитаю научное объяснение. Заметьте пропасть между уверенностью и реальной сложностью.»</em>
+    </div>
+
+    <table class="answer-table">
+        <thead><tr><th>Вопрос</th><th>Реальное объяснение (читать с умным видом)</th></tr></thead>
+        <tbody>
+            <tr><td>Почему небо голубое?</td><td>Рэлеевское рассеяние. Молекулы воздуха рассеивают короткие волны (синий) в 16 раз сильнее, чем красные. На закате свет проходит толстый слой — видим красный.</td></tr>
+            <tr><td>Как работает NFC?</td><td>Электромагнитная индукция. Катушка в телефоне создаёт поле, которое наводит ток в катушке терминала. Передаётся зашифрованный номер карты. Без Максвелла и Фарадея — никак.</td></tr>
+            <tr><td>Почему зевота заразна?</td><td>Зеркальные нейроны и эмпатия. Видя зевок, активируются те же нейроны, что и при собственной зевоте. Люди с высокой эмпатией заражаются чаще, психопаты — почти нет.</td></tr>
+            <tr><td>Воронка в унитазе</td><td>Сила Кориолиса здесь НИ ПРИ ЧЁМ. Направление задают геометрия чаши и форсунки. Сантехник решает, куда закрутится вода, а не вращение Земли.</td></tr>
+            <tr><td>Антипригарное покрытие</td><td>Тефлон (политетрафторэтилен) — самый скользкий твёрдый материал. Атомы фтора облепляют углеродную цепь, молекулы еды не могут зацепиться. При 260°C разлагается на токсины.</td></tr>
+            <tr><td>Пар изо рта</td><td>Выдыхаемый воздух насыщен водяным паром. На холоде он конденсируется в микрокапли — туман. Тот же механизм, что у облаков.</td></tr>
+        </tbody>
+    </table>
+
+    <div class="leader-note">
+        <strong>🎤 ФИНАЛ ВЕДУЩЕГО:</strong> «Поднимите руки, у кого разница между уверенностью и реальностью больше 5 баллов. Это иллюзия глубины понимания. Мозг привык, что знание в гугле = знание в голове. Первый шаг к осознанности — признать, что мозг врёт о компетентности.»
+    </div>
+
+    <!-- page break для печати -->
+    <div class="page-break"></div>
+
+    <!-- БЛОК 2: ЭФФЕКТ ПРОЖЕКТОРА -->
+    <h2>🔦 БЛОК 2 · ЭФФЕКТ ПРОЖЕКТОРА</h2>
+    <div class="card">
+        <div class="card-title"><span class="emoji-badge">📖</span> Карточка для рассказчика (история провала)</div>
+        <p><em>Прочитайте вслух спокойно:</em><br>
+        «На прошлой неделе я шёл по коридору, споткнулся на ровном месте. Взмахнул руками как пингвин, врезался в стену. Рюкзак съехал на голову. Рядом стояли три человека из параллельного. Посмотрели и ушли. Я готов был провалиться сквозь землю.»</p>
+        <p><strong>Вопросы (мысленно, потом вслух):</strong><br>
+        ▪️ Стыд В МОМЕНТ (1-10): ___<br>
+        ▪️ Стыд СЕЙЧАС, спустя неделю (1-10): ___<br>
+        ▪️ Сколько ЧАСОВ потрачено на прокручивание? ___</p>
+    </div>
+    <div class="leader-note">
+        <strong>🎤 ВЕДУЩИЙ (после оценок группы):</strong> «Группа думает, что стыд был 8/10, а сейчас 6/10. А рассказчик говорит: в момент 9, сейчас 2. Убито 5 часов жизни на то, что никто не помнит. Это плата за иллюзию, что все смотрят на тебя. На самом деле все смотрят на себя.»
+    </div>
+
+    <!-- БЛОК 3: ТОРМОЗНОЙ ТУМБЛЕР (симуляция) -->
+    <h2>🧠 БЛОК 3 · ТОРМОЗНОЙ ТУМБЛЕР (симуляция экзамена)</h2>
+    <div class="grid-2col">
+        <div class="question-box">
+            <strong>📝 Пример задания (карточка)</strong><br>
+            Решите уравнение: <code>2(x - 3) + 4(x + 1) = 6x - 2</code><br>
+            Или текст: <em>«По моему мнению выступление было удачным однако зал реагировал вяло.»</em> (знаки препинания)<br><br>
+            <strong>Фаза 1 (60 сек):</strong> «Я просто скроллю ленту, плевать».<br>
+            <strong>Фаза 2 (60 сек):</strong> «Это решает бюджет, родители смотрят, ААА».<br>
+            Сравните результат и ощущения в теле.
+        </div>
+        <div class="leader-note" style="margin:0;">
+            <strong>🎤 ВЕДУЩИЙ:</strong> «Чем сильнее давим страхом, тем тупее мозг. Миндалевидное тело отключает префронтальную кору. Тормозной тумблер: дотронуться правой рукой до левого плеча — сигнал "тигра нет". Тренируйте сейчас.»
+        </div>
+    </div>
+
+    <!-- БЛОК 4: БИТВА НАРРАТИВОВ -->
+    <h2>📺 БЛОК 4 · БИТВА НАРРАТИВОВ</h2>
+    <div class="card">
+        <div class="card-title"><span class="emoji-badge">📱</span> Ситуация для анализа</div>
+        <p>«Вчера ваш близкий друг выложил сторис с вечеринки. На фото несколько человек из общей компании. Вас нет. Вам не писали, не звали.»</p>
+        <div style="display:flex; gap:20px; margin-top:15px;">
+            <div style="flex:1; background:#fee2e2; padding:12px; border-radius:12px;">
+                <strong>🔴 Канал «ДРАМА»</strong><br>
+                (пиши всё, что накипело)<br>
+                ________________________<br>
+                ________________________
+            </div>
+            <div style="flex:1; background:#e0f2fe; padding:12px; border-radius:12px;">
+                <strong>🔵 Канал «ФАКТЫ»</strong><br>
+                (сухие данные, как в отчёте)<br>
+                ________________________<br>
+                ________________________
+            </div>
+        </div>
+    </div>
+    <div class="leader-note">
+        <strong>🎤 ВЕДУЩИЙ (после заполнения):</strong> «Озвучим ДРАМУ: "я никому не нужен". Теперь ФАКТЫ: "Опубликовано в 21:15, 4 человека, причина отсутствия неизвестна". Мозг любит драму — это дофамин для эго. Но действовать можно только на основе фактов. Если фактов меньше трёх — не делай выводов.»
+    </div>
+
+    <!-- ИТОГОВАЯ КАРТОЧКА (заметки) -->
+    <h2 style="margin-top: 2.5rem;">💊 ВСКРЫТЬ В ДЕНЬ, КОГДА ВСЁ ПЛОХО</h2>
+    <div class="card" style="background: #fef9e7; border: 2px solid #eab308;">
+        <p style="font-size:1.2rem; font-weight:600;">Моя личная инструкция по эксплуатации в кризис</p>
+        <ol style="margin-left:1.5rem; line-height:1.8;">
+            <li><strong>Доказательство моей адекватности:</strong> Я уже справлялся с _________________________________</li>
+            <li><strong>Мой личный глюк:</strong> Когда происходит _____________________, мозг отключает логику.<br>
+                В этот момент надо: [ ] Тормозной тумблер  [ ] Диван Режиссёра  [ ] Канал Факты</li>
+            <li><strong>Запах спокойствия:</strong> Что реально успокаивает за 5 минут: _________________________</li>
+        </ol>
+        <p style="margin-top:12px;"><em>P.S. Если ты читаешь это, значит, ты уже пережил 100% своих худших дней. Статистика на твоей стороне.</em></p>
+    </div>
+
+    <!-- ДОПОЛНИТЕЛЬНО: КАРТОЧКИ ДЛЯ ТРЕНИРОВКИ "ДИВАН РЕЖИССЁРА" -->
+    <div style="margin-top: 2.5rem;">
+        <h3>🎬 Тренировка «Диван Режиссёра» — фразы-триггеры</h3>
+        <div class="grid-2col">
+            <div class="card">«Ты вообще сдашь на бюджет?»</div>
+            <div class="card">«А вот дочка тёти Маши…»</div>
+            <div class="card">«Ты куда это собрался в таком виде?»</div>
+            <div class="card">«Опять в телефоне сидишь, лучше бы делом занялся»</div>
+        </div>
+        <p class="leader-note" style="margin-top:0;">🎤 Ведущий кидает фразу — группа хором: <strong>«СНЯТО! Вариант 2!»</strong> (отработка алгоритма)</p>
+    </div>
 
     <div class="footer-note">
-        🦔 Ёжик Понимайка — символ защищённости, бережности и маленьких шагов к гармонии
-    </div>
-    <div class="signature">
-        конкурс «Талисман Городского психолого-педагогического центра»
+        Клуб анонимных пророков · версия 16+ · распечатано для внутреннего использования
     </div>
 </div>
 </body>
