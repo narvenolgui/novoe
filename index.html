@@ -3,13 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Талисман ГППЦ · Змейка Мудра</title>
+    <title>Талисман ГППЦ · Змейка Мудра (буквы исправлены)</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background: #f6efe8;
             display: flex;
@@ -20,7 +16,7 @@
             padding: 20px;
         }
         .card {
-            max-width: 800px;
+            max-width: 850px;
             width: 100%;
             background: #fffbf7;
             border-radius: 48px;
@@ -108,8 +104,8 @@
     <div class="subhead">талисман Городского психолого-педагогического центра</div>
 
     <div class="mascot-container">
-        <!-- SVG: змея телом выписывает Г П П Ц -->
-        <svg viewBox="0 0 700 450" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Змейка Мудра — символ мудрости, гибкости и поддержки">
+        <!-- SVG с исправленными буквами Г П П Ц -->
+        <svg viewBox="0 0 750 450" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Змейка Мудра — тело выписывает Г П П Ц">
             <defs>
                 <linearGradient id="bodyGrad" x1="0" y1="0" x2="1" y2="1">
                     <stop offset="0%" stop-color="#A8C99B"/>
@@ -127,136 +123,131 @@
                 </radialGradient>
             </defs>
 
-            <!-- Фоновое свечение от фонарика -->
-            <circle cx="420" cy="220" r="120" fill="url(#lanternGlow)" />
+            <!-- Свечение фонарика -->
+            <circle cx="580" cy="360" r="120" fill="url(#lanternGlow)" />
 
-            <!-- Тень под змейкой -->
-            <ellipse cx="350" cy="420" rx="250" ry="18" fill="#DCCFC3" opacity="0.5" />
+            <!-- Тень -->
+            <ellipse cx="375" cy="425" rx="280" ry="18" fill="#DCCFC3" opacity="0.5" />
 
-            <!-- 
-                 ТЕЛО ЗМЕИ, выписывающее буквы Г П П Ц.
-                 Координаты подобраны так, чтобы читались буквы:
-                 Г: верхняя горизонталь слева, затем вниз.
-                 П: верхняя перекладина и ножки.
-                 П: вторая.
-                 Ц: с хвостиком внизу.
-                 Змея непрерывна, голова в начале, хвост в конце.
-            -->
-
-            <!-- ТЕЛО (основная толстая линия, стилизованная под змею) -->
-            <!-- Буква Г -->
-            <path d="M 120 130 
-                     L 250 130 
-                     Q 270 130, 270 150 
-                     L 270 220 
-                     Q 270 240, 250 240 
-                     L 180 240" 
-                  stroke="url(#bodyGrad)" stroke-width="36" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+            <!-- === ТЕЛО ЗМЕИ, ОБРАЗУЮЩЕЕ БУКВЫ === -->
+            <!-- Буква Г (левая часть) -->
+            <path d="M 100 140 
+                     L 230 140 
+                     Q 250 140, 250 160 
+                     L 250 240 
+                     Q 250 260, 230 260 
+                     L 170 260" 
+                  stroke="url(#bodyGrad)" stroke-width="38" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+            
             <!-- Буква П (первая) -->
-            <path d="M 300 130 
-                     L 300 240 
-                     Q 300 260, 320 260 
-                     L 380 260 
-                     Q 400 260, 400 240 
-                     L 400 130" 
-                  stroke="url(#bodyGrad)" stroke-width="36" stroke-linecap="round" stroke-linejoin="round" fill="none" />
-            <!-- перекладина П -->
-            <path d="M 300 130 L 400 130" stroke="url(#bodyGrad)" stroke-width="36" stroke-linecap="round" fill="none" />
+            <path d="M 290 140 
+                     L 290 250 
+                     Q 290 270, 310 270 
+                     L 370 270 
+                     Q 390 270, 390 250 
+                     L 390 140" 
+                  stroke="url(#bodyGrad)" stroke-width="38" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+            <path d="M 290 140 L 390 140" stroke="url(#bodyGrad)" stroke-width="38" stroke-linecap="round" fill="none" />
             
             <!-- Буква П (вторая) -->
-            <path d="M 460 130 
-                     L 460 240 
-                     Q 460 260, 480 260 
-                     L 540 260 
-                     Q 560 260, 560 240 
-                     L 560 130" 
-                  stroke="url(#bodyGrad)" stroke-width="36" stroke-linecap="round" stroke-linejoin="round" fill="none" />
-            <path d="M 460 130 L 560 130" stroke="url(#bodyGrad)" stroke-width="36" stroke-linecap="round" fill="none" />
+            <path d="M 450 140 
+                     L 450 250 
+                     Q 450 270, 470 270 
+                     L 530 270 
+                     Q 550 270, 550 250 
+                     L 550 140" 
+                  stroke="url(#bodyGrad)" stroke-width="38" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+            <path d="M 450 140 L 550 140" stroke="url(#bodyGrad)" stroke-width="38" stroke-linecap="round" fill="none" />
 
-            <!-- Буква Ц -->
-            <path d="M 620 130 
-                     L 620 230 
-                     Q 620 250, 640 250 
-                     L 680 250 
-                     Q 700 250, 700 230 
-                     L 700 130" 
-                  stroke="url(#bodyGrad)" stroke-width="36" stroke-linecap="round" stroke-linejoin="round" fill="none" />
-            <!-- хвостик Ц (вниз) -->
-            <path d="M 620 230 Q 600 250, 600 270 L 600 310 Q 600 330, 620 330 L 660 330" 
-                  stroke="url(#bodyGrad)" stroke-width="36" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+            <!-- Буква Ц (с правильным хвостиком справа) -->
+            <path d="M 610 140 
+                     L 610 240 
+                     Q 610 260, 630 260 
+                     L 670 260 
+                     Q 690 260, 690 240 
+                     L 690 140" 
+                  stroke="url(#bodyGrad)" stroke-width="38" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+            <!-- Хвостик Ц от правой ножки вправо-вниз -->
+            <path d="M 690 240 
+                     Q 710 260, 710 280 
+                     L 710 320 
+                     Q 710 340, 690 340 
+                     L 650 340" 
+                  stroke="url(#bodyGrad)" stroke-width="38" stroke-linecap="round" stroke-linejoin="round" fill="none" />
 
-            <!-- СВЕТЛАЯ ПОЛОСКА НА БРЮШКЕ (декор, идущий по внутреннему краю) -->
-            <!-- Рисуем тонкую линию поверх тела для объёма -->
-            <g stroke="url(#bellyGrad)" stroke-width="12" stroke-linecap="round" fill="none" opacity="0.7">
+            <!-- === СВЕТЛАЯ ПОЛОСА БРЮШКА (декоративная) === -->
+            <g stroke="url(#bellyGrad)" stroke-width="12" stroke-linecap="round" fill="none" opacity="0.8">
                 <!-- Г -->
-                <path d="M 135 145 L 235 145 Q 250 145, 250 160 L 250 210" />
+                <path d="M 115 155 L 215 155 Q 230 155, 230 170 L 230 230" />
                 <!-- П1 -->
-                <path d="M 315 145 L 315 230 Q 315 245, 330 245 L 370 245 Q 385 245, 385 230 L 385 145" />
-                <path d="M 315 145 L 385 145" />
+                <path d="M 305 155 L 305 235 Q 305 250, 320 250 L 360 250 Q 375 250, 375 235 L 375 155" />
+                <path d="M 305 155 L 375 155" />
                 <!-- П2 -->
-                <path d="M 475 145 L 475 230 Q 475 245, 490 245 L 530 245 Q 545 245, 545 230 L 545 145" />
-                <path d="M 475 145 L 545 145" />
+                <path d="M 465 155 L 465 235 Q 465 250, 480 250 L 520 250 Q 535 250, 535 235 L 535 155" />
+                <path d="M 465 155 L 535 155" />
                 <!-- Ц -->
-                <path d="M 635 145 L 635 220 Q 635 235, 650 235 L 670 235 Q 685 235, 685 220 L 685 145" />
-                <path d="M 635 220 Q 615 235, 615 255 L 615 300 Q 615 315, 630 315 L 650 315" />
+                <path d="M 625 155 L 625 225 Q 625 240, 640 240 L 660 240 Q 675 240, 675 225 L 675 155" />
+                <path d="M 675 225 Q 695 240, 695 260 L 695 305 Q 695 320, 680 320 L 655 320" />
             </g>
 
-            <!-- УЗОР НА СПИНЕ (ромбики/точки) -->
+            <!-- УЗОР НА СПИНЕ (точки) -->
             <g fill="#F4E3C1" opacity="0.6">
-                <circle cx="170" cy="135" r="5" />
-                <circle cx="210" cy="135" r="5" />
-                <circle cx="250" cy="180" r="5" />
-                <circle cx="250" cy="210" r="5" />
-                <circle cx="350" cy="135" r="5" />
-                <circle cx="350" cy="180" r="5" />
-                <circle cx="350" cy="220" r="5" />
-                <circle cx="510" cy="135" r="5" />
-                <circle cx="510" cy="180" r="5" />
-                <circle cx="510" cy="220" r="5" />
-                <circle cx="650" cy="135" r="5" />
-                <circle cx="650" cy="180" r="5" />
-                <circle cx="650" cy="220" r="5" />
-                <circle cx="620" cy="280" r="5" />
-                <circle cx="620" cy="310" r="5" />
+                <circle cx="150" cy="145" r="5" />
+                <circle cx="190" cy="145" r="5" />
+                <circle cx="230" cy="180" r="5" />
+                <circle cx="230" cy="220" r="5" />
+                <circle cx="340" cy="145" r="5" />
+                <circle cx="340" cy="190" r="5" />
+                <circle cx="340" cy="230" r="5" />
+                <circle cx="500" cy="145" r="5" />
+                <circle cx="500" cy="190" r="5" />
+                <circle cx="500" cy="230" r="5" />
+                <circle cx="650" cy="145" r="5" />
+                <circle cx="650" cy="190" r="5" />
+                <circle cx="650" cy="230" r="5" />
+                <circle cx="695" cy="280" r="5" />
+                <circle cx="695" cy="310" r="5" />
             </g>
 
-            <!-- ГОЛОВА ЗМЕИ (начало буквы Г) -->
-            <ellipse cx="105" cy="130" rx="40" ry="32" fill="#7BA86D" stroke="#5C8850" stroke-width="3" transform="rotate(-15 105 130)" />
-            <!-- светлая мордочка -->
-            <ellipse cx="95" cy="125" rx="25" ry="18" fill="#EAD5B2" transform="rotate(-15 95 125)" />
-            <!-- глаза (добрые, большие) -->
-            <ellipse cx="85" cy="118" rx="10" ry="12" fill="white" stroke="#5C8850" stroke-width="1.5" />
-            <ellipse cx="108" cy="118" rx="10" ry="12" fill="white" stroke="#5C8850" stroke-width="1.5" />
-            <ellipse cx="83" cy="119" rx="6" ry="8" fill="#3D2E1C" />
-            <ellipse cx="106" cy="119" rx="6" ry="8" fill="#3D2E1C" />
-            <circle cx="81" cy="115" r="2.5" fill="white" />
-            <circle cx="104" cy="115" r="2.5" fill="white" />
-            <!-- улыбка -->
-            <path d="M 82 135 Q 95 148, 108 135" stroke="#5C8850" stroke-width="3" stroke-linecap="round" fill="none" />
-            <!-- язычок (раздвоенный, но милый) -->
-            <path d="M 68 140 Q 58 145, 55 150 M 58 145 Q 62 152, 60 157" stroke="#E86A5F" stroke-width="2.5" stroke-linecap="round" fill="none" />
-            <!-- маленькие рожки? или ушки? для милоты -->
-            <path d="M 120 100 Q 130 85, 125 75" stroke="#5C8850" stroke-width="4" stroke-linecap="round" fill="none" />
-            <path d="M 135 108 Q 145 95, 140 85" stroke="#5C8850" stroke-width="4" stroke-linecap="round" fill="none" />
+            <!-- === ГОЛОВА ЗМЕИ (у буквы Г) === -->
+            <ellipse cx="85" cy="140" rx="42" ry="34" fill="#7BA86D" stroke="#5C8850" stroke-width="3" transform="rotate(-15 85 140)" />
+            <ellipse cx="75" cy="135" rx="26" ry="19" fill="#EAD5B2" transform="rotate(-15 75 135)" />
+            <!-- Глаза -->
+            <ellipse cx="62" cy="125" rx="11" ry="13" fill="white" stroke="#5C8850" stroke-width="1.5" />
+            <ellipse cx="88" cy="125" rx="11" ry="13" fill="white" stroke="#5C8850" stroke-width="1.5" />
+            <ellipse cx="60" cy="127" rx="7" ry="9" fill="#3D2E1C" />
+            <ellipse cx="86" cy="127" rx="7" ry="9" fill="#3D2E1C" />
+            <circle cx="58" cy="122" r="3" fill="white" />
+            <circle cx="84" cy="122" r="3" fill="white" />
+            <!-- Улыбка -->
+            <path d="M 60 145 Q 75 158, 90 145" stroke="#5C8850" stroke-width="3" stroke-linecap="round" fill="none" />
+            <!-- Язычок -->
+            <path d="M 45 150 Q 35 155, 32 160 M 35 155 Q 39 162, 37 167" stroke="#E86A5F" stroke-width="2.5" stroke-linecap="round" fill="none" />
+            <!-- Рожки-антеннки -->
+            <path d="M 100 105 Q 110 90, 105 80" stroke="#5C8850" stroke-width="4" stroke-linecap="round" fill="none" />
+            <path d="M 115 113 Q 125 100, 120 90" stroke="#5C8850" stroke-width="4" stroke-linecap="round" fill="none" />
 
-            <!-- ФОНАРИК (висит на хвосте или рядом) -->
-            <!-- Повесим фонарик на кончике хвоста (буква Ц) -->
-            <line x1="660" y1="330" x2="660" y2="360" stroke="#A8763A" stroke-width="5" stroke-linecap="round" />
-            <rect x="640" y="360" width="40" height="55" rx="10" fill="#F6E3B1" stroke="#D6A144" stroke-width="3" />
-            <path d="M 636 360 L 660 340 L 684 360" fill="#D6A144" stroke="#B07E30" stroke-width="2" />
-            <ellipse cx="660" cy="390" rx="12" ry="20" fill="#FFF2B0" opacity="0.9" />
-            <ellipse cx="660" cy="390" rx="7" ry="12" fill="#FFE066" />
-            <!-- лучики -->
-            <path d="M 680 385 L 700 380" stroke="#FFE38F" stroke-width="4" stroke-linecap="round" />
-            <path d="M 682 400 L 705 410" stroke="#FFE38F" stroke-width="4" stroke-linecap="round" />
-            
-            <!-- НЕБОЛЬШИЕ ЛАПКИ (две пары, символические, для дружелюбия) -->
-            <!-- Лапка 1 (у первой П) -->
-            <ellipse cx="310" cy="270" rx="14" ry="8" fill="#7BA86D" stroke="#5C8850" stroke-width="2" transform="rotate(-20 310 270)" />
-            <!-- Лапка 2 (у второй П) -->
-            <ellipse cx="470" cy="270" rx="14" ry="8" fill="#7BA86D" stroke="#5C8850" stroke-width="2" transform="rotate(-20 470 270)" />
-            <!-- Лапка 3 (у Ц) -->
-            <ellipse cx="630" cy="340" rx="14" ry="8" fill="#7BA86D" stroke="#5C8850" stroke-width="2" transform="rotate(10 630 340)" />
+            <!-- === ФОНАРИК (на хвосте Ц) === -->
+            <line x1="650" y1="340" x2="650" y2="370" stroke="#A8763A" stroke-width="5" stroke-linecap="round" />
+            <rect x="630" y="370" width="40" height="55" rx="10" fill="#F6E3B1" stroke="#D6A144" stroke-width="3" />
+            <path d="M 626 370 L 650 350 L 674 370" fill="#D6A144" stroke="#B07E30" stroke-width="2" />
+            <ellipse cx="650" cy="400" rx="12" ry="20" fill="#FFF2B0" opacity="0.9" />
+            <ellipse cx="650" cy="400" rx="7" ry="12" fill="#FFE066" />
+            <!-- Лучи -->
+            <path d="M 670 395 L 690 390" stroke="#FFE38F" stroke-width="4" stroke-linecap="round" />
+            <path d="M 672 410 L 695 420" stroke="#FFE38F" stroke-width="4" stroke-linecap="round" />
+            <path d="M 665 430 L 680 450" stroke="#FFE38F" stroke-width="4" stroke-linecap="round" />
+
+            <!-- === ЛАПКИ (для дружелюбности) === -->
+            <ellipse cx="300" cy="280" rx="14" ry="8" fill="#7BA86D" stroke="#5C8850" stroke-width="2" transform="rotate(-20 300 280)" />
+            <ellipse cx="460" cy="280" rx="14" ry="8" fill="#7BA86D" stroke="#5C8850" stroke-width="2" transform="rotate(-20 460 280)" />
+            <ellipse cx="680" cy="350" rx="14" ry="8" fill="#7BA86D" stroke="#5C8850" stroke-width="2" transform="rotate(10 680 350)" />
+
+            <!-- === ПОДПИСИ БУКВ (для ясности) === -->
+            <text x="165" y="310" font-family="Arial" font-size="22" fill="#5C8850" font-weight="bold" text-anchor="middle">Г</text>
+            <text x="340" y="310" font-family="Arial" font-size="22" fill="#5C8850" font-weight="bold" text-anchor="middle">П</text>
+            <text x="500" y="310" font-family="Arial" font-size="22" fill="#5C8850" font-weight="bold" text-anchor="middle">П</text>
+            <text x="680" y="310" font-family="Arial" font-size="22" fill="#5C8850" font-weight="bold" text-anchor="middle">Ц</text>
         </svg>
     </div>
 
