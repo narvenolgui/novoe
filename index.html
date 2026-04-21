@@ -3,451 +3,274 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Подбор творческой терапии для подростка</title>
+    <title>Талисман ГППЦ · Домовёнок Гоша</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            background: linear-gradient(145deg, #f6f9fc 0%, #e9f2f9 100%);
+            background: linear-gradient(145deg, #fbf5ed 0%, #f9ede0 100%);
             min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            padding: 20px;
-            margin: 0;
+            justify-content: center;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            padding: 24px;
         }
-        .app-container {
+        .card {
             max-width: 800px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 40px;
-            box-shadow: 0 20px 40px rgba(0, 20, 50, 0.15);
-            padding: 32px 28px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            transition: all 0.3s ease;
+            background-color: #fffaf4;
+            border-radius: 48px 48px 32px 32px;
+            box-shadow: 0 20px 40px -10px rgba(100, 60, 30, 0.2);
+            padding: 32px 24px 40px;
+            border: 1px solid #f0ddd0;
+            transition: all 0.2s;
+            text-align: center;
         }
         h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #1a3e60;
-            margin-bottom: 8px;
-            letter-spacing: -0.02em;
+            font-weight: 500;
+            font-size: 2.1rem;
+            letter-spacing: -0.01em;
+            color: #5a3e2e;
+            margin-bottom: 4px;
+        }
+        .subhead {
+            color: #8b6f5c;
+            font-weight: 400;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            border-bottom: 2px dashed #dccbbc;
+            padding-bottom: 16px;
+        }
+        .mascot-container {
+            background: #fcf6ef;
+            border-radius: 120px 120px 60px 60px;
+            padding: 32px 16px 16px;
+            margin: 10px 0 20px;
+            border: 2px solid #edd7c9;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.02), 0 8px 12px -6px rgba(90, 60, 30, 0.1);
+        }
+        svg {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 460px;
+            margin: 0 auto;
+            filter: drop-shadow(0 8px 10px rgba(0,0,0,0.04));
+        }
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 28px 40px;
+            margin: 24px 0 12px;
+            color: #5f4a3a;
+        }
+        .legend-item {
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-        .subhead {
             font-size: 1rem;
-            color: #4a627a;
-            margin-bottom: 28px;
-            border-left: 4px solid #7aa5c2;
-            padding-left: 18px;
-            font-weight: 400;
         }
-        .progress-container {
-            margin-bottom: 30px;
-        }
-        .progress-bar {
-            height: 8px;
-            background: #d9e2ec;
+        .color-dot {
+            width: 24px;
+            height: 24px;
             border-radius: 20px;
-            overflow: hidden;
+            background: #d9b382;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
-        .progress-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #3a8ab3, #5fa3c9);
-            border-radius: 20px;
-            transition: width 0.4s ease;
-        }
-        .question-card {
-            background: white;
-            border-radius: 28px;
-            padding: 28px 24px;
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
-            margin-bottom: 28px;
-            border: 1px solid #edf2f7;
-        }
-        .question-text {
-            font-size: 1.35rem;
-            font-weight: 500;
-            color: #1e3b5c;
-            margin-bottom: 28px;
-            line-height: 1.4;
-        }
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-        .option {
-            display: flex;
-            align-items: center;
-            padding: 14px 20px;
-            background: #f9fcff;
-            border-radius: 60px;
-            border: 1.5px solid #e2ebf3;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 1.05rem;
-        }
-        .option:hover {
-            background: #e7f0f9;
-            border-color: #9fbdd6;
-        }
-        .option input[type="radio"] {
-            margin-right: 18px;
-            accent-color: #3a8ab3;
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-        }
-        .option.selected {
-            background: #d4e7f7;
-            border-color: #3a8ab3;
-            box-shadow: 0 3px 8px rgba(58, 138, 179, 0.1);
-        }
-        .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 12px;
-        }
-        button {
-            background: white;
-            border: 1.5px solid #b8cfde;
-            color: #1e3b5c;
-            padding: 14px 28px;
-            border-radius: 60px;
-            font-size: 1.05rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.02);
-            min-width: 120px;
-        }
-        button.primary {
-            background: #1e3b5c;
-            border-color: #1e3b5c;
-            color: white;
-            box-shadow: 0 10px 18px -8px rgba(30, 59, 92, 0.3);
-        }
-        button.primary:hover {
-            background: #15324e;
-            transform: translateY(-2px);
-        }
-        button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-        .result-card {
-            background: white;
-            border-radius: 28px;
-            padding: 28px 24px;
-            margin-top: 15px;
-        }
-        .therapy-badge {
-            display: inline-block;
-            background: #1e3b5c;
-            color: white;
-            padding: 8px 22px;
-            border-radius: 60px;
-            font-weight: 600;
-            margin-bottom: 22px;
-            font-size: 1.5rem;
-        }
-        .reason {
-            background: #f1f7fd;
-            padding: 22px;
-            border-radius: 20px;
-            margin: 22px 0;
-            border-left: 6px solid #3a8ab3;
-        }
-        .scores-detail {
-            font-size: 0.9rem;
-            color: #4a627a;
-            margin-top: 25px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-        .score-item {
-            background: #ecf3f9;
-            padding: 5px 16px;
-            border-radius: 40px;
-        }
-        .reset-btn {
-            margin-top: 24px;
-            width: 100%;
-        }
-        .error-message {
-            color: #c23b3b;
-            margin: 10px 0;
-        }
+        .dot2 { background: #e3c9a9; }
+        .dot3 { background: #b2a48b; }
         .footer-note {
-            margin-top: 28px;
-            font-size: 0.8rem;
-            color: #6b8aa3;
-            text-align: center;
+            margin-top: 20px;
+            color: #927a66;
+            font-size: 0.95rem;
+            background: #f2e8df;
+            padding: 12px 20px;
+            border-radius: 100px;
+            display: inline-block;
+        }
+        .btn-print {
+            background: none;
+            border: 1.5px solid #c7ad93;
+            color: #5a3e2e;
+            padding: 8px 24px;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-top: 12px;
+            cursor: pointer;
+            transition: 0.15s;
+            background: white;
+        }
+        .btn-print:hover {
+            background: #e7d8cc;
+            border-color: #a5836a;
+        }
+        .signature {
+            margin-top: 18px;
+            color: #ac927e;
+            font-style: italic;
         }
     </style>
 </head>
 <body>
-<div class="app-container">
-    <h1>🎭 Терапия творчеством</h1>
-    <div class="subhead">научно-ориентированный подбор для подростков</div>
+<div class="card">
+    <h1>🏠 Домовёнок Гоша</h1>
+    <div class="subhead">талисман Городского психолого-педагогического центра</div>
 
-    <!-- Экран вопросов -->
-    <div id="quiz-screen">
-        <div class="progress-container">
-            <div class="progress-bar">
-                <div id="progress-fill" class="progress-fill" style="width: 0%;"></div>
-            </div>
-        </div>
-        <div id="question-card" class="question-card">
-            <div id="question-text" class="question-text">Загрузка...</div>
-            <div id="options-container" class="options"></div>
-        </div>
-        <div class="nav-buttons">
-            <button id="prev-btn" disabled>← Назад</button>
-            <button id="next-btn" class="primary">Далее →</button>
-        </div>
-        <div id="error-message" class="error-message"></div>
+    <div class="mascot-container">
+        <!-- SVG: тёплый, дружелюбный домовёнок с фонариком -->
+        <svg viewBox="0 0 500 520" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Домовёнок Гоша — хранитель уюта и доброго света">
+            <!-- Фоновое свечение от фонаря (мягкое) -->
+            <defs>
+                <radialGradient id="lanternGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#FFE7A0" stop-opacity="0.45"/>
+                    <stop offset="60%" stop-color="#FFD97C" stop-opacity="0.15"/>
+                    <stop offset="100%" stop-color="#FFEED9" stop-opacity="0"/>
+                </radialGradient>
+                <radialGradient id="cheekBlush" cx="40%" cy="40%" r="50%">
+                    <stop offset="0%" stop-color="#F9B9A4" stop-opacity="0.7"/>
+                    <stop offset="100%" stop-color="#F9B9A4" stop-opacity="0"/>
+                </radialGradient>
+                <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#F3DEC8"/>
+                    <stop offset="100%" stop-color="#E5CBB2"/>
+                </linearGradient>
+                <linearGradient id="vestGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#A8C3A6"/>
+                    <stop offset="100%" stop-color="#8DAF8A"/>
+                </linearGradient>
+            </defs>
+
+            <!-- Тёплый фон (под персонажем) -->
+            <ellipse cx="250" cy="480" rx="170" ry="28" fill="#EAD9C8" opacity="0.5" />
+
+            <!-- Свечение вокруг фонаря -->
+            <circle cx="305" cy="290" r="100" fill="url(#lanternGlow)" />
+
+            <!-- ====== УШИ (маленькие, круглые) ====== -->
+            <ellipse cx="155" cy="130" rx="26" ry="32" fill="#E6C7AE" stroke="#C8A787" stroke-width="2.5" />
+            <ellipse cx="345" cy="130" rx="26" ry="32" fill="#E6C7AE" stroke="#C8A787" stroke-width="2.5" />
+            <!-- внутренняя часть ушей -->
+            <ellipse cx="155" cy="135" rx="15" ry="20" fill="#F3D9C2" />
+            <ellipse cx="345" cy="135" rx="15" ry="20" fill="#F3D9C2" />
+
+            <!-- ====== ТЕЛО (пухлое, домовёнок) ====== -->
+            <ellipse cx="250" cy="330" rx="120" ry="130" fill="url(#bodyGrad)" stroke="#C8A787" stroke-width="3.5" />
+
+            <!-- ЖИЛЕТ / ФАРТУК (уютный) -->
+            <path d="M190 270 C190 230, 210 210, 250 210 C290 210, 310 230, 310 270 L310 390 C310 420, 290 440, 250 440 C210 440, 190 420, 190 390 Z" 
+                  fill="url(#vestGrad)" stroke="#7C9A79" stroke-width="2.8" opacity="0.95" />
+            
+            <!-- Лямки фартука -->
+            <path d="M220 215 L190 235" stroke="#7C9A79" stroke-width="5" stroke-linecap="round" />
+            <path d="M280 215 L310 235" stroke="#7C9A79" stroke-width="5" stroke-linecap="round" />
+
+            <!-- Кармашек с эмблемой «домик + сердечко» -->
+            <rect x="225" y="300" width="50" height="40" rx="12" fill="#FEF7E8" stroke="#B0A68F" stroke-width="2.2" />
+            <!-- домик -->
+            <path d="M237 322 L237 315 L250 307 L263 315 L263 322" fill="#D48C70" stroke="#B55A3A" stroke-width="1.8" />
+            <!-- сердечко в домике -->
+            <path d="M248 313 C248 311, 251 311, 252 313 C253 311, 256 311, 256 313 C256 317, 252 320, 252 320 C252 320, 248 317, 248 313Z" fill="#E6573C" />
+
+            <!-- ====== ГОЛОВА ====== -->
+            <ellipse cx="250" cy="170" rx="98" ry="90" fill="#F5DFCB" stroke="#C8A787" stroke-width="3.5" />
+
+            <!-- Причёска (пушистые вихры) -->
+            <path d="M170 130 Q190 70, 220 100 Q230 80, 250 95 Q270 75, 285 95 Q310 80, 325 120 Q340 130, 335 150" 
+                  fill="#C49A6C" stroke="#A87D54" stroke-width="2.5" />
+            <path d="M200 105 Q215 65, 240 85 Q255 60, 275 85 Q290 65, 305 100" fill="#DDB18B" />
+
+            <!-- ГЛАЗА (добрые, янтарные) -->
+            <ellipse cx="210" cy="165" rx="20" ry="22" fill="#FEF9F0" stroke="#B28B6D" stroke-width="2.5" />
+            <ellipse cx="290" cy="165" rx="20" ry="22" fill="#FEF9F0" stroke="#B28B6D" stroke-width="2.5" />
+            <!-- радужка (янтарная) -->
+            <ellipse cx="213" cy="167" rx="13" ry="14" fill="#C77E2E" />
+            <ellipse cx="287" cy="167" rx="13" ry="14" fill="#C77E2E" />
+            <!-- зрачки -->
+            <ellipse cx="216" cy="167" rx="7" ry="9" fill="#3B281A" />
+            <ellipse cx="284" cy="167" rx="7" ry="9" fill="#3B281A" />
+            <!-- блики (живые глазки) -->
+            <circle cx="220" cy="161" r="4" fill="white" />
+            <circle cx="280" cy="161" r="4" fill="white" />
+            <circle cx="211" cy="172" r="2.5" fill="white" opacity="0.8" />
+            <circle cx="289" cy="172" r="2.5" fill="white" opacity="0.8" />
+
+            <!-- БРОВИ (приподнятые, добрые) -->
+            <path d="M188 142 Q210 128, 230 142" stroke="#6E4E35" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            <path d="M312 142 Q290 128, 270 142" stroke="#6E4E35" stroke-width="4.5" stroke-linecap="round" fill="none" />
+
+            <!-- НОС (маленькая картошка) -->
+            <ellipse cx="250" cy="190" rx="14" ry="10" fill="#E1B999" stroke="#C69A78" stroke-width="2" />
+
+            <!-- УЛЫБКА (открытая, добрая) -->
+            <path d="M222 208 Q250 238, 278 208" stroke="#8F5E45" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            <!-- уголки рта -->
+            <path d="M220 206 Q215 203, 218 198" stroke="#8F5E45" stroke-width="3" stroke-linecap="round" fill="none" />
+            <path d="M280 206 Q285 203, 282 198" stroke="#8F5E45" stroke-width="3" stroke-linecap="round" fill="none" />
+
+            <!-- Румянец -->
+            <ellipse cx="188" cy="195" rx="22" ry="14" fill="url(#cheekBlush)" />
+            <ellipse cx="312" cy="195" rx="22" ry="14" fill="url(#cheekBlush)" />
+
+            <!-- ====== РУКИ И ФОНАРИК ====== -->
+            <!-- Левая рука (поддерживает фонарь снизу) -->
+            <path d="M170 280 C140 290, 130 330, 160 350 C180 360, 210 340, 220 320" fill="#E5C0A2" stroke="#C8A787" stroke-width="3" />
+            <!-- Правая рука (обхватывает фонарь сверху) -->
+            <path d="M330 270 C370 280, 380 320, 355 340 C335 355, 300 335, 285 315" fill="#E5C0A2" stroke="#C8A787" stroke-width="3" />
+
+            <!-- ФОНАРИК (главный атрибут) -->
+            <rect x="275" y="260" width="60" height="80" rx="12" fill="#F6E3B1" stroke="#D6A144" stroke-width="3.5" />
+            <!-- крыша фонаря -->
+            <path d="M270 260 L305 235 L340 260" fill="#D6A144" stroke="#B07E30" stroke-width="2.5" />
+            <!-- ручка фонаря -->
+            <path d="M295 235 L295 218 Q305 210, 315 218 L315 235" stroke="#A8763A" stroke-width="5" fill="none" stroke-linecap="round" />
+            <!-- свет в фонаре -->
+            <ellipse cx="305" cy="300" rx="20" ry="30" fill="#FFF2B0" opacity="0.9" />
+            <ellipse cx="305" cy="300" rx="12" ry="20" fill="#FFE066" />
+            <!-- декоративные полосы на фонаре -->
+            <line x1="275" y1="285" x2="335" y2="285" stroke="#D6A144" stroke-width="2.5" />
+            <line x1="275" y1="315" x2="335" y2="315" stroke="#D6A144" stroke-width="2.5" />
+
+            <!-- ЛУЧИ СВЕТА (стилизованные) -->
+            <path d="M340 290 L370 275" stroke="#FFE38F" stroke-width="5" stroke-linecap="round" opacity="0.7" />
+            <path d="M342 310 L375 320" stroke="#FFE38F" stroke-width="5" stroke-linecap="round" opacity="0.7" />
+            <path d="M335 330 L355 360" stroke="#FFE38F" stroke-width="5" stroke-linecap="round" opacity="0.6" />
+
+            <!-- Лапки (пальчики) -->
+            <circle cx="210" cy="336" r="9" fill="#EED1B8" stroke="#C8A787" stroke-width="2" />
+            <circle cx="226" cy="342" r="9" fill="#EED1B8" stroke="#C8A787" stroke-width="2" />
+            <circle cx="285" cy="330" r="9" fill="#EED1B8" stroke="#C8A787" stroke-width="2" />
+            <circle cx="300" cy="340" r="9" fill="#EED1B8" stroke="#C8A787" stroke-width="2" />
+
+            <!-- НОГИ (маленькие, уютные) -->
+            <ellipse cx="190" cy="455" rx="35" ry="18" fill="#DDB89C" stroke="#B28B6D" stroke-width="2.5" />
+            <ellipse cx="310" cy="455" rx="35" ry="18" fill="#DDB89C" stroke="#B28B6D" stroke-width="2.5" />
+        </svg>
     </div>
 
-    <!-- Экран результатов -->
-    <div id="result-screen" style="display: none;">
-        <div class="result-card">
-            <div style="font-size: 1.8rem; margin-bottom: 8px;">✨ Рекомендация</div>
-            <div id="therapy-badge" class="therapy-badge"></div>
-            <div id="therapy-description" style="font-size: 1.1rem; margin: 15px 0;"></div>
-            <div id="reason-block" class="reason"></div>
-            <div id="scores-detail" class="scores-detail"></div>
-            <button id="reset-btn" class="primary reset-btn">🔄 Пройти заново</button>
-        </div>
+    <div class="legend">
+        <div class="legend-item"><span class="color-dot"></span> тепло и уют</div>
+        <div class="legend-item"><span class="color-dot dot2"></span> добрый свет</div>
+        <div class="legend-item"><span class="color-dot dot3"></span> фартук заботы</div>
     </div>
+
+    <p style="margin: 12px 0 8px; font-size: 1.1rem; color:#4f3a2b;">⭐ «Там, где Гоша — там слышат, понимают, любят»</p>
+    
     <div class="footer-note">
-        * Рекомендация основана на анализе показаний к арт-, театральной, игровой и кинотерапии
+        ⚡ Талисман отражает миссию ГБУ ГППЦ: детство, дом, поддержку и профессионализм
+    </div>
+    <br>
+    <button class="btn-print" onclick="window.print()">🖨️ Сохранить / распечатать талисман</button>
+    <div class="signature">
+        конкурс «Талисман Городского психолого-педагогического центра»
     </div>
 </div>
-
-<script>
-    (function(){
-        "use strict";
-
-        // ---------- НАУЧНО-ОБОСНОВАННЫЙ ОПРОСНИК ----------
-        // Вопросы сгруппированы по терапевтическим шкалам.
-        const questions = [
-            // АРТ-ТЕРАПИЯ (art)
-            { text: "Подростку трудно выражать свои чувства словами, он замыкается или становится раздражительным.", category: "art" },
-            { text: "Ребёнок часто испытывает тревогу, подавленность или резкие перепады настроения.", category: "art" },
-            { text: "Есть склонность к творчеству: любит рисовать, лепить, заниматься рукоделием.", category: "art" },
-            // ТЕАТРАЛЬНАЯ ТЕРАПИЯ (theatre)
-            { text: "У подростка проблемы с общением: ему сложно заводить друзей, он стесняется выступать перед классом.", category: "theatre" },
-            { text: "Ребёнку нравится примерять на себя разные роли, участвовать в сценках, он эмоционально подвижен.", category: "theatre" },
-            { text: "Подросток часто чувствует себя неуверенно в социуме, боится осуждения.", category: "theatre" },
-            // ИГРОВАЯ ТЕРАПИЯ (play)
-            { text: "Ребёнок склонен к агрессивным вспышкам, импульсивен, с трудом контролирует гнев.", category: "play" },
-            { text: "Подросток испытывает сильные страхи, тревожность, возможно, пережил стрессовую ситуацию.", category: "play" },
-            { text: "Ему/ей нравится играть (настольные, видеоигры, ролевые игры) и через игру он/а лучше расслабляется.", category: "play" },
-            // КИНОТЕРАПИЯ (cinema)
-            { text: "Подростку трудно анализировать свои эмоции и поступки, он не всегда понимает мотивы окружающих.", category: "cinema" },
-            { text: "Ребёнок любит смотреть фильмы/сериалы и способен долго обсуждать персонажей и сюжеты.", category: "cinema" },
-            { text: "Есть проблемы с самоконтролем, поведением или адаптацией в коллективе.", category: "cinema" }
-        ];
-
-        const categories = ['art', 'theatre', 'play', 'cinema'];
-        const categoryNames = {
-            art: 'Арт-терапия',
-            theatre: 'Театральная терапия',
-            play: 'Игровая терапия',
-            cinema: 'Кинотерапия'
-        };
-
-        // Баллы по шкалам (0-3 за каждый вопрос)
-        let scores = { art: 0, theatre: 0, play: 0, cinema: 0 };
-        let currentIndex = 0;
-        let answers = new Array(questions.length).fill(null);
-
-        // DOM элементы
-        const quizScreen = document.getElementById('quiz-screen');
-        const resultScreen = document.getElementById('result-screen');
-        const questionText = document.getElementById('question-text');
-        const optionsContainer = document.getElementById('options-container');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const progressFill = document.getElementById('progress-fill');
-        const errorMsg = document.getElementById('error-message');
-        const resetBtn = document.getElementById('reset-btn');
-        const therapyBadge = document.getElementById('therapy-badge');
-        const therapyDescription = document.getElementById('therapy-description');
-        const reasonBlock = document.getElementById('reason-block');
-        const scoresDetail = document.getElementById('scores-detail');
-
-        // Варианты ответов (Ликерт)
-        const answerOptions = [
-            { value: 0, label: "Совсем не подходит" },
-            { value: 1, label: "Скорее не подходит" },
-            { value: 2, label: "Отчасти подходит" },
-            { value: 3, label: "Полностью подходит" }
-        ];
-
-        function renderQuestion() {
-            const q = questions[currentIndex];
-            questionText.textContent = `${currentIndex+1}. ${q.text}`;
-            
-            let html = '';
-            const selectedVal = answers[currentIndex];
-            answerOptions.forEach(opt => {
-                const checked = (selectedVal === opt.value) ? 'checked' : '';
-                html += `
-                    <label class="option ${selectedVal === opt.value ? 'selected' : ''}">
-                        <input type="radio" name="answer" value="${opt.value}" ${checked}> ${opt.label}
-                    </label>
-                `;
-            });
-            optionsContainer.innerHTML = html;
-
-            // Навесить слушатели на radio
-            document.querySelectorAll('input[name="answer"]').forEach(radio => {
-                radio.addEventListener('change', (e) => {
-                    const val = parseInt(e.target.value);
-                    answers[currentIndex] = val;
-                    // убрать ошибку
-                    errorMsg.textContent = '';
-                    // визуально подсветить выбранную опцию
-                    document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-                    e.target.closest('.option').classList.add('selected');
-                    // обновить состояние кнопок
-                    updateNavButtons();
-                });
-            });
-
-            // обновить прогресс
-            const progress = ((currentIndex) / questions.length) * 100;
-            progressFill.style.width = progress + '%';
-            updateNavButtons();
-        }
-
-        function updateNavButtons() {
-            prevBtn.disabled = (currentIndex === 0);
-            if (currentIndex === questions.length - 1) {
-                nextBtn.textContent = 'Результат 🎯';
-            } else {
-                nextBtn.textContent = 'Далее →';
-            }
-            // если ответ не выбран, блокировать next? можно разрешить пропускать, но лучше подсветить ошибку
-            const hasAnswer = answers[currentIndex] !== null;
-            if (!hasAnswer && currentIndex < questions.length) {
-                // не блокируем кнопку, но при клике покажем ошибку
-                nextBtn.disabled = false;
-            } else {
-                nextBtn.disabled = false;
-            }
-        }
-
-        function calculateScores() {
-            // сброс
-            categories.forEach(c => scores[c] = 0);
-            for (let i = 0; i < questions.length; i++) {
-                const q = questions[i];
-                const ans = answers[i];
-                if (ans !== null) {
-                    scores[q.category] += ans;
-                }
-            }
-        }
-
-        function getTopCategory() {
-            let maxCat = 'art';
-            let maxScore = -1;
-            categories.forEach(c => {
-                if (scores[c] > maxScore) {
-                    maxScore = scores[c];
-                    maxCat = c;
-                }
-            });
-            return { category: maxCat, score: maxScore };
-        }
-
-        function generateReason(category) {
-            const reasons = {
-                art: "Арт-терапия рекомендована, поскольку у подростка выражены трудности эмоционального выражения, тревожность или интерес к творчеству. Исследования показывают, что арт-терапия помогает безопасно выражать сложные чувства и снижать тревожность.",
-                theatre: "Театральная терапия подходит, так как присутствуют сложности в общении и социализации. Драматерапия позволяет в безопасной обстановке развивать эмпатию и коммуникативные навыки.",
-                play: "Игровая терапия показана при агрессивных проявлениях и тревожности. Через игру подросток учится управлять эмоциями и справляться со стрессом.",
-                cinema: "Кинотерапия эффективна при трудностях с анализом эмоций и поведенческих проблемах. Обсуждение фильмов развивает самосознание и эмпатию."
-            };
-            return reasons[category] || "Рекомендация основана на научных показаниях.";
-        }
-
-        function showResult() {
-            calculateScores();
-            const top = getTopCategory();
-            const catName = categoryNames[top.category];
-            
-            therapyBadge.textContent = catName;
-            therapyDescription.textContent = `Наиболее выражены показания к ${catName.toLowerCase()}.`;
-            reasonBlock.innerHTML = `<strong>🔬 Обоснование:</strong> ${generateReason(top.category)}`;
-            
-            let detailHtml = '';
-            categories.forEach(c => {
-                detailHtml += `<span class="score-item">${categoryNames[c]}: ${scores[c]} баллов</span>`;
-            });
-            scoresDetail.innerHTML = detailHtml;
-            
-            quizScreen.style.display = 'none';
-            resultScreen.style.display = 'block';
-        }
-
-        function resetQuiz() {
-            currentIndex = 0;
-            answers = new Array(questions.length).fill(null);
-            categories.forEach(c => scores[c] = 0);
-            quizScreen.style.display = 'block';
-            resultScreen.style.display = 'none';
-            errorMsg.textContent = '';
-            renderQuestion();
-        }
-
-        function handleNext() {
-            if (answers[currentIndex] === null) {
-                errorMsg.textContent = 'Пожалуйста, выберите вариант ответа.';
-                return;
-            }
-            if (currentIndex === questions.length - 1) {
-                // Проверим, все ли ответы даны (можно пропускать, но предупредим)
-                const missing = answers.some(a => a === null);
-                if (missing) {
-                    if (!confirm('Не на все вопросы даны ответы. Продолжить?')) {
-                        return;
-                    }
-                }
-                showResult();
-            } else {
-                currentIndex++;
-                renderQuestion();
-            }
-        }
-
-        function handlePrev() {
-            if (currentIndex > 0) {
-                currentIndex--;
-                renderQuestion();
-            }
-        }
-
-        // Инициализация и обработчики
-        function init() {
-            renderQuestion();
-            nextBtn.addEventListener('click', handleNext);
-            prevBtn.addEventListener('click', handlePrev);
-            resetBtn.addEventListener('click', resetQuiz);
-        }
-
-        init();
-    })();
-</script>
 </body>
 </html>
