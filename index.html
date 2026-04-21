@@ -3,201 +3,539 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ЛАБОРАТОРИЯ СБОЕВ — раздатка (12–14 лет)</title>
+    <title>🌈 Моя тетрадь для лучшего лета (5-7 лет) · Нейро + Лого</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            background: #f5f7fa;
-            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
-            line-height: 1.5;
-            color: #1e1e2a;
-            padding: 2rem 1.5rem;
+            background: #f9f3e9;
+            font-family: 'Segoe UI', 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+            padding: 30px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        .document {
-            max-width: 900px;
-            width: 100%;
-            background: white;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            border-radius: 24px;
-            padding: 2.5rem 2.8rem;
+
+        .print-btn {
+            background: #ffb347;
+            border: none;
+            border-radius: 60px;
+            padding: 16px 32px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2d4059;
+            box-shadow: 0 8px 0 #b45f06;
+            cursor: pointer;
+            margin-bottom: 30px;
+            transition: 0.1s;
+            border: 2px solid #ffe3b0;
+            letter-spacing: 2px;
         }
+
+        .print-btn:active {
+            transform: translateY(5px);
+            box-shadow: 0 3px 0 #b45f06;
+        }
+
+        .notebook {
+            max-width: 1200px;
+            width: 100%;
+            background: #fffcf6;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-radius: 40px 40px 20px 20px;
+            padding: 25px 30px 40px;
+            border: 2px solid #ffcf9a;
+        }
+
+        /* Страницы */
+        .page {
+            background: #ffffff;
+            border-radius: 30px 30px 20px 20px;
+            padding: 30px 35px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 0 #ecd9c2, 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #ffe0b9;
+            page-break-after: always;  /* каждая страница с новой при печати */
+            break-inside: avoid;
+        }
+
+        .page:last-child {
+            page-break-after: auto;
+            margin-bottom: 0;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            color: #3b2b1f;
+            text-align: center;
+            margin-bottom: 10px;
+            text-shadow: 4px 4px 0 #ffddb0;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            border-left: 20px solid #ffaa5e;
+            padding-left: 20px;
+            color: #4a2e1e;
+            margin: 20px 0 20px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: #6b4a2c;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .badge {
+            background: #f9d9b1;
+            border-radius: 30px;
+            padding: 8px 18px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-right: 12px;
+            color: #2d1f0f;
+        }
+
+        .icon-title {
+            font-size: 2rem;
+            margin-right: 8px;
+        }
+
+        .instruction {
+            background: #fef7e9;
+            border-radius: 30px;
+            padding: 20px 25px;
+            border-left: 12px solid #7ec8e0;
+            margin: 20px 0;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .adult-note {
+            background: #d9e9fa;
+            border-radius: 25px;
+            padding: 15px 25px;
+            border: 2px dashed #2a7faa;
+            color: #01415e;
+            font-weight: 500;
+            margin: 20px 0;
+        }
+
+        .task-box {
+            background: #fff1e0;
+            border-radius: 30px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #ffb882;
+        }
+
+        .two-columns {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .col {
+            flex: 1 1 250px;
+            background: #fef6ea;
+            border-radius: 25px;
+            padding: 20px;
+            border: 2px dotted #d49b6a;
+        }
+
+        .word-list {
+            background: #fcf2e1;
+            padding: 15px 20px;
+            border-radius: 20px;
+            font-size: 1.5rem;
+            word-spacing: 15px;
+            line-height: 2.2;
+        }
+
+        .mirror-drawing {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .butterfly {
+            width: 200px;
+            height: 150px;
+            background: #fbd5b5;
+            border-radius: 50% 50% 30% 30%;
+            position: relative;
+            box-shadow: inset 0 -5px 0 #c29a6b;
+        }
+
+        .butterfly::before,
+        .butterfly::after {
+            content: "🦋";
+            font-size: 80px;
+            position: absolute;
+            top: 20px;
+        }
+
+        .butterfly::before { left: -40px; transform: scaleX(-1); }
+        .butterfly::after { right: -40px; }
+
+        .maze {
+            background: #f3e1c2;
+            padding: 15px;
+            border-radius: 30px;
+            font-family: monospace;
+            font-size: 1.6rem;
+            letter-spacing: 8px;
+            text-align: center;
+        }
+
+        .emotion-row {
+            display: flex;
+            gap: 30px;
+            justify-content: space-around;
+            font-size: 3.5rem;
+            margin: 30px 0;
+        }
+
+        .emotion-item {
+            text-align: center;
+            background: #fffaee;
+            padding: 15px 5px;
+            border-radius: 40px;
+            cursor: pointer;
+            border: 3px solid #e6c7a2;
+        }
+
+        .check-grid {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 15px;
+        }
+
+        .sound-squares {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px;
+        }
+        .square {
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+            border: 3px solid #7f4f24;
+            background: #f3d9c2;
+        }
+        .red { background: #f44336; }
+        .blue { background: #2196F3; }
+        .green { background: #4CAF50; }
+
+        /* печатные стили */
         @media print {
             body { background: white; padding: 0.2in; }
-            .document { box-shadow: none; border-radius: 0; padding: 0; max-width: 100%; }
-            .page-break { page-break-before: always; }
-            .no-break { page-break-inside: avoid; }
-            h2, h3 { page-break-after: avoid; }
-            .card, .station-card, .leader-note { border: 1px solid #aaa; box-shadow: none; background: white; break-inside: avoid; }
-            .print-btn { display: none !important; }
+            .print-btn { display: none; }
+            .notebook { box-shadow: none; border: none; padding: 0; background: white; }
+            .page { box-shadow: none; border: 2px solid #ccc; page-break-after: always; }
+            .adult-note, .instruction { background: #f9f9f9 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .badge, .task-box, .col { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         }
-        h1 { font-size: 2.8rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 0.5rem; color: #0b0c10; }
-        h2 { font-size: 1.8rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1.2rem; border-left: 6px solid #d97706; padding-left: 1rem; color: #1e293b; }
-        h3 { font-weight: 600; font-size: 1.4rem; margin: 1.5rem 0 1rem; color: #2c3e50; }
-        .subhead { font-size: 1.2rem; color: #4a5568; margin-bottom: 1.8rem; border-bottom: 1px dashed #cbd5e1; padding-bottom: 0.8rem; }
-        .card { background: #fafbfc; border-radius: 20px; padding: 1.6rem 2rem; margin: 1.5rem 0; border: 1px solid #e2e8f0; }
-        .station-card { background: #fff7ed; border-radius: 20px; padding: 1.5rem; margin: 1.2rem 0; border-left: 6px solid #ea580c; }
-        .card-title { font-weight: 700; font-size: 1.3rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
-        .emoji-badge { font-size: 1.8rem; margin-right: 8px; }
-        .question-box { background: #eef2ff; padding: 1.2rem 1.5rem; border-radius: 16px; margin: 1rem 0; border-left: 4px solid #2563eb; }
-        .leader-note { background: #f1f5f9; padding: 1.2rem 1.5rem; border-radius: 16px; margin: 1.2rem 0; border: 1px dashed #64748b; }
-        .leader-note strong { color: #0f172a; text-transform: uppercase; letter-spacing: 0.3px; font-size: 0.9rem; }
-        .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.2rem 0; }
-        .grid-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
-        .divider { height: 2px; background: linear-gradient(90deg, transparent, #a0aec0, transparent); margin: 2rem 0; }
-        .footer-note { margin-top: 2.5rem; font-style: italic; color: #475569; text-align: right; border-top: 1px solid #e2e8f0; padding-top: 1rem; }
-        .print-btn {
-            position: fixed; bottom: 30px; right: 30px;
-            background: #1e293b; color: white; border: none;
-            border-radius: 60px; padding: 14px 28px; font-size: 1.2rem;
-            font-weight: 600; box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            cursor: pointer; display: flex; align-items: center; gap: 10px;
-            z-index: 1000; transition: 0.2s; border: 1px solid #475569;
+
+        /* интерактивные элементы для печати — выглядит как чекбокс/радио */
+        .fake-check {
+            width: 30px;
+            height: 30px;
+            border: 3px solid #b35e1e;
+            border-radius: 12px;
+            background: #fff1d6;
+            display: inline-block;
+            margin-right: 12px;
         }
-        .print-btn:hover { background: #0f172a; transform: scale(1.02); }
-        .fill-line { border-bottom: 1.5px solid #64748b; min-width: 100px; display: inline-block; margin: 0 5px; }
-        .badge { background: #fbbf24; color: black; padding: 2px 12px; border-radius: 30px; font-weight: 600; display: inline-block; }
+
+        .hero-drawing {
+            background: #f2e0c9;
+            border-radius: 30px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        button.print-btn:hover { background: #ffa42b; }
+        .footer-note { text-align: center; margin-top: 20px; color: #8b6f50; }
+        hr { margin: 25px 0; border: 3px dashed #f1c38e; }
+
+        /* рисованные элементы */
+        .pencil-icon { font-size: 2rem; }
     </style>
 </head>
 <body>
-<button class="print-btn" onclick="window.print();">
-    <span style="font-size:1.5rem;">🖨️</span> Печать / Сохранить PDF
-</button>
+    <button class="print-btn" onclick="window.print()">🖨️ Распечатать тетрадь (все страницы)</button>
+    <div class="notebook">
+        <!-- СТРАНИЦА 1: ОБЛОЖКА -->
+        <div class="page">
+            <h1>📘 МОЯ ТЕТРАДЬ<br> для подготовки к школе</h1>
+            <div style="text-align: center; margin: 25px 0;">
+                <span style="font-size: 5rem;">✏️🦜</span>
+            </div>
+            <div style="background: #ffecb3; border-radius: 40px; padding: 20px; text-align: center; font-size: 1.7rem;">
+                <p>✨ <strong>Имя:</strong> _________________________________</p>
+                <p style="font-size: 1.3rem; margin-top: 20px;">«Эта тетрадь — твой помощник. Играем, говорим, рисуем, готовимся к школе. Каждый день — 1-2 страницы, без спешки»</p>
+            </div>
+            <div class="instruction" style="margin-top: 30px;">
+                <span style="font-size: 2rem;">🐣</span> <strong>Взрослый:</strong> предложите ребёнку написать имя печатными буквами или обвести по точкам.
+            </div>
+        </div>
 
-<div class="document">
-    <!-- ТИТУЛ -->
-    <div style="text-align: center; margin-bottom: 2rem;">
-        <h1>ЛАБОРАТОРИЯ<br>СБОЕВ</h1>
-        <div style="font-size: 1.4rem; font-weight: 400; margin: 8px 0;">инструкция к собственному мозгу</div>
-        <div class="subhead" style="border-bottom: none; margin-top: 0.5rem;">Раздатка для участников 12–14 лет</div>
-        <div style="margin: 25px 0 10px; background: #fef3c7; padding: 10px 20px; border-radius: 30px; display: inline-block;">
-            ⚡ «Твой мозг — мощный, но иногда глючит. Научимся нажимать на паузу»
+        <!-- СТРАНИЦА 2: ПАМЯТКА -->
+        <div class="page">
+            <h2>📋 Для родителей и педагогов</h2>
+            <div class="adult-note">
+                <p><strong>⏳ 20–25 минут</strong> · без таймера, закончить на интересе.</p>
+                <p><strong>🗣️ речь · 🧠 мозг · ✏️ пальцы · ❤️ душа</strong></p>
+                <p><strong>Как хвалить:</strong> «Ты старался!», «Линия ровнее, чем вчера»</p>
+                <p><strong>Ошибки:</strong> «Давай послушаем ещё раз…»</p>
+                <p>⭐ В конце — наклейка или похвала!</p>
+            </div>
+            <div style="margin-top: 25px;">
+                <span class="badge">🗣️</span> логопедия · <span class="badge">🧠</span> нейро · <span class="badge">✏️</span> моторика · <span class="badge">❤️</span> эмоции
+            </div>
+        </div>
+
+        <!-- СТР 3: ВЕСЁЛЫЙ ЯЗЫЧОК + нейродобавка -->
+        <div class="page">
+            <h2>🗣️ Весёлый язычок (артикуляция + руки)</h2>
+            <div class="instruction">🪞 Возьми зеркало. Повторяй за мной.</div>
+            <div class="two-columns">
+                <div class="col">
+                    <p>🐴 «Лошадка» — цокаем</p>
+                    <p>🕒 «Часики» — язык влево-вправо</p>
+                    <p>🎢 «Качели» — вверх-вниз</p>
+                    <p>🖌️ «Маляр» — красим нёбо</p>
+                    <p>🍯 «Вкусное варенье»</p>
+                </div>
+                <div class="col">
+                    <p><strong>➕ Нейро-добавка: Язык + руки</strong></p>
+                    <p>👆 «Часики» языком + пальцы влево-вправо</p>
+                    <p>🖐️ «Качели» + ладони вверх-вниз</p>
+                    <p>✊ «Лошадка» + кулаки стучат в ритм</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- СТР 4: ПОЙМАЙ ЗВУК [С] + ноги -->
+        <div class="page">
+            <h2>🗣️ Поймай звук [С]</h2>
+            <div class="word-list">Сок, сани, лук, стул, миска, кот, нос, собака, ананас, дом, лес, сыр</div>
+            <p>👏 Хлопни, когда услышишь [С]. Закрась столько квадратиков: ☐☐☐☐☐☐☐☐☐</p>
+            <div class="task-box">
+                <strong>🧠 Нейро: «Лови звук ногами»</strong><br>
+                Встань: [С] → шаг вправо, нет звука → шаг влево.
+            </div>
+        </div>
+
+        <!-- СТР 5: ДОРОЖКА + помеха -->
+        <div class="page">
+            <h2>✏️ Дорожка для пальчиков</h2>
+            <div style="font-size: 3rem; text-align: center;">🦔 ~~~~ 🍎</div>
+            <p>Проведи линию от ёжика к яблоку, не отрывая карандаш. Правой, потом левой.</p>
+            <div class="task-box">
+                <strong>🧠 Двуручное ведение с помехой:</strong> веди двумя руками, а я хлопаю: 1 хлопок — продолжай, 2 хлопка — замри.
+            </div>
+        </div>
+
+        <!-- СТР 6: ЗЕРКАЛЬНОЕ РИСОВАНИЕ БАБОЧКИ + переключение -->
+        <div class="page">
+            <h2>🧠 Зеркальная бабочка</h2>
+            <div class="mirror-drawing">
+                <div class="butterfly"></div>
+            </div>
+            <p>Обведи крылья одновременно двумя руками. Потом: левая обводит, правая стучит — и наоборот.</p>
+            <p>🗣️ Придумай предложение: «Бабочка села на ______»</p>
+        </div>
+
+        <!-- СТР 6.5: ПЕРЕКРЁСТНЫЕ ШАГИ (нейро-разминка) -->
+        <div class="page">
+            <h2>🧠 Перекрёстные шаги</h2>
+            <div class="instruction">🚶 Маршируй: правый локоть — левое колено, левый локоть — правое колено.</div>
+            <p>Проговариваем: РА-РО-РУ-РЫ или СА-ША-СА-ША.</p>
+            <p>➕ За спиной: локоть тянется к противоположному колену сзади.</p>
+        </div>
+
+        <!-- СТР 7: МОИ ЧУВСТВА -->
+        <div class="page">
+            <h2>❤️ Мои чувства перед школой</h2>
+            <div class="emotion-row">
+                <div class="emotion-item">😊 радость</div>
+                <div class="emotion-item">😐 волнение</div>
+                <div class="emotion-item">😌 спокойствие</div>
+                <div class="emotion-item">😟 страх</div>
+            </div>
+            <p>Обведи то лицо, которое похоже на твоё настроение. Нарисуй, что поможет успокоиться.</p>
+        </div>
+
+        <!-- СТР 8: ОДИН-МНОГО -->
+        <div class="page">
+            <h2>🗣️ Один — много</h2>
+            <p>Ухо — уши, дерево — деревья, воробей — воробьи.</p>
+            <p>Придумай предложение со словом «много»: __________________</p>
+        </div>
+
+        <!-- СТР 9: ШТРИХОВКА С СЕКРЕТОМ -->
+        <div class="page">
+            <h2>✏️ Штриховка с секретом [ш]</h2>
+            <div style="font-size: 5rem; text-align: center;">🐟</div>
+            <p>Заштрихуй рыбку горизонтальными линиями, чешую — кружками. Шепчи: «У рыбки рубашка».</p>
+        </div>
+
+        <!-- СТР 10: НАЙДИ ОТЛИЧИЯ -->
+        <div class="page">
+            <h2>🧠 Найди 5 отличий</h2>
+            <div style="display: flex; gap: 40px; justify-content: center;">
+                <div style="font-size: 4rem;">🏠🌳☀️</div>
+                <div style="font-size: 4rem;">🏡🌲⛅</div>
+            </div>
+            <p>Обведи отличия. Назови каждое.</p>
+        </div>
+
+        <!-- СТР 10.5: ПРОБА ХЭДА -->
+        <div class="page">
+            <h2>🧠 Проба Хэда (зеркало)</h2>
+            <p>Повторяй как в зеркале: я поднимаю правую руку — ты левую.</p>
+            <p>🤚 Правая вверх, левая на пояс, правая к левому уху…</p>
+        </div>
+
+        <!-- СТР 11: ЗВУКОВОЙ АНАЛИЗ МАК и СЫР -->
+        <div class="page">
+            <h2>🗣️ Звуковой анализ</h2>
+            <p><strong>МАК</strong> — закрась квадраты: 🔵🔴🔵</p>
+            <p><strong>СЫР</strong> — 🔵🔴🔵 (С — синий, Ы — красный, Р — синий)</p>
+            <div class="sound-squares">
+                <div class="square blue"></div><div class="square red"></div><div class="square blue"></div>
+            </div>
+        </div>
+
+        <!-- СТР 12: МОИ СИЛЬНЫЕ СТОРОНЫ -->
+        <div class="page">
+            <h2>❤️ Мои суперсилы</h2>
+            <div class="hero-drawing">
+                <p>🦸 Нарисуй себя супергероем.</p>
+                <p>Три вещи, которые у меня получаются лучше всего:</p>
+                <p>1. _______________ 2. _______________ 3. _______________</p>
+            </div>
+        </div>
+
+        <!-- СТР 13: ЛАБИРИНТ -->
+        <div class="page">
+            <h2>✏️ Лабиринт «Помоги букве А»</h2>
+            <div class="maze">
+                ⬜⬜⬛⬜⬜<br>
+                ⬜⬛⬜⬛⬜<br>
+                ⬜⬜🅰️⬜⬜<br>
+            </div>
+            <p>Пройди пальцами обеих рук одновременно (по разным дорожкам).</p>
+        </div>
+
+        <!-- СТР 14: КУЛАК-РЕБРО-ЛАДОНЬ -->
+        <div class="page">
+            <h2>🧠 Кулак-ребро-ладонь</h2>
+            <p>✊🤚✋ под ритм: «Кулак — ребро — ладонь, быстро сменю я их, не тронь!»</p>
+            <p>Делай двумя руками одновременно.</p>
+        </div>
+
+        <!-- СТР 14.5: ГРАФИЧЕСКИЙ ДИКТАНТ ДВУМЯ РУКАМИ -->
+        <div class="page">
+            <h2>✏️🧠 Диктант двумя руками</h2>
+            <p>Левая рука: 2→ 1↓ 2← 1↑ (ромб). Правая: зеркально. Веди одновременно!</p>
+            <div style="background:#eee; height:100px; width:100%; border-radius:20px; text-align:center; padding:20px;">📐 старт · · ·</div>
+        </div>
+
+        <!-- СТР 15: РАССКАЗ ПО КАРТИНКЕ -->
+        <div class="page">
+            <h2>🗣️ Составь рассказ</h2>
+            <p>⛄ Дети лепят снеговика, ворона на дереве, собака.</p>
+            <p>Рассказ: _________________________________</p>
+        </div>
+
+        <!-- СТР 16: ГРАФИЧЕСКИЙ ДИКТАНТ -->
+        <div class="page">
+            <h2>✏️ Графический диктант</h2>
+            <p>2→, 1↑, 1→, 2↓, 1←, 1↓, 2←, 1↑, 1←, 2↑ (получится зайчик)</p>
+        </div>
+
+        <!-- СТР 17: ЧТО ДЕЛАТЬ, ЕСЛИ Я ЗЛЮСЬ? -->
+        <div class="page">
+            <h2>❤️ Что делать, если я злюсь?</h2>
+            <p>1. Скажи «Я злюсь» 😤<br>2. Сожми кулачки 5 раз ✊<br>3. Вдох-выдох 🌬️<br>4. Попроси помощи 🆘</p>
+            <p>Раскрась спокойного мальчика зелёным.</p>
+        </div>
+
+        <!-- СТР 17.5: СТОП-ИГРА -->
+        <div class="page">
+            <h2>🧠 Стоп-игра (тормозной контроль)</h2>
+            <p>Летает — маши руками. НЕ летает — стой. На слово «КУРИЦА» — замри!</p>
+            <p>Воробей, корова, орёл, курица, муха, собака…</p>
+        </div>
+
+        <!-- СТР 18: ПРОДОЛЖИ РЯД -->
+        <div class="page">
+            <h2>🧠 Продолжи ряд</h2>
+            <p>△ ○ △ ○ △ ___ &nbsp;&nbsp; □ □ △ □ □ △ ___ &nbsp;&nbsp; 🔴🔵🟡🔴🔵___</p>
+        </div>
+
+        <!-- СТР 19: ЧИСТОГОВОРКИ С ДВИЖЕНИЕМ -->
+        <div class="page">
+            <h2>🗣️ Чистоговорки + движения</h2>
+            <p>Са-са-са — летит оса (руки в стороны) 🐝</p>
+            <p>Ры-ры-ры — у нас шары (стучим пальцами) 🎈</p>
+            <p>Жу-жу-жу — на травке я сижу (приседаем) 🌿</p>
+        </div>
+
+        <!-- СТР 19.5: РИТМИЧЕСКИЙ КРУГ -->
+        <div class="page">
+            <h2>🧠 Ритмический круг</h2>
+            <p>🔴🟡🟢🔵 — отстучи ритм: X X _ X , X _ X X</p>
+            <p>Проговаривай: МА-МА (пауза) МА, РУЧ-КА-МИ</p>
+        </div>
+
+        <!-- СТР 20: МОИ ДОСТИЖЕНИЯ + нейроитог -->
+        <div class="page">
+            <h2>🏆 Мои достижения</h2>
+            <p>😊😊😊😊😊 — раскрась столько смайликов, сколько заданий понравилось.</p>
+            <div class="task-box">
+                <strong>🧠 Мой мозг научился:</strong><br>
+                ☐ делать два дела одновременно<br>
+                ☐ вовремя останавливаться<br>
+                ☐ слышать звуки в шуме<br>
+                ☐ рисовать двумя руками<br>
+                ☐ повторять сложный ритм<br>
+                ☐ знаю право-лево
+            </div>
+            <p style="font-size: 2.2rem; margin-top: 30px;">✨ Я МОЛОДЕЦ! Я ГОТОВ К ШКОЛЕ! ✨</p>
+        </div>
+
+        <!-- ПОСЛЕСЛОВИЕ -->
+        <div class="page">
+            <h2>✅ Послесловие для взрослого</h2>
+            <p>Эта тетрадь — система: логопедия + нейропсихология + педагогика. Регулярность, доброта и вера в ребёнка. Лучшая подготовка — счастливый и уверенный в себе будущий первоклассник.</p>
+            <p style="margin-top: 40px;">💛 Успехов вам и вашему ученику!</p>
         </div>
     </div>
-
-    <!-- ПАМЯТКА: ГЛАВНЫЕ ХАКИ -->
-    <h2>🧪 ТВОЙ НАБОР ЮНОГО ХАКЕРА</h2>
-    <div class="grid-2col">
-        <div class="card">
-            <div class="card-title"><span class="emoji-badge">⏸️</span> Тормоз в голове</div>
-            <p>Между «захотел» и «сделал» есть зазор. Учимся его замечать: команда «Руки вверх!» — а ты стоишь и чувствуешь, как дернулось плечо. <br>👉 <strong>Осознанность = заметить импульс до действия.</strong></p>
-        </div>
-        <div class="card">
-            <div class="card-title"><span class="emoji-badge">🎧</span> Сдвиг по фазе</div>
-            <p>Эпичная музыка, а ты двигаешься как в замедленной съёмке. Тревожный звук — а ты гладишь руку. Кто управляет настроением: ты или звук? <br>👉 <strong>Ты можешь выбирать реакцию.</strong></p>
-        </div>
-    </div>
-
-    <!-- СТАНЦИИ (как карточки для раздачи) -->
-    <h2>🧬 ТРИ СТАНЦИИ ВЗЛОМА</h2>
-    <p style="margin-bottom: 0.5rem;"><span class="badge">Разрезать и раздать группам</span></p>
-
-    <div class="grid-3col">
-        <!-- Станция 1 -->
-        <div class="station-card">
-            <div style="font-size: 2rem; margin-bottom: 5px;">👅</div>
-            <h3 style="margin: 0 0 10px; font-size: 1.3rem;">Слепой дегустатор</h3>
-            <p><strong>Задача:</strong> Один в наушниках с громкой музыкой и закрытыми глазами. Второй кладёт в рот <strong>несколько продуктов сразу</strong> (мармелад + крекер + лимон).</p>
-            <p><strong>Описать только ТЕКСТУРУ:</strong> хрустит, колется, скользит, взрывается. <br><em>Не вкус!</em></p>
-            <p style="margin-top: 10px; font-style: italic;">🎯 Перезагрузка сенсорного канала — едим осознанно, а не под тикток.</p>
-        </div>
-        <!-- Станция 2 -->
-        <div class="station-card">
-            <div style="font-size: 2rem; margin-bottom: 5px;">📱❤️</div>
-            <h3 style="margin: 0 0 10px; font-size: 1.3rem;">Полиграф для ленты</h3>
-            <p><strong>Задача:</strong> Открыть Reels/Shorts. Положить палец на пульс (шея/запястье). Засечь 1 минуту.</p>
-            <p><strong>Листать и заметить:</strong> на каком видео <strong>пульс изменился</strong>? Ускорился или замедлился?</p>
-            <p><strong>Записать, что это было:</strong> агрессия, милота, тревога?</p>
-            <p style="margin-top: 10px; font-style: italic;">🎯 Доказательство: контент управляет телом. Осознанный скроллинг.</p>
-        </div>
-        <!-- Станция 3 -->
-        <div class="station-card">
-            <div style="font-size: 2rem; margin-bottom: 5px;">📸✂️</div>
-            <h3 style="margin: 0 0 10px; font-size: 1.3rem;">Редактор реальности</h3>
-            <p><strong>Задача:</strong> Сделать фото прямо сейчас (окно, стол, друг).</p>
-            <p><strong>В редакторе НЕ улучшать, а УБИРАТЬ шум:</strong> заблюрить, замазать всё, кроме ОДНОГО объекта, который радует.</p>
-            <p>Показать «ДО» и «ПОСЛЕ» соседу.</p>
-            <p style="margin-top: 10px; font-style: italic;">🎯 Что мы выкинули из кадра? В жизни мы часто не замечаем главное.</p>
-        </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- СУПЕР-ТЕХНИКА: МАШИНА ВРЕМЕНИ 3-2-1-GO -->
-    <h2>⏱️ МАШИНА ВРЕМЕНИ «3-2-1-GO»</h2>
-    <div class="card" style="background: #e6f7ff; border: 2px solid #0ea5e9;">
-        <div class="card-title"><span class="emoji-badge">🚀</span> Кнопка быстрой перезагрузки (забрать с собой)</div>
-        <p><strong>Когда накрывает паника / злость / тревога:</strong></p>
-        <ol style="margin-left: 1.8rem; font-size: 1.05rem;">
-            <li><strong>3</strong> вещи, которые касаются тела <em>(носок в кроссовке, лямка рюкзака, дыхание в носу)</em></li>
-            <li><strong>2</strong> звука за окном или в коридоре <em>(даже самые далёкие)</em></li>
-            <li><strong>1</strong> мысль, которая крутится. Заметить её и мысленно сказать: <strong>«Пока, я занят»</strong>.</li>
-        </ol>
-        <p style="margin-top: 15px;">⚡ <strong>Челлендж:</strong> Бегаем под быстрый трек, потом «СТОП! ЗАМРИ!» — и делаем 3-2-1. Работает даже после хаоса.</p>
-    </div>
-
-    <!-- КАРТОЧКИ СИТУАЦИЙ (для рефлексии) -->
-    <h2>🎲 УРОВЕНЬ СЛОЖНОСТИ: РЕАЛЬНАЯ ЖИЗНЬ</h2>
-    <p><span class="badge">Разрезать и раздать для обсуждения в парах</span></p>
-    <div class="grid-3col">
-        <div class="question-box" style="background: #fff1f2;">
-            <strong>😤 Ситуация 1</strong><br>
-            Мама начинает читать нотации про уборку, а ты уже закипаешь.<br>
-            <em>Какой хак применишь?</em>
-        </div>
-        <div class="question-box" style="background: #fff1f2;">
-            <strong>💬 Ситуация 2</strong><br>
-            В чате класса начался спор, и тебя хотят втянуть.<br>
-            <em>Какой хак применишь?</em>
-        </div>
-        <div class="question-box" style="background: #fff1f2;">
-            <strong>🍟 Ситуация 3</strong><br>
-            Ты съел целую пачку чипсов и даже не заметил вкуса.<br>
-            <em>Какой хак применишь?</em>
-        </div>
-    </div>
-
-    <!-- ШПАРГАЛКА ВЕДУЩЕГО (БЛОК 1) -->
-    <div class="page-break"></div>
-    <h2>🎤 ШПАРГАЛКИ ВЕДУЩЕГО</h2>
-    <div class="leader-note">
-        <strong>🧊 Упражнение «Тормоз в голове» (7 мин)</strong><br>
-        Команды: «Руки вверх!», «Повернитесь налево!», «Подпрыгните!».<br>
-        Группа стоит неподвижно. После каждой: <em>«У кого дернулась нога? У кого напряглись плечи?»</em><br>
-        <strong>Смысл:</strong> показать «зазор» между импульсом и действием.
-    </div>
-    <div class="leader-note">
-        <strong>🎵 Упражнение «Сдвиг по фазе» (8 мин)</strong><br>
-        1) Эпичный саундтрек (Two Steps from Hell) — очень медленно пройти и убрать предмет.<br>
-        2) Тревожная музыка (скрип, сирена) — нежно погладить свою руку.<br>
-        <strong>Вопрос:</strong> «Почему некомфортно? Кто управлял настроением — вы или звук?»
-    </div>
-    <div class="leader-note">
-        <strong>⏱️ Челлендж «Сколько ты стоишь?» (3-2-1-Go)</strong><br>
-        1. Быстрый трек (180 BPM), хаотичный бег/прыжки.<br>
-        2. Резкая команда «СТОП! ЗАМРИ!».<br>
-        3. В тишине каждый про себя: 3 касания, 2 звука, 1 мысль («Пока, я занят»).<br>
-        <em>Это имитация паники с кнопкой перезагрузки.</em>
-    </div>
-
-    <!-- ИТОГОВАЯ КАРТОЧКА-ПАМЯТКА -->
-    <h2 style="margin-top: 2rem;">💊 МОЙ ХАКЕРСКИЙ КОДЕКС (на 24 часа)</h2>
-    <div class="card" style="background: #fef9e7; border: 2px solid #fbbf24;">
-        <p style="font-size: 1.3rem; font-weight: 600;">Запиши на руке маркером или в заметки:</p>
-        <div style="font-size: 1.8rem; font-weight: 700; margin: 15px 0; color: #b45309;">«СТОП = 3 прикосновения»</div>
-        <div style="font-size: 1.8rem; font-weight: 700; margin: 15px 0; color: #b45309;">«Пульс не врёт»</div>
-        <p style="margin-top: 20px;">Если слышишь нотацию, видишь спор в чате или тянешься за чипсами — вспомни свой код.</p>
-    </div>
-
-    <div class="footer-note">
-        Лаборатория сбоев · 12–14 лет · распечатано для внутреннего использования
-    </div>
-</div>
-
-<div style="margin-top: 20px; color: #64748b; max-width: 900px; text-align: center; font-size: 0.9rem;">
-    ⚡ Для печати нажмите кнопку справа внизу или используйте Ctrl+P (Cmd+P). В окне печати выберите «Сохранить как PDF».
-</div>
+    <button class="print-btn" style="margin-top: 20px;" onclick="window.print()">🖨️ Распечатать ещё раз</button>
+    <div class="footer-note">⭐ Для детей 5–7 лет · нейроподход · логопедия · моторика ⭐</div>
+    <script>
+        // небольшая интерактивность (не влияет на печать)
+        document.querySelectorAll('.emotion-item').forEach(el => {
+            el.addEventListener('click', function() {
+                document.querySelectorAll('.emotion-item').forEach(e => e.style.background = '#fffaee');
+                this.style.background = '#c7e9c0';
+            });
+        });
+    </script>
 </body>
 </html>
