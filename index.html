@@ -109,7 +109,7 @@
     <div class="subhead">талисман Городского психолого-педагогического центра</div>
 
     <div class="mascot-container">
-        <svg viewBox="0 0 600 520" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ёжик Понимайка — мягкие иголки, тёплое сердце">
+        <svg viewBox="0 0 600 520" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ёжик Понимайка — сидит на травке, держит сердечко">
             <defs>
                 <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stop-color="#C9B09D"/>
@@ -127,7 +127,7 @@
                     <stop offset="0%" stop-color="#4A3528"/>
                     <stop offset="100%" stop-color="#2C1E16"/>
                 </radialGradient>
-                <!-- Свечение от листочков-стикеров -->
+                <!-- Свечение от листочков -->
                 <filter id="glow">
                     <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
                     <feMerge>
@@ -137,115 +137,141 @@
                 </filter>
             </defs>
 
-            <!-- Тень -->
-            <ellipse cx="300" cy="480" rx="180" ry="22" fill="#D3C6BC" opacity="0.6" />
+            <!-- ===== ФОН: ТРАВКА И ЗЕМЛЯ ===== -->
+            <!-- Земля (овальная тень) -->
+            <ellipse cx="300" cy="480" rx="190" ry="25" fill="#C4B4A6" opacity="0.6" />
+            <!-- Трава (несколько зелёных дуг) -->
+            <g stroke="#8CA67C" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.7">
+                <path d="M 140 475 Q 145 450, 150 475" />
+                <path d="M 160 478 Q 165 455, 170 478" />
+                <path d="M 430 478 Q 435 455, 440 478" />
+                <path d="M 450 475 Q 455 450, 460 475" />
+                <path d="M 200 480 Q 205 460, 210 480" />
+                <path d="M 390 480 Q 395 460, 400 480" />
+                <path d="M 260 482 Q 265 465, 270 482" />
+                <path d="M 330 482 Q 335 465, 340 482" />
+            </g>
+
+            <!-- ===== ЗАДНИЕ ЛАПЫ (сидит) ===== -->
+            <!-- Левая задняя лапа -->
+            <ellipse cx="230" cy="460" rx="30" ry="20" fill="url(#bodyGrad)" stroke="#7A685A" stroke-width="3" />
+            <ellipse cx="230" cy="465" rx="15" ry="10" fill="#D8C0B0" />
+            <!-- Правая задняя лапа -->
+            <ellipse cx="370" cy="460" rx="30" ry="20" fill="url(#bodyGrad)" stroke="#7A685A" stroke-width="3" />
+            <ellipse cx="370" cy="465" rx="15" ry="10" fill="#D8C0B0" />
 
             <!-- ===== ИГОЛКИ (мягкие, закруглённые) ===== -->
             <g fill="none" stroke="#9B8474" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
                 <!-- Верхний ряд -->
-                <path d="M 230 220 L 220 180" />
-                <path d="M 255 210 L 250 165" />
-                <path d="M 280 205 L 280 155" />
-                <path d="M 305 205 L 310 155" />
-                <path d="M 330 210 L 335 165" />
-                <path d="M 355 220 L 365 180" />
+                <path d="M 240 240 L 230 190" />
+                <path d="M 265 230 L 260 175" />
+                <path d="M 290 225 L 290 170" />
+                <path d="M 315 225 L 320 170" />
+                <path d="M 340 230 L 345 175" />
+                <path d="M 360 240 L 370 190" />
                 <!-- Боковые -->
-                <path d="M 195 250 L 160 230" />
-                <path d="M 185 275 L 145 265" />
-                <path d="M 190 300 L 150 300" />
-                <path d="M 390 250 L 425 230" />
-                <path d="M 400 275 L 440 265" />
-                <path d="M 395 300 L 435 300" />
+                <path d="M 200 270 L 160 245" />
+                <path d="M 190 300 L 145 285" />
+                <path d="M 195 330 L 150 325" />
+                <path d="M 400 270 L 440 245" />
+                <path d="M 410 300 L 455 285" />
+                <path d="M 405 330 L 450 325" />
                 <!-- Задние (короче) -->
-                <path d="M 210 235 L 195 205" />
-                <path d="M 380 235 L 395 205" />
+                <path d="M 220 250 L 205 215" />
+                <path d="M 380 250 L 395 215" />
             </g>
             <!-- Дополнительные иголочки (посветлее) -->
             <g fill="none" stroke="#B5A292" stroke-width="4.5" stroke-linecap="round">
-                <path d="M 240 215 L 230 185" />
-                <path d="M 295 205 L 295 165" />
-                <path d="M 345 215 L 355 185" />
-                <path d="M 200 260 L 175 245" />
-                <path d="M 390 260 L 415 245" />
+                <path d="M 250 235 L 240 200" />
+                <path d="M 305 220 L 305 185" />
+                <path d="M 350 235 L 360 200" />
+                <path d="M 210 285 L 180 270" />
+                <path d="M 390 285 L 420 270" />
             </g>
 
-            <!-- ===== ТЕЛО (овальное) ===== -->
-            <ellipse cx="300" cy="370" rx="110" ry="100" fill="url(#bodyGrad)" stroke="#7A685A" stroke-width="3" />
+            <!-- ===== ТЕЛО (овальное, сидя) ===== -->
+            <ellipse cx="300" cy="370" rx="115" ry="105" fill="url(#bodyGrad)" stroke="#7A685A" stroke-width="3.5" />
             <!-- Животик -->
-            <ellipse cx="300" cy="390" rx="75" ry="70" fill="url(#bellyGrad)" />
+            <ellipse cx="300" cy="390" rx="80" ry="75" fill="url(#bellyGrad)" />
 
             <!-- ===== ЛИСТОЧКИ-СТИКЕРЫ НА СПИНЕ ===== -->
             <g filter="url(#glow)">
                 <!-- Листок 1 (зелёный) -->
-                <path d="M 240 270 Q 230 255, 240 245 Q 250 255, 240 270 Z" fill="#9DB87F" stroke="#6F8C5E" stroke-width="1.5" />
+                <path d="M 240 285 Q 230 265, 240 255 Q 250 265, 240 285 Z" fill="#9DB87F" stroke="#6F8C5E" stroke-width="1.5" />
                 <!-- Листок 2 (оранжевый) -->
-                <path d="M 270 250 Q 265 235, 275 225 Q 285 235, 270 250 Z" fill="#F0AA6B" stroke="#C9854A" stroke-width="1.5" />
+                <path d="M 275 265 Q 270 245, 280 235 Q 290 245, 275 265 Z" fill="#F0AA6B" stroke="#C9854A" stroke-width="1.5" />
                 <!-- Листок 3 (голубой) -->
-                <path d="M 300 245 Q 300 225, 310 220 Q 320 230, 300 245 Z" fill="#8FC0C9" stroke="#619AA6" stroke-width="1.5" />
+                <path d="M 305 260 Q 305 240, 315 235 Q 325 245, 305 260 Z" fill="#8FC0C9" stroke="#619AA6" stroke-width="1.5" />
                 <!-- Листок 4 (жёлтый) -->
-                <path d="M 330 250 Q 330 235, 340 230 Q 350 240, 330 250 Z" fill="#F2D87B" stroke="#C9B14E" stroke-width="1.5" />
+                <path d="M 335 265 Q 335 245, 345 240 Q 355 250, 335 265 Z" fill="#F2D87B" stroke="#C9B14E" stroke-width="1.5" />
                 <!-- Листок 5 (розовый) -->
-                <path d="M 350 270 Q 360 255, 355 245 Q 345 255, 350 270 Z" fill="#E6A3B6" stroke="#C47A8E" stroke-width="1.5" />
+                <path d="M 355 285 Q 365 265, 360 255 Q 350 265, 355 285 Z" fill="#E6A3B6" stroke="#C47A8E" stroke-width="1.5" />
             </g>
 
-            <!-- ===== ЛАПКИ ===== -->
-            <ellipse cx="215" cy="430" rx="22" ry="14" fill="#C9B09D" stroke="#7A685A" stroke-width="2.5" />
-            <ellipse cx="385" cy="430" rx="22" ry="14" fill="#C9B09D" stroke="#7A685A" stroke-width="2.5" />
-            <!-- Пальчики -->
-            <circle cx="205" cy="435" r="4" fill="#A88E7C" />
-            <circle cx="215" cy="438" r="4" fill="#A88E7C" />
-            <circle cx="225" cy="435" r="4" fill="#A88E7C" />
-            <circle cx="375" cy="435" r="4" fill="#A88E7C" />
-            <circle cx="385" cy="438" r="4" fill="#A88E7C" />
-            <circle cx="395" cy="435" r="4" fill="#A88E7C" />
+            <!-- ===== ПЕРЕДНИЕ ЛАПКИ (держат сердечко) ===== -->
+            <!-- Левая передняя лапка -->
+            <path d="M 240 410 Q 230 440, 260 450" fill="url(#bodyGrad)" stroke="#7A685A" stroke-width="3" />
+            <ellipse cx="260" cy="450" rx="15" ry="12" fill="#C9B09D" />
+            <!-- Правая передняя лапка -->
+            <path d="M 360 410 Q 370 440, 340 450" fill="url(#bodyGrad)" stroke="#7A685A" stroke-width="3" />
+            <ellipse cx="340" cy="450" rx="15" ry="12" fill="#C9B09D" />
 
-            <!-- ===== ГОЛОВА ===== -->
-            <ellipse cx="300" cy="290" rx="90" ry="80" fill="#D8C0B0" stroke="#7A685A" stroke-width="3" />
+            <!-- ===== СЕРДЕЧКО В ЛАПКАХ ===== -->
+            <path d="M 300 430 C 300 420, 285 415, 280 420 C 275 425, 300 450, 300 450 C 300 450, 325 425, 320 420 C 315 415, 300 420, 300 430 Z" 
+                  fill="#FF8A7A" stroke="#D94A3A" stroke-width="2" opacity="0.95" />
+            <!-- Блик на сердечке -->
+            <path d="M 290 430 Q 295 425, 300 430" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.6" />
+
+            <!-- ===== ГОЛОВА (повёрнута немного вправо) ===== -->
+            <ellipse cx="310" cy="290" rx="90" ry="80" fill="#D8C0B0" stroke="#7A685A" stroke-width="3.5" transform="rotate(5 310 290)" />
 
             <!-- МОРДОЧКА (светлая) -->
-            <ellipse cx="300" cy="315" rx="55" ry="40" fill="#F3E4D8" />
+            <ellipse cx="320" cy="315" rx="55" ry="40" fill="#F3E4D8" transform="rotate(5 320 315)" />
 
-            <!-- НОС (блестящий) -->
-            <ellipse cx="300" cy="305" rx="14" ry="10" fill="url(#noseGrad)" stroke="#3D281E" stroke-width="1.5" />
-            <ellipse cx="296" cy="302" rx="4" ry="3" fill="white" opacity="0.4" />
+            <!-- НОС -->
+            <ellipse cx="335" cy="305" rx="14" ry="10" fill="url(#noseGrad)" stroke="#3D281E" stroke-width="1.5" transform="rotate(5 335 305)" />
+            <ellipse cx="331" cy="302" rx="4" ry="3" fill="white" opacity="0.4" />
 
             <!-- РОТ (улыбка) -->
-            <path d="M 280 325 Q 300 340, 320 325" fill="none" stroke="#7A685A" stroke-width="3" stroke-linecap="round" />
+            <path d="M 315 325 Q 335 340, 355 325" fill="none" stroke="#7A685A" stroke-width="3" stroke-linecap="round" />
 
-            <!-- ЩЁЧКИ (румянец) -->
-            <ellipse cx="250" cy="315" rx="16" ry="11" fill="#E2A98B" opacity="0.5" />
-            <ellipse cx="350" cy="315" rx="16" ry="11" fill="#E2A98B" opacity="0.5" />
+            <!-- ЩЁЧКИ -->
+            <ellipse cx="280" cy="315" rx="16" ry="11" fill="#E2A98B" opacity="0.5" />
+            <ellipse cx="360" cy="315" rx="16" ry="11" fill="#E2A98B" opacity="0.5" />
 
-            <!-- ГЛАЗА (большие, добрые) -->
-            <g transform="translate(245, 280)">
-                <ellipse cx="0" cy="0" rx="20" ry="23" fill="white" stroke="#7A685A" stroke-width="2" />
-                <ellipse cx="2" cy="2" rx="13" ry="16" fill="url(#eyeGrad)" />
+            <!-- ГЛАЗА -->
+            <!-- Левый глаз (дальний) -->
+            <g transform="translate(270, 280)">
+                <ellipse cx="0" cy="0" rx="18" ry="21" fill="white" stroke="#7A685A" stroke-width="2" />
+                <ellipse cx="2" cy="2" rx="12" ry="15" fill="url(#eyeGrad)" />
                 <circle cx="6" cy="-3" r="5" fill="white" opacity="0.9" />
                 <circle cx="-2" cy="6" r="2.5" fill="white" opacity="0.5" />
-                <!-- Реснички -->
-                <path d="M -14 -10 L -22 -16 M -8 -18 L -12 -27 M 2 -22 L 2 -31" stroke="#7A685A" stroke-width="2.5" stroke-linecap="round" fill="none" />
+                <path d="M -12 -8 L -20 -14 M -6 -16 L -10 -25 M 4 -20 L 4 -29" stroke="#7A685A" stroke-width="2.5" stroke-linecap="round" fill="none" />
             </g>
-            <g transform="translate(355, 280)">
+            <!-- Правый глаз (ближний) -->
+            <g transform="translate(350, 280)">
                 <ellipse cx="0" cy="0" rx="20" ry="23" fill="white" stroke="#7A685A" stroke-width="2" />
-                <ellipse cx="-2" cy="2" rx="13" ry="16" fill="url(#eyeGrad)" />
+                <ellipse cx="-2" cy="2" rx="14" ry="17" fill="url(#eyeGrad)" />
                 <circle cx="-6" cy="-3" r="5" fill="white" opacity="0.9" />
                 <circle cx="2" cy="6" r="2.5" fill="white" opacity="0.5" />
                 <path d="M 14 -10 L 22 -16 M 8 -18 L 12 -27 M -2 -22 L -2 -31" stroke="#7A685A" stroke-width="2.5" stroke-linecap="round" fill="none" />
             </g>
 
+            <!-- БРОВКИ -->
+            <path d="M 245 260 Q 265 250, 280 258" fill="none" stroke="#7A685A" stroke-width="3" stroke-linecap="round" />
+            <path d="M 355 260 Q 375 250, 390 258" fill="none" stroke="#7A685A" stroke-width="3" stroke-linecap="round" />
+
             <!-- УШКИ (маленькие, круглые) -->
-            <ellipse cx="215" cy="250" rx="16" ry="14" fill="#D8C0B0" stroke="#7A685A" stroke-width="2.5" />
-            <ellipse cx="215" cy="250" rx="8" ry="7" fill="#E5CEBD" />
+            <ellipse cx="235" cy="250" rx="16" ry="14" fill="#D8C0B0" stroke="#7A685A" stroke-width="2.5" />
+            <ellipse cx="235" cy="250" rx="8" ry="7" fill="#E5CEBD" />
             <ellipse cx="385" cy="250" rx="16" ry="14" fill="#D8C0B0" stroke="#7A685A" stroke-width="2.5" />
             <ellipse cx="385" cy="250" rx="8" ry="7" fill="#E5CEBD" />
 
-            <!-- БРОВКИ (добрые) -->
-            <path d="M 225 260 Q 245 250, 260 258" fill="none" stroke="#7A685A" stroke-width="3" stroke-linecap="round" />
-            <path d="M 375 260 Q 355 250, 340 258" fill="none" stroke="#7A685A" stroke-width="3" stroke-linecap="round" />
-
-            <!-- ===== МАЛЕНЬКОЕ СЕРДЕЧКО В РУКАХ ===== -->
-            <path d="M 285 430 C 285 425, 275 420, 270 425 C 265 430, 285 450, 285 450 C 285 450, 305 430, 300 425 C 295 420, 285 425, 285 430 Z" 
-                  fill="#FF8A7A" stroke="#D94A3A" stroke-width="1.5" opacity="0.9" />
+            <!-- Несколько травинок спереди для уюта -->
+            <g stroke="#8CA67C" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6">
+                <path d="M 280 480 Q 275 465, 280 480" />
+                <path d="M 320 480 Q 325 465, 320 480" />
+            </g>
         </svg>
     </div>
 
