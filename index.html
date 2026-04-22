@@ -1,384 +1,682 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Раздаточные материалы · 15–17 лет · Полигон навыков</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Альтернативные реальности: Твой выбор</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        body {
-            background: #e6e9ef;
-            font-family: 'Segoe UI', 'Arial', sans-serif;
-            padding: 30px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    body {
+      background: linear-gradient(145deg, #0b0f1c 0%, #1a1f33 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
+      padding: 16px;
+      margin: 0;
+      color: #e9edff;
+    }
 
-        .materials-container {
-            max-width: 900px;
-            width: 100%;
-        }
+    .game-container {
+      max-width: 700px;
+      width: 100%;
+      background: rgba(18, 25, 45, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(100, 150, 255, 0.25);
+      border-radius: 48px;
+      padding: 28px 24px 32px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(70, 130, 255, 0.1) inset;
+      transition: all 0.2s ease;
+    }
 
-        .sheet {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            padding: 25px 30px;
-            margin-bottom: 30px;
-            border: 1px solid #cad4e2;
-            page-break-after: always;
-        }
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-align: center;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #b3cdff, #7aa5ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 12px #3f6ef080;
+    }
 
-        h1 {
-            font-size: 26px;
-            color: #1e3a5f;
-            border-bottom: 3px solid #6c8eb2;
-            padding-bottom: 8px;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
+    .subhead {
+      text-align: center;
+      color: #a8b9e0;
+      margin-bottom: 28px;
+      font-style: italic;
+      font-weight: 400;
+      border-bottom: 1px dashed #2f3b66;
+      padding-bottom: 16px;
+    }
 
-        h2 {
-            font-size: 20px;
-            color: #2c3e50;
-            margin: 20px 0 10px;
-            font-weight: 500;
-        }
+    /* Экран выбора мира */
+    .world-selector {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
 
-        label {
-            font-weight: 500;
-            color: #1e3a5f;
-        }
+    .world-btn {
+      background: #121b30;
+      border: 2px solid #2e3f66;
+      border-radius: 60px;
+      padding: 20px 22px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #d3e0ff;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 8px 0 #0b101f;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
 
-        input, textarea {
-            border: 1.5px solid #b0c4de;
-            border-radius: 12px;
-            padding: 8px 12px;
-            font-family: inherit;
-            font-size: 14px;
-            width: 100%;
-            margin: 5px 0 15px;
-            background: #fbfdff;
-        }
+    .world-btn:hover {
+      background: #1b2742;
+      border-color: #5f7ec0;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 0 #0b101f;
+    }
 
-        textarea {
-            min-height: 60px;
-            resize: vertical;
-        }
+    .world-btn:active {
+      transform: translateY(4px);
+      box-shadow: 0 4px 0 #0b101f;
+    }
 
-        .checkbox-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px 20px;
-            margin: 10px 0;
-        }
+    .world-icon {
+      font-size: 2.5rem;
+      background: #1f2c4b;
+      width: 58px;
+      height: 58px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+    .world-desc {
+      font-size: 0.95rem;
+      font-weight: normal;
+      color: #9aacd9;
+      margin-top: 5px;
+    }
 
-        .lined-box {
-            border: 2px dashed #8ba3c4;
-            background: #f6f9fc;
-            padding: 15px;
-            border-radius: 16px;
-            margin: 15px 0;
-        }
+    /* Экран сюжета */
+    .story-screen {
+      display: none;
+    }
 
-        .silhouette-placeholder {
-            border: 3px dashed #6c8eb2;
-            background: #f4f9ff;
-            border-radius: 24px;
-            padding: 25px;
-            margin: 20px 0;
-            text-align: center;
-            color: #3a6282;
-            font-size: 16px;
-        }
+    .story-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 24px;
+      gap: 12px;
+    }
 
-        .suds-scale {
-            display: flex;
-            justify-content: space-between;
-            margin: 15px 0;
-            font-size: 12px;
-        }
+    .back-btn {
+      background: none;
+      border: 1.5px solid #43588a;
+      color: #b8c9ff;
+      border-radius: 40px;
+      padding: 8px 18px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
 
-        .suds-item {
-            text-align: center;
-            flex: 1;
-        }
+    .back-btn:hover {
+      background: #26345e;
+      border-color: #7e9bff;
+    }
 
-        .table-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
+    .world-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(to right, #e0c3ff, #a6c1ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-        .situation-cards {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
+    .scene-card {
+      background: #0e1629e0;
+      border-radius: 36px;
+      padding: 28px 22px;
+      margin: 10px 0 20px;
+      border: 1px solid #304a7a;
+      box-shadow: inset 0 2px 5px #00000033, 0 12px 18px -8px black;
+    }
 
-        .situation-card {
-            border: 2px solid #8ba3c4;
-            border-radius: 16px;
-            padding: 15px;
-            background: #f4f9ff;
-        }
+    .scene-text {
+      font-size: 1.25rem;
+      line-height: 1.5;
+      margin-bottom: 24px;
+      min-height: 130px;
+    }
 
-        .footer-note {
-            margin-top: 25px;
-            font-size: 12px;
-            color: #5e7a9a;
-            text-align: right;
-            border-top: 1px dotted #b0c4de;
-            padding-top: 12px;
-        }
+    .choices-area {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
 
-        .pdf-button {
-            background: #1e3a5f;
-            color: white;
-            border: none;
-            padding: 14px 28px;
-            border-radius: 40px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-            margin-bottom: 30px;
-            transition: 0.2s;
-            border: 1px solid #2c5a8c;
-        }
+    .choice-btn {
+      background: #19264d;
+      border: none;
+      border-left: 6px solid #3f6ef0;
+      border-radius: 60px;
+      padding: 18px 22px;
+      font-size: 1.1rem;
+      text-align: left;
+      color: #ecf2ff;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+      box-shadow: 0 5px 0 #0c1322;
+      line-height: 1.4;
+    }
 
-        .pdf-button:hover {
-            background: #0f2a44;
-        }
+    .choice-btn:hover {
+      background: #203366;
+      border-left-color: #7aa5ff;
+      transform: translateY(-2px);
+      box-shadow: 0 7px 0 #0c1322;
+    }
 
-        @media print {
-            body {
-                background: white;
-                padding: 0.3in;
-            }
-            .sheet {
-                box-shadow: none;
-                border: 1px solid #aaa;
-                page-break-after: always;
-                border-radius: 0;
-            }
-            input, textarea {
-                border: 1px solid #333;
-                background: white;
-            }
-            .no-print, .pdf-button {
-                display: none;
-            }
-        }
-    </style>
+    .choice-btn:active {
+      transform: translateY(3px);
+      box-shadow: 0 2px 0 #0c1322;
+    }
+
+    .restart-small {
+      margin-top: 24px;
+      text-align: center;
+    }
+
+    .btn-restart {
+      background: transparent;
+      border: 2px dashed #4e6eb0;
+      color: #bfd0ff;
+      padding: 12px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-restart:hover {
+      background: #1f2f55;
+      border-style: solid;
+    }
+
+    .reflection-box {
+      background: #1e2846;
+      border-radius: 28px;
+      padding: 22px;
+      margin-top: 28px;
+      border-left: 8px solid #ffb347;
+      color: #f0e6d2;
+    }
+
+    .reflection-title {
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Утилиты */
+    .mt-4 { margin-top: 16px; }
+    .text-center { text-align: center; }
+    .hidden { display: none !important; }
+
+    /* мобильная адаптация */
+    @media (max-width: 480px) {
+      .game-container { padding: 18px 14px; }
+      .world-btn { padding: 16px; font-size: 1.2rem; }
+      .scene-text { font-size: 1.1rem; }
+    }
+  </style>
 </head>
 <body>
-<button class="pdf-button no-print" onclick="window.print()">📥 Скачать PDF (сохранить через печать)</button>
-<div class="materials-container">
-
-    <!-- ==================== ШКАЛА СЕД ==================== -->
-    <div class="sheet">
-        <h1>📊 Шкала СЕД (Субъективные Единицы Дистресса)</h1>
-        <p><strong>Инструкция:</strong> Оцени свой уровень напряжения прямо сейчас от 0 до 10. 0 – полное спокойствие, 10 – максимальный дистресс.</p>
-        <div class="suds-scale">
-            <div class="suds-item">0<br>😌</div><div class="suds-item">1</div><div class="suds-item">2</div><div class="suds-item">3</div><div class="suds-item">4</div><div class="suds-item">5<br>😐</div><div class="suds-item">6</div><div class="suds-item">7</div><div class="suds-item">8</div><div class="suds-item">9</div><div class="suds-item">10<br>😫</div>
-        </div>
-        <div style="display: flex; gap: 30px; margin-top: 20px;">
-            <div><label>ВХОД:</label> ___________</div>
-            <div><label>ВЫХОД:</label> ___________</div>
-        </div>
-        <div style="margin-top: 20px;"><label>Занятие № ____   Дата: _______________   Имя: _________________________</label></div>
+<div class="game-container" id="gameContainer">
+  <!-- Главное меню выбора мира -->
+  <div id="worldSelection">
+    <h1>АЛЬТЕРВЕРС</h1>
+    <div class="subhead">выбери реальность · прими решение</div>
+    <div class="world-selector">
+      <div class="world-btn" data-world="bullying">
+        <span class="world-icon">🚸</span>
+        <div><strong>Границы травли</strong><div class="world-desc">Что, если ты станешь свидетелем?</div></div>
+      </div>
+      <div class="world-btn" data-world="social">
+        <span class="world-icon">📱</span>
+        <div><strong>Иллюзия идеала</strong><div class="world-desc">Давление соцсетей и лайки</div></div>
+      </div>
+      <div class="world-btn" data-world="detox">
+        <span class="world-icon">🌿</span>
+        <div><strong>Тишина в сети</strong><div class="world-desc">Сутки без телефона — что будет?</div></div>
+      </div>
+      <div class="world-btn" data-world="shadow">
+        <span class="world-icon">🕶️</span>
+        <div><strong>Тень в Максе</strong><div class="world-desc">Опасные знакомства в мессенджере</div></div>
+      </div>
     </div>
-
-    <!-- ==================== ПРИЛОЖЕНИЕ 1: АЛГОРИТМ ВЫЖИВАНИЯ (БЛОК-СХЕМА) ==================== -->
-    <div class="sheet">
-        <h1>🧩 АЛГОРИТМ ВЫЖИВАНИЯ: БЛОК-СХЕМА</h1>
-        <p><label>Разработчик:</label> _________________________________________ <label>Дата:</label> _______________</p>
-        <p><em>Нарисуй или запиши свою блок-схему (условия → развилки → подпрограммы).</em></p>
-        <div class="lined-box">
-            <p>📍 <strong>Точка входа:</strong> «Что я чувствую?»</p>
-            <p>🔹 Если 0-4 СЕД → профилактика:<br>_________________________</p>
-            <p>🔹 Если 5-7 СЕД → заземление:<br>_________________________</p>
-            <p>🔹 Если 8-10 СЕД → АВАРИЙНЫЙ ПРОТОКОЛ:<br>1. СТОП<br>2. Квадратное дыхание (4-4-4-4)<br>3. Сигнал SOS (контакт 1: ________, контакт 2: ________)<br>4. Замещение (лед, эспандер, дневник)</p>
-            <p>🔄 Переоценка СЕД → если не снизился → запустить резервный план (звонок ________ или 112/горячая линия)</p>
-        </div>
-        <p><strong>Дополнительные ветки/условия:</strong><br><textarea placeholder="Опиши свои условия..."></textarea></p>
+    <div class="text-center mt-4" style="color:#7b90c7; font-size:0.9rem;">
+      ⚡ каждый выбор меняет финал — смотри карту последствий
     </div>
+  </div>
 
-    <!-- ==================== ПРИЛОЖЕНИЕ 2: КОГНИТИВНЫЙ ПРЕДОХРАНИТЕЛЬ ==================== -->
-    <div class="sheet">
-        <h1>⚡ КОГНИТИВНЫЙ ПРЕДОХРАНИТЕЛЬ</h1>
-        <p><label>Разработчик:</label> _________________________________________ <label>Дата:</label> _______________</p>
-        <table style="width:100%; border-collapse: collapse;" border="1" cellpadding="8">
-            <thead><tr><th>Триггерная фраза</th><th>Действие вместо реакции</th></tr></thead>
-            <tbody>
-                <tr><td>1. <br><textarea style="border:none; width:100%;"></textarea></td><td><textarea style="border:none; width:100%;"></textarea></td></tr>
-                <tr><td>2. <br><textarea style="border:none; width:100%;"></textarea></td><td><textarea style="border:none; width:100%;"></textarea></td></tr>
-                <tr><td>3. <br><textarea style="border:none; width:100%;"></textarea></td><td><textarea style="border:none; width:100%;"></textarea></td></tr>
-            </tbody>
-        </table>
-        <p><strong>Базовое действие по умолчанию:</strong> Сжать кулак на 2 сек → разжать → глубокий вдох → посмотреть на ладонь → сказать «Я здесь и сейчас».</p>
-        <p><strong>Моя контр-мантра:</strong> «_________________________________________________»</p>
+  <!-- Экран активной истории -->
+  <div id="storyScreen" class="story-screen">
+    <div class="story-header">
+      <button class="back-btn" id="backToWorldsBtn">← Миры</button>
+      <span class="world-title" id="currentWorldTitle">Границы травли</span>
     </div>
-
-    <!-- ==================== ПРИЛОЖЕНИЕ 3: КЕЙС «ЧАТ КЛАССА» ==================== -->
-    <div class="sheet">
-        <h1>💬 КЕЙС «ЧАТ КЛАССА» (для Суда присяжных)</h1>
-        <div class="lined-box">
-            <p><strong>Участники:</strong> Аня, Дима, Катя, Лена, Марк, Саша</p>
-            <p>Аня [19:34]: «Ребята, как вчера круто посидели у меня! 😂🔥 Надо повторять» [фото]</p>
-            <p>Лена [19:45]: «Ого, а че нас не позвали? 🙄»</p>
-            <p>Саша [19:47]: «Класс, реально. Секретные вечеринки устраиваете?»</p>
-            <p>Аня [19:50]: «Да ладно вам, просто спонтанно собрались, я даже не думала»</p>
-            <p>Дима [19:52]: «Сорян, народ, реально случайно вышло»</p>
-            <p>Лена [19:55]: «Ага, случайно. Полкласса "случайно" не позвали. Ок»</p>
-            <p>Марк [20:01]: «Да какая разница, это просто туса, чего вы взъелись»</p>
-            <p>Саша [20:05]: «Ну да, мы же не элита, куда нам»</p>
-            <p>Катя [20:10]: «Ребят, правда, никто не хотел никого обидеть. Просто встретились после школы»</p>
-            <p>Лена [20:15]: «Ну-ну. В следующий раз мы "случайно" соберемся и вас не позовем»</p>
-        </div>
-        <p class="footer-note">Используется в упражнении «Суд присяжных: доказательная база».</p>
+    <div class="scene-card">
+      <div class="scene-text" id="sceneText">Загрузка...</div>
+      <div class="choices-area" id="choicesContainer"></div>
     </div>
-
-    <!-- ==================== ПРИЛОЖЕНИЕ 4: СУД ПРИСЯЖНЫХ (бланк) ==================== -->
-    <div class="sheet">
-        <h1>⚖️ СУД ПРИСЯЖНЫХ: ДОКАЗАТЕЛЬНАЯ БАЗА</h1>
-        <p><label>Судья (Я):</label> _________________________________________ <label>Дата:</label> _______________</p>
-        <p><strong>Фабула дела (что произошло):</strong><br><textarea></textarea></p>
-        <p><strong>Версия обвинения (мои автоматические мысли):</strong><br><textarea></textarea></p>
-        <p><strong>Версия защиты (альтернативные объяснения):</strong><br><textarea></textarea></p>
-        <p><strong>Доказательства (только факты):</strong><br><textarea></textarea></p>
-        <p><strong>Вердикт:</strong> <input type="checkbox"> Виновен(а) <input type="checkbox"> Невиновен(а) <input type="checkbox"> Недостаточно доказательств</p>
-        <p><strong>Как изменилось состояние после анализа?</strong><br><textarea></textarea></p>
+    <div id="reflectionArea" class="reflection-box hidden"></div>
+    <div class="restart-small">
+      <button class="btn-restart" id="restartCurrentBtn">↻ начать заново</button>
     </div>
-
-    <!-- ==================== ПРИЛОЖЕНИЕ 5: КАРТОГРАФИЯ АФФЕКТА (пустое поле для силуэта) ==================== -->
-    <div class="sheet">
-        <h1>🗺️ КАРТОГРАФИЯ АФФЕКТА · Индивидуальная карта ощущений</h1>
-        <p><label>Исследователь:</label> _________________________________________ <label>Дата:</label> _______________</p>
-        <p>Раскрась на силуэте (приклей или нарисуй) зоны: 🔴 тревога, 🔵 ярость, ⚫ пустота.</p>
-        <div class="silhouette-placeholder">
-            <p>⬇️ Место для силуэта человека ⬇️</p>
-            <p style="font-size: 40px;">🧑</p>
-            <p>(приклей контур и раскрась)</p>
-        </div>
-        <p><strong>Мой «сторожевой сигнал» (самое раннее ощущение):</strong><br>Тревога: ___________ Ярость: ___________ Пустота: ___________</p>
-        <p><strong>План раннего вмешательства:</strong><br>1. Остановиться. 2. 3 глубоких вдоха. 3. Спросить: «Где я? Есть ли угроза?». 4. Переключиться на внешний объект.</p>
-    </div>
-
-    <!-- ==================== ПРИЛОЖЕНИЕ 6: КОПИНГ-ПРОШИВКА (конфигурация) ==================== -->
-    <div class="sheet">
-        <h1>💾 КОПИНГ-ПРОШИВКА: КОНФИГУРАЦИЯ v.1.0</h1>
-        <p><label>Разработчик:</label> _________________________________________ <label>Дата:</label> _______________</p>
-        <h2>⚡ УРОВЕНЬ 1: ВИДЖЕТЫ (10–30 сек, незаметно)</h2>
-        <p>1. ____________________ 2. ____________________ 3. ____________________</p>
-        <h2>📱 УРОВЕНЬ 2: ПРИЛОЖЕНИЯ (2–5 мин, уединение)</h2>
-        <p>1. ____________________ 2. ____________________ 3. ____________________</p>
-        <h2>🚨 УРОВЕНЬ 3: АВАРИЙНЫЙ ПРОТОКОЛ (СЕД 8–10)</h2>
-        <p>1. ____________________ 2. ____________________ 3. Сигнал SOS: конт.1 _________ конт.2 _________</p>
-        <p><strong>Цифровая интеграция:</strong> Папка «SOS» на телефоне: быстрый набор, плейлист __________, заметка с фразой «____________________».</p>
-    </div>
-
-    <!-- ==================== ПРИЛОЖЕНИЕ 7: КАРТОЧКИ СОСТОЯНИЙ (инвентаризация) ==================== -->
-    <div class="sheet">
-        <h1>📋 ИНВЕНТАРИЗАЦИЯ КОПИНГОВ (карточки)</h1>
-        <div class="situation-cards">
-            <div class="situation-card"><strong>ТРЕВОГА:</strong> [ ] дыхание [ ] счёт [ ] 5-4-3-2-1 [ ] звонок [ ] вода [ ] музыка</div>
-            <div class="situation-card"><strong>ЯРОСТЬ:</strong> [ ] кулак [ ] рвать бумагу [ ] подушка [ ] ходьба [ ] спорт</div>
-            <div class="situation-card"><strong>ПУСТОТА:</strong> [ ] душ [ ] еда [ ] видео [ ] животное [ ] дневник</div>
-            <div class="situation-card"><strong>САМОПОВРЕЖДЕНИЕ:</strong> [ ] лёд [ ] резинка [ ] рисование [ ] холод [ ] звонок</div>
-        </div>
-        <p class="footer-note">Отметь галочкой, что пробовал(а) и что реально помогает.</p>
-    </div>
-
-    <!-- ==================== ПРИЛОЖЕНИЕ 8: КАРТОЧКИ ДЕСТРУКТИВНЫХ УТВЕРЖДЕНИЙ ==================== -->
-    <div class="sheet">
-        <h1>💢 ДЕСТРУКТИВНЫЕ УТВЕРЖДЕНИЯ (для дипломатического протокола)</h1>
-        <div class="situation-cards">
-            <div class="situation-card">«Ты никому не нужен. Всем было бы лучше без тебя.»</div>
-            <div class="situation-card">«Ты неудачник. У тебя никогда ничего не получится.»</div>
-            <div class="situation-card">«Ты странный. С тобой что-то не так.»</div>
-            <div class="situation-card">«Ты обуза для родителей.»</div>
-            <div class="situation-card">«Ты никогда не изменишься. Всё бессмысленно.»</div>
-            <div class="situation-card">«Твои проблемы — ерунда. Ты просто нытик.»</div>
-        </div>
-    </div>
-
-    <!-- ==================== ПРИЛОЖЕНИЕ 9: ДИПЛОМАТИЧЕСКИЙ ПРОТОКОЛ ==================== -->
-    <div class="sheet">
-        <h1>🎙️ ДИПЛОМАТИЧЕСКИЙ ПРОТОКОЛ</h1>
-        <p><label>Дипломат:</label> _________________________________________ <label>Дата:</label> _______________</p>
-        <table style="width:100%; border-collapse: collapse;" border="1" cellpadding="8">
-            <thead><tr><th>Утверждение критика</th><th>Дипломатические вопросы</th></tr></thead>
-            <tbody>
-                <tr><td><textarea></textarea></td><td>1. На каких фактах основано?<br>2. Есть ли опровергающие факты?<br>3. Это абсолютная истина?<br>4. Что конкретно сделать?</td></tr>
-                <tr><td><textarea></textarea></td><td></td></tr>
-            </tbody>
-        </table>
-        <p><strong>Шпаргалка вопросов:</strong><br>• «На каких конкретных фактах основано?»<br>• «Есть ли факты, противоречащие этому?»<br>• «Это истина или преувеличение?»<br>• «Что я могу сделать в ближайшие 5 минут?»</p>
-    </div>
-
-    <!-- ==================== ПРИЛОЖЕНИЕ 10: КЕЙСЫ ДЛЯ ПОЛЕВЫХ ИСПЫТАНИЙ ==================== -->
-    <div class="sheet">
-        <h1>📁 КЕЙСЫ ДЛЯ ИНДИВИДУАЛЬНОЙ РАБОТЫ</h1>
-        <div class="situation-card"><strong>КЕЙС 1:</strong> Друг пишет: «Нам нужно серьёзно поговорить. Я больше так не могу». Ты один(на) дома, тревога нарастает.</div>
-        <div class="situation-card" style="margin-top:10px;"><strong>КЕЙС 2:</strong> В классе слышишь обсуждение: «…он(а) странный(ая), вечно один(на) сидит». Замечают тебя и замолкают.</div>
-        <div class="situation-card" style="margin-top:10px;"><strong>КЕЙС 3:</strong> Родители устроили скандал из-за оценок, кричат, ты уходишь в комнату, чувство пустоты, мысли о самоповреждении.</div>
-    </div>
-
-    <!-- ==================== ПРИЛОЖЕНИЕ 11: БОРТОВОЙ ЖУРНАЛ (ПОЛЕВЫЕ ИСПЫТАНИЯ) ==================== -->
-    <div class="sheet">
-        <h1>📓 БОРТОВОЙ ЖУРНАЛ: ПОЛЕВЫЕ ИСПЫТАНИЯ · Миссия «Аудиошторм»</h1>
-        <p><label>Инженер-испытатель:</label> _________________________ <label>Дата:</label> _______________</p>
-        <p><strong>1. Во время аудио-хаоса:</strong> Удавалось 5-4-3-2-1? <input type="checkbox"> Да <input type="checkbox"> С перерывами <input type="checkbox"> Нет</p>
-        <p>Самые сильные ощущения: ____________________ Задела фраза: ____________________</p>
-        <p><strong>2. Работа с кейсом (номер ___):</strong><br>Сторожевые сигналы: ____________________<br>Инструменты Уровня 1: ____________________<br>Инструменты Уровня 2: ____________________<br>Аварийный протокол: ____________________<br>Дипломатические вопросы: ____________________<br>Итоговый план: ____________________</p>
-        <p><strong>3. Оценка устойчивости (1-10):</strong> ____</p>
-        <p><strong>4. Главный вывод:</strong><br><textarea></textarea></p>
-    </div>
-
-    <!-- ==================== ПРИЛОЖЕНИЕ 12: ПРОЕКТ «ПЛАНОВОЕ ТЕХОБСЛУЖИВАНИЕ» ==================== -->
-    <div class="sheet">
-        <h1>📋 ПРОЕКТ «ПЛАНОВОЕ ТЕХОБСЛУЖИВАНИЕ» (3 месяца)</h1>
-        <p><label>Главный инженер:</label> _________________________ <label>Период:</label> с _________ по _________</p>
-        <h2>🔧 ЕЖЕДНЕВНО</h2>
-        <p>1. ____________________ (время: ____)  2. ____________________</p>
-        <h2>🔩 ЕЖЕНЕДЕЛЬНО</h2>
-        <p>Диагностика: ____________________ Соц. контакт: ____________________ Ревизия прошивки: ____________________</p>
-        <h2>⚙️ ЕЖЕМЕСЯЧНО</h2>
-        <p>Стратегический обзор: ____________________ Внешний аудит (встреча): ____________________</p>
-        <h2>🚨 ПРОТОКОЛ «КРАСНЫЕ ФЛАГИ»</h2>
-        <p>Признаки: [ ] мысли о СП/суициде [ ] невозможность дел 3+ дня [ ] резкое ухудшение сна/аппетита</p>
-        <p>Действия: 1. Аварийный протокол 2. Контакт: _____________ 3. Горячая линия 8-800-2000-122</p>
-        <p>Подпись: _____________</p>
-    </div>
-
-    <!-- ==================== ПРИЛОЖЕНИЕ 13: ДИПЛОМ ==================== -->
-    <div class="sheet" style="text-align: center;">
-        <h1 style="border: none; font-size: 32px;">🏅 ДИПЛОМ 🏅</h1>
-        <p style="font-size: 20px;">НАСТОЯЩИМ ПОДТВЕРЖДАЕТСЯ, ЧТО</p>
-        <div style="border-bottom: 2px solid #1e3a5f; width: 80%; margin: 20px auto;"></div>
-        <p style="font-size: 28px; font-weight: bold;">________________________</p>
-        <div style="border-bottom: 2px solid #1e3a5f; width: 80%; margin: 20px auto;"></div>
-        <p>успешно прошёл(ла) продвинутый курс «АРХИТЕКТОРЫ УСТОЙЧИВОСТИ»<br>и освоил(а) системные компетенции:</p>
-        <p>🛑 СТОП-КРАН · 📡 СЕЙСМОГРАФ · 💾 КОПИНГ-ПРОШИВКА · ⚖️ СУД ПРИСЯЖНЫХ · 🎙️ ДИПЛОМАТИЧЕСКИЙ ПРОТОКОЛ · 🌪️ ШТОРМ-ПРОТОКОЛ</p>
-        <p style="font-size: 24px; margin-top: 30px;">🏆 ИНЖЕНЕР УСТОЙЧИВОСТИ III степени 🏆</p>
-        <p>Руководитель: _______________  Дата: _______________</p>
-    </div>
-
-    <p class="no-print" style="text-align:center; margin-top:20px;">✨ Материалы готовы. Нажми «Скачать PDF» → выбери «Сохранить как PDF» ✨</p>
+  </div>
 </div>
+
+<script>
+  (function(){
+    "use strict";
+
+    // ---------- БАЗА ДАННЫХ СЮЖЕТОВ ----------
+    const storyData = {
+      // МИР 1: Буллинг
+      bullying: {
+        name: 'Границы травли',
+        startId: 'b1',
+        scenes: {
+          b1: {
+            text: 'Ты заходишь в общий чат класса и видишь: несколько человек постят мемы с одноклассником Мишей, называют его «лузером» и призывают ставить эмодзи со смехом. Миша в чате молчит. Твои действия?',
+            choices: [
+              { text: 'Написать анонимно: «Хватит, это не смешно»', nextScene: 'b2_anon' },
+              { text: 'Написать Мише в личку: «Я с тобой, держись»', nextScene: 'b2_support' },
+              { text: 'Промолчать и переслать скрин другу', nextScene: 'b2_silence' }
+            ]
+          },
+          b2_anon: {
+            text: 'Твой анонимный комментарий на секунду всех заставляет замолчать. Но затем кто-то пишет: «Кто это тут защитничек?». Травля на время стихает, но Миша всё равно подавлен. Ты чувствуешь, что надо сделать больше.',
+            choices: [
+              { text: 'Поговорить с Мишей лично и предложить вместе пойти к классному руководителю', nextScene: 'b_end_good' },
+              { text: 'Больше ничего не делать, ты уже помог', nextScene: 'b_end_mid' }
+            ]
+          },
+          b2_support: {
+            text: 'Миша отвечает: «Спасибо… я думал, всем плевать». Вы немного переписываетесь, ему становится чуть легче. На следующий день ты замечаешь, что обидчики стали меньше цепляться к нему, потому что у него появилась поддержка.',
+            choices: [
+              { text: 'Предложить Мише вместе записаться в кружок или секцию', nextScene: 'b_end_good' },
+              { text: 'Продолжать поддерживать только в личке', nextScene: 'b_end_ok' }
+            ]
+          },
+          b2_silence: {
+            text: 'Твой друг, получив скрин, ржёт и пересылает дальше. Через день весь класс обсуждает Мишу, кто-то пририсовал к его фото ослиные уши. Травля переходит в офлайн — Миша не приходит в школу. Тебе стыдно.',
+            choices: [
+              { text: 'Пойти к завучу и рассказать всю правду', nextScene: 'b_end_hardtruth' },
+              { text: 'Сделать вид, что ты ни при чём', nextScene: 'b_end_bad' }
+            ]
+          },
+          // ФИНАЛЫ
+          b_end_good: {
+            text: '✨ ФИНАЛ: «Круг поддержки»\nВы с Мишей рассказали взрослым. В классе провели беседу, травля прекратилась. Миша постепенно приходит в себя, а ты понимаешь: иногда одно смелое действие меняет чью-то жизнь.',
+            choices: [],
+            isEnd: true,
+            reflection: '💡 В реальности: 40% школьников сталкиваются с буллингом. Говорить — не стыдно. Обратиться к взрослым или на горячую линию — правильный шаг.'
+          },
+          b_end_mid: {
+            text: '🌀 ФИНАЛ: «Тихий защитник»\nТравля затихла, но Миша всё ещё одинок. Ты остался в стороне, хотя мог бы стать настоящим другом.',
+            choices: [],
+            isEnd: true,
+            reflection: '📊 Что, если бы ты выбрал поговорить лично? Часто жертве нужен не только защитник, но и друг.'
+          },
+          b_end_ok: {
+            text: '🌤️ ФИНАЛ: «Первая помощь»\nМише полегчало, но проблема не решена полностью. Хорошо, что ты не прошёл мимо.',
+            choices: [],
+            isEnd: true,
+            reflection: '📈 Поддержка в личке — важно. Но открытое противостояние несправедливости сильнее меняет среду.'
+          },
+          b_end_hardtruth: {
+            text: '🔥 ФИНАЛ: «Сложный разговор»\nТы признался, что сначала промолчал. Родители и школа отнеслись серьёзно. Травля прекратилась, но доверие пришлось восстанавливать. Ты выучил урок.',
+            choices: [],
+            isEnd: true,
+            reflection: '⚖️  Ошибка — не приговор. Главное — исправить её, даже если страшно.'
+          },
+          b_end_bad: {
+            text: '💔 ФИНАЛ: «Снежный ком»\nМиша перевёлся в другую школу. Ты чувствуешь вину, но уже поздно. Иногда молчание = соучастие.',
+            choices: [],
+            isEnd: true,
+            reflection: '🚫 По статистике, 70% свидетелей травли ничего не делают. Твой голос может остановить цепную реакцию.'
+          }
+        }
+      },
+
+      // МИР 2: Соцсети
+      social: {
+        name: 'Иллюзия идеала',
+        startId: 's1',
+        scenes: {
+          s1: {
+            text: 'Ты выложил классное (как тебе казалось) фото. Прошло два часа — лайков почти нет, а у одноклассницы под постом уже сотня ❤️. Что будешь делать?',
+            choices: [
+              { text: 'Удалить пост и сделать новое фото с фильтрами «как у всех»', nextScene: 's_filter' },
+              { text: 'Оставить как есть и пойти гулять с друзьями', nextScene: 's_offline' },
+              { text: 'Начать активно комментить чужие фото в надежде на взаимность', nextScene: 's_chase' }
+            ]
+          },
+          s_filter: {
+            text: 'Новое фото набирает лайки, но ты смотришь на себя в зеркало и чувствуешь разочарование. Это же не совсем ты. Настроение портится.',
+            choices: [
+              { text: 'Вернуться к старому фото и написать честный пост', nextScene: 's_end_honest' },
+              { text: 'Продолжать постить «идеальные» кадры', nextScene: 's_end_loop' }
+            ]
+          },
+          s_offline: {
+            text: 'Вы с друзьями отлично провели время: катались на великах, смеялись, ели мороженое. Вечером ты смотришь на телефон — лайков всё ещё мало, но тебе как-то всё равно.',
+            choices: [
+              { text: 'Выложить смешное фото с прогулки без фильтров', nextScene: 's_end_real' },
+              { text: 'Вообще забыть про соцсеть на пару дней', nextScene: 's_end_detox_small' }
+            ]
+          },
+          s_chase: {
+            text: 'Ты тратишь два часа на комментарии. В ответ приходит пара лайков, но ты чувствуешь опустошение. Это как бег в колесе.',
+            choices: [
+              { text: 'Остановиться и удалить приложение', nextScene: 's_end_escape' },
+              { text: 'Продолжить гонку за лайками', nextScene: 's_end_exhausted' }
+            ]
+          },
+          // ФИНАЛЫ
+          s_end_honest: {
+            text: '💎 ФИНАЛ: «Настоящий я»\nТвой честный пост про неуверенность собрал много тёплых комментариев. Оказывается, многие чувствуют то же самое.',
+            choices: [], isEnd: true,
+            reflection: '🔍 68% подростков испытывают давление соцсетей. Искренность сближает сильнее идеальных фото.'
+          },
+          s_end_loop: {
+            text: '🔄 ФИНАЛ: «Фильтр навсегда»\nЛайки есть, но радости нет. Ты устаёшь притворяться. Кажется, это ловушка.',
+            choices: [], isEnd: true,
+            reflection: '🎭 Альтернативный путь: попробуй один день не проверять реакции — увидишь, мир не рухнет.'
+          },
+          s_end_real: {
+            text: '🌟 ФИНАЛ: «Живой момент»\nФото без фильтров набирает меньше лайков, зато трое друзей пишут «Как круто!». И тебе тепло от этого.',
+            choices: [], isEnd: true,
+            reflection: '👥 Качество общения > количество лайков. Твой опыт ценен.'
+          },
+          s_end_detox_small: {
+            text: '🍃 ФИНАЛ: «Глоток воздуха»\nТы забыл про соцсеть, сходил в кино, почитал книгу. Оказалось, что жизнь идёт и без уведомлений.',
+            choices: [], isEnd: true,
+            reflection: '⏳ Подростки проводят в соцсетях до 6,5 часов в день. Мир без экрана полон открытий.'
+          },
+          s_end_escape: {
+            text: '🚪 ФИНАЛ: «Побег из гонки»\nТы удалил приложение. Первое время непривычно, но потом появляется куча свободного времени.',
+            choices: [], isEnd: true,
+            reflection: '🧘 Цифровой детокс снижает тревожность. Попробуй хотя бы вечер без телефона.'
+          },
+          s_end_exhausted: {
+            text: '😞 ФИНАЛ: «Выгорание»\nТы продолжаешь комментить и постить. Через месяц понимаешь, что устал от соцсетей, но не можешь остановиться.',
+            choices: [], isEnd: true,
+            reflection: '⚠️ Если чувствуешь усталость — это сигнал. Сделай паузу, твоё ментальное здоровье важнее.'
+          }
+        }
+      },
+
+      // МИР 3: Детокс
+      detox: {
+        name: 'Тишина в сети',
+        startId: 'd1',
+        scenes: {
+          d1: {
+            text: 'Ты просыпаешься и понимаешь: телефон разрядился, а зарядки нет (эксперимент). Целые сутки без интернета. Твои действия?',
+            choices: [
+              { text: 'Паниковать и искать любой способ зарядить', nextScene: 'd_panic' },
+              { text: 'Взять скейт и пойти на площадку', nextScene: 'd_skate' },
+              { text: 'Найти книгу, которую давно обещал прочитать', nextScene: 'd_book' }
+            ]
+          },
+          d_panic: {
+            text: 'Ты бегаешь по дому, ищешь старый телефон, просишь у соседей. В итоге находишь зарядку через час, но чувствуешь себя разбитым.',
+            choices: [
+              { text: 'Всё равно попробовать не включать до вечера', nextScene: 'd_end_half' },
+              { text: 'Сразу залипнуть в ленту', nextScene: 'd_end_fail' }
+            ]
+          },
+          d_skate: {
+            text: 'На площадке ты встречаешь ребят, которые зовут кататься вместе. Вы проводите несколько часов, смеётесь. О телефоне вспоминаешь только когда стемнело.',
+            choices: [
+              { text: 'Прийти домой и записать впечатления в блокнот', nextScene: 'd_end_analog' },
+              { text: 'Сразу включить телефон, чтобы снять сторис', nextScene: 'd_end_mixed' }
+            ]
+          },
+          d_book: {
+            text: 'Книга оказывается захватывающей. Ты не замечаешь, как пролетает полдня. В голове тишина, но не скучная, а наполненная историей.',
+            choices: [
+              { text: 'Дочитать книгу и лечь спать без телефона', nextScene: 'd_end_peace' },
+              { text: 'Всё-таки проверить уведомления перед сном', nextScene: 'd_end_disturb' }
+            ]
+          },
+          // ФИНАЛЫ
+          d_end_half: {
+            text: '🌀 ФИНАЛ: «Половинчатый успех»\nТы почти продержался. В следующий раз получится лучше.',
+            choices: [], isEnd: true,
+            reflection: '📵 Даже 4-5 часов без экрана улучшают настроение. Маленькие шаги важны.'
+          },
+          d_end_fail: {
+            text: '📱 ФИНАЛ: «Снова в сети»\nТы снова в ленте. Вроде ничего страшного, но ощущение упущенной возможности осталось.',
+            choices: [], isEnd: true,
+            reflection: '🔄 А что, если завтра попробовать снова и пойти на улицу?'
+          },
+          d_end_analog: {
+            text: '✍️ ФИНАЛ: «Аналоговый день»\nТы пишешь в блокнот: «Сегодня было круто, я забыл про телефон». Чувство свободы.',
+            choices: [], isEnd: true,
+            reflection: '🌳 70% подростков, попробовавших детокс, отмечают рост креативности и снижение стресса.'
+          },
+          d_end_mixed: {
+            text: '📸 ФИНАЛ: «Всё вместе»\nТы заснял пару трюков, выложил. Вроде и отдохнул, и в сети побыл. Баланс — искусство.',
+            choices: [], isEnd: true,
+            reflection: '⚖️ Идеальный вариант — осознанное использование: когда хочешь ты, а не уведомления.'
+          },
+          d_end_peace: {
+            text: '😌 ФИНАЛ: «Спокойная ночь»\nТы засыпаешь с чувством выполненного долга. Утром просыпаешься бодрым.',
+            choices: [], isEnd: true,
+            reflection: '🛌 Синий свет экрана мешает сну. Час без телефона перед сном улучшает качество отдыха.'
+          },
+          d_end_disturb: {
+            text: '😵‍💫 ФИНАЛ: «Тревога перед сном»\nУвидел чужую идеальную жизнь — настроение испорчено. Уснуть сложно.',
+            choices: [], isEnd: true,
+            reflection: '💡 Лайфхак: режим «Не беспокоить» после 21:00 творит чудеса.'
+          }
+        }
+      },
+
+      // МИР 4: Тень в Максе (деструктивные группы)
+      shadow: {
+        name: 'Тень в Максе',
+        startId: 'sh1',
+        scenes: {
+          sh1: {
+            text: 'В мессенджере «Макс» тебе пишет незнакомец с ником «R3D». Он говорит, что ты крутой, и предлагает вступить в «закрытый канал для своих», где «решают вопросы». Что ты сделаешь?',
+            choices: [
+              { text: 'Заблокировать и пожаловаться', nextScene: 'sh_block' },
+              { text: 'Посмотреть из любопытства, но ничего не писать', nextScene: 'sh_observe' },
+              { text: 'Написать старшему брату / подруге', nextScene: 'sh_ask' }
+            ]
+          },
+          sh_block: {
+            text: 'Ты блокируешь контакт. Через день получаешь сообщение с другого аккаунта: «Зря. Мы знаем твой адрес». Это похоже на блеф, но становится не по себе.',
+            choices: [
+              { text: 'Скриншот — и к родителям / в полицию', nextScene: 'sh_end_safe' },
+              { text: 'Испугаться и ответить «ок, что нужно?»', nextScene: 'sh_end_scared' }
+            ]
+          },
+          sh_observe: {
+            text: 'В канале поначалу мемы, но потом начинают просить «простые задания» — сфоткать чей-то подъезд. Ты понимаешь, что это странно.',
+            choices: [
+              { text: 'Тихо выйти и всё забыть', nextScene: 'sh_end_leave' },
+              { text: 'Сделать скриншоты и отправить на горячую линию', nextScene: 'sh_end_help' }
+            ]
+          },
+          sh_ask: {
+            text: 'Брат говорит: «Это вербовка, не вздумай отвечать!». Вместе вы блокируете пользователя и подаёте жалобу в поддержку Макса.',
+            choices: [
+              { text: 'Рассказать в школе о такой схеме', nextScene: 'sh_end_hero' },
+              { text: 'Просто забыть', nextScene: 'sh_end_ok_sh' }
+            ]
+          },
+          // ФИНАЛЫ
+          sh_end_safe: {
+            text: '🛡️ ФИНАЛ: «Защита»\nРодители обратились в полицию, аккаунт заблокировали. Ты поступил правильно — не дал себя запугать.',
+            choices: [], isEnd: true,
+            reflection: '📞 Запугивание — главный инструмент вербовщиков. Всегда рассказывай взрослым. Телефон доверия: 8-800-2000-122.'
+          },
+          sh_end_scared: {
+            text: '😨 ФИНАЛ: «Ловушка страха»\nТы начинаешь выполнять мелкие поручения. Чем дальше, тем сложнее выйти. Страх сковывает.',
+            choices: [], isEnd: true,
+            reflection: '⛔ Ты можешь остановиться в любой момент. Расскажи родителям или учителю — они помогут, а не осудят.'
+          },
+          sh_end_leave: {
+            text: '🚶 ФИНАЛ: «Я просто ушёл»\nТы вышел из канала. Никто не преследует. Ты понял, что лучше не рисковать.',
+            choices: [], isEnd: true,
+            reflection: '✅ Иногда лучший выбор — просто не ввязываться. Доверяй интуиции.'
+          },
+          sh_end_help: {
+            text: '🆘 ФИНАЛ: «Помощник»\nТвои скриншоты помогли заблокировать опасный канал. Ты спас не только себя, но и других.',
+            choices: [], isEnd: true,
+            reflection: '🌟 Сообщать о подозрительных группах — гражданская позиция. Лига безопасного интернета принимает жалобы.'
+          },
+          sh_end_hero: {
+            text: '📢 ФИНАЛ: «Гласность»\nПосле твоего рассказа несколько одноклассников признались, что им тоже писали. Вы вместе провели урок безопасности.',
+            choices: [], isEnd: true,
+            reflection: '🤝 Вербовщики ищут одиноких. Открытость и дружба — лучшая защита.'
+          },
+          sh_end_ok_sh: {
+            text: '🔒 ФИНАЛ: «Безопасность»\nТы избежал опасности. Теперь внимательнее относишься к незнакомцам в сети.',
+            choices: [], isEnd: true,
+            reflection: '🕵️ Правило: никогда не переходить по ссылкам от незнакомцев и не сообщать личные данные.'
+          }
+        }
+      }
+    };
+
+    // ---------- СОСТОЯНИЕ ----------
+    let currentWorld = 'bullying';   // ключ мира
+    let currentSceneId = storyData.bullying.startId;
+    let gameActive = false;
+
+    // DOM элементы
+    const worldSelectionDiv = document.getElementById('worldSelection');
+    const storyScreenDiv = document.getElementById('storyScreen');
+    const sceneText = document.getElementById('sceneText');
+    const choicesContainer = document.getElementById('choicesContainer');
+    const currentWorldTitle = document.getElementById('currentWorldTitle');
+    const reflectionArea = document.getElementById('reflectionArea');
+    const backToWorldsBtn = document.getElementById('backToWorldsBtn');
+    const restartCurrentBtn = document.getElementById('restartCurrentBtn');
+
+    // Функция рендера сцены
+    function renderScene(worldKey, sceneId) {
+      const world = storyData[worldKey];
+      if (!world) return;
+      const scene = world.scenes[sceneId];
+      if (!scene) return;
+
+      currentWorld = worldKey;
+      currentSceneId = sceneId;
+      currentWorldTitle.textContent = world.name;
+      sceneText.textContent = scene.text;
+
+      // очищаем кнопки
+      choicesContainer.innerHTML = '';
+      reflectionArea.classList.add('hidden');
+      reflectionArea.innerHTML = '';
+
+      if (scene.isEnd) {
+        // Финальная сцена — показываем рефлексию
+        if (scene.reflection) {
+          reflectionArea.classList.remove('hidden');
+          reflectionArea.innerHTML = `
+            <div class="reflection-title">🧠 Карта последствий</div>
+            <div>${scene.reflection}</div>
+          `;
+        }
+        // Кнопка «ещё раз» уже есть снаружи
+      } else {
+        // Создаём кнопки выбора
+        scene.choices.forEach((choice, idx) => {
+          const btn = document.createElement('button');
+          btn.className = 'choice-btn';
+          btn.textContent = choice.text;
+          btn.addEventListener('click', () => {
+            if (choice.nextScene) {
+              renderScene(worldKey, choice.nextScene);
+            }
+          });
+          choicesContainer.appendChild(btn);
+        });
+      }
+    }
+
+    // Запуск мира (выбор в меню)
+    function startWorld(worldKey) {
+      const world = storyData[worldKey];
+      if (!world) return;
+      worldSelectionDiv.style.display = 'none';
+      storyScreenDiv.style.display = 'block';
+      gameActive = true;
+      renderScene(worldKey, world.startId);
+    }
+
+    // Вернуться к выбору миров
+    function backToWorlds() {
+      worldSelectionDiv.style.display = 'block';
+      storyScreenDiv.style.display = 'none';
+      gameActive = false;
+    }
+
+    // Перезапуск текущего мира
+    function restartCurrentWorld() {
+      if (currentWorld && storyData[currentWorld]) {
+        renderScene(currentWorld, storyData[currentWorld].startId);
+      }
+    }
+
+    // Обработчики меню
+    document.querySelectorAll('.world-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const world = btn.dataset.world;
+        if (world) startWorld(world);
+      });
+    });
+
+    backToWorldsBtn.addEventListener('click', backToWorlds);
+    restartCurrentBtn.addEventListener('click', restartCurrentWorld);
+
+    // На случай, если захотят начать сначала через скрытые пути
+    window.startWorld = startWorld;
+
+    // Инициализация (показываем меню)
+    backToWorlds();
+  })();
+</script>
 </body>
 </html>
