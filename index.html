@@ -33,11 +33,11 @@
             padding: 25px 30px;
             margin-bottom: 30px;
             border: 1px solid #cad4e2;
-            page-break-after: always;  /* Каждый бланк с новой страницы при печати */
+            page-break-after: always;
         }
 
         h1 {
-            font-size: 24px;
+            font-size: 26px;
             color: #1e3a5f;
             border-bottom: 3px solid #6c8eb2;
             padding-bottom: 8px;
@@ -164,12 +164,16 @@
             flex: 1;
         }
 
-        /* Силуэт (упрощённый контур для карты) */
-        .silhouette-svg {
-            width: 100%;
-            max-width: 220px;
-            margin: 0 auto;
-            display: block;
+        /* Пустое поле для силуэта */
+        .silhouette-placeholder {
+            border: 3px dashed #6c8eb2;
+            background: #f4f9ff;
+            border-radius: 24px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: center;
+            color: #3a6282;
+            font-size: 16px;
         }
 
         /* Печатные стили */
@@ -191,6 +195,9 @@
             .no-print {
                 display: none;
             }
+            .pdf-button {
+                display: none;
+            }
         }
 
         .footer-note {
@@ -200,6 +207,26 @@
             text-align: right;
             border-top: 1px dotted #b0c4de;
             padding-top: 12px;
+        }
+
+        /* Кнопка PDF */
+        .pdf-button {
+            background: #1e3a5f;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 40px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            margin-bottom: 30px;
+            transition: 0.2s;
+            border: 1px solid #2c5a8c;
+        }
+
+        .pdf-button:hover {
+            background: #0f2a44;
         }
 
         /* Стиль для карточек с ситуациями */
@@ -217,6 +244,7 @@
     </style>
 </head>
 <body>
+<button class="pdf-button no-print" onclick="window.print()">📥 Скачать PDF (сохранить через печать)</button>
 <div class="materials-container">
 
     <!-- ==================== ШКАЛА СЕД (общая) ==================== -->
@@ -331,20 +359,16 @@
         <textarea placeholder="Возможно, ..."></textarea>
     </div>
 
-    <!-- ==================== ПРИЛОЖЕНИЕ 5: КАРТА ГОРЯЧИХ ТОЧЕК (с силуэтом) ==================== -->
+    <!-- ==================== ПРИЛОЖЕНИЕ 5: КАРТА ГОРЯЧИХ ТОЧЕК (без силуэта) ==================== -->
     <div class="sheet">
         <h1>🌡️ КАРТА ГОРЯЧИХ ТОЧЕК · Мой внутренний сейсмограф</h1>
         <p><label>Имя:</label> _______________________________ <label>Дата:</label> _______________</p>
-        <p>Раскрась на силуэте места, где ты чувствуешь: 🔴 злость, 🔵 грусть, 🟡 страх.</p>
-        <!-- Встроенный SVG силуэт (контур) -->
-        <div style="text-align: center;">
-            <svg width="200" height="400" viewBox="0 0 200 400" style="margin: 10px auto; display: block;">
-                <path d="M100,30 C120,30 140,45 145,65 C150,85 140,100 135,110 L155,135 C175,155 190,175 195,195 C200,215 195,235 180,250 L160,235 L145,285 L168,355 L173,395 L170,430 L163,455 L150,455 L147,435 L143,410 L135,380 L125,340 L120,320 L115,340 L105,380 L97,410 L93,435 L90,455 L77,455 L70,430 L67,395 L72,355 L95,285 L80,235 L60,250 C45,235 40,215 45,195 C50,175 65,155 85,135 L105,110 C98,100 90,85 95,65 C100,45 110,30 100,30 Z" fill="#ffffff" stroke="#1e3e5f" stroke-width="2.5"/>
-                <ellipse cx="100" cy="75" rx="32" ry="40" fill="#ffffff" stroke="#1e3e5f" stroke-width="2.5"/>
-                <!-- стопы -->
-                <path d="M77 455 L60 465 L72 470 L89 465 Z" fill="#fff" stroke="#1e3e5f" stroke-width="2"/>
-                <path d="M150 455 L173 465 L160 470 L143 465 Z" fill="#fff" stroke="#1e3e5f" stroke-width="2"/>
-            </svg>
+        <p>Раскрась на силуэте (приклей или нарисуй) места, где ты чувствуешь: 🔴 злость, 🔵 грусть, 🟡 страх.</p>
+        <!-- Пустое поле для вклеивания силуэта -->
+        <div class="silhouette-placeholder">
+            <p>⬇️ Место для силуэта человека ⬇️</p>
+            <p style="font-size: 40px; margin: 5px;">🧑‍🦱</p>
+            <p>(приклей или нарисуй контур)</p>
         </div>
         <p><strong>Мой самый первый сигнал (что замечаю первым):</strong> _____________________________</p>
         <p><strong>Что я сделаю, когда замечу этот сигнал?</strong> ____________________________________</p>
@@ -483,7 +507,10 @@
         <p>Подпись: __________________</p>
     </div>
 
-    <p style="text-align: center; margin-top: 20px;" class="no-print">✨ Все материалы готовы для печати (можно сохранить как PDF через «Печать» → «Сохранить как PDF») ✨</p>
+    <p style="text-align: center; margin-top: 20px;" class="no-print">✨ Материалы готовы. Нажми «Скачать PDF» → выбери «Сохранить как PDF» ✨</p>
 </div>
+<script>
+    // Никаких дополнительных действий — кнопка вызывает window.print()
+</script>
 </body>
 </html>
