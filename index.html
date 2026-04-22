@@ -3,303 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🧠 НЕЙРО-ТЕТРАДЬ «Лето с пользой» 5-7 лет (ч/б, доработано)</title>
+    <title>Силуэт человека</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            background: #bbb;
-            font-family: 'Arial', sans-serif;
-            padding: 25px 15px;
+            margin: 0;
+            padding: 20px;
+            background: white;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
+            min-height: 100vh;
         }
-        .print-btn {
-            background: #2c2c2c;
-            border: none;
-            border-radius: 50px;
-            padding: 14px 30px;
-            font-size: 1.7rem;
-            font-weight: bold;
-            color: white;
-            box-shadow: 0 6px 0 #111;
-            cursor: pointer;
-            margin-bottom: 25px;
-            border: 2px solid #aaa;
-        }
-        .print-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #111; }
-        .notebook {
-            max-width: 1100px;
-            width: 100%;
-            background: white;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            border-radius: 30px;
-            padding: 20px 25px 30px;
-            border: 3px solid #222;
-        }
-        .page {
-            background: white;
-            border-radius: 20px;
-            padding: 30px 35px;
-            margin-bottom: 30px;
-            box-shadow: inset 0 0 0 2px #aaa, 0 8px 0 #666;
-            border: 1px solid #222;
-            page-break-after: always;
-            break-inside: avoid;
-        }
-        .page:last-child { page-break-after: auto; margin-bottom: 0; }
-        h1 { font-size: 2.8rem; color: #111; text-align: center; margin-bottom: 10px; text-transform: uppercase; border-bottom: 5px double #222; padding-bottom: 15px; }
-        h2 { font-size: 2.2rem; border-left: 18px solid #333; padding-left: 20px; color: #000; margin: 20px 0; font-weight: 800; }
-        .instruction { background: #f0f0f0; border-radius: 25px; padding: 18px 25px; border-left: 12px solid #222; margin: 20px 0; font-size: 1.2rem; border: 2px solid #333; }
-        .task-box { background: #f6f6f6; border-radius: 20px; padding: 20px; margin: 20px 0; border: 3px solid #333; }
-        .badge { background: #ddd; border-radius: 30px; padding: 8px 18px; font-size: 1.2rem; font-weight: bold; display: inline-block; border: 2px solid #222; }
-        .word-list { background: #f4f4f4; padding: 15px 20px; border-radius: 20px; font-size: 1.6rem; word-spacing: 15px; line-height: 2.4; border: 2px solid #333; font-weight: bold; }
-        .check-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 10px; margin: 20px 0; }
-        .check-box { width: 40px; height: 40px; border: 4px solid #222; background: white; }
-        .graph-paper {
-            background-image: linear-gradient(to right, #aaa 1px, transparent 1px), linear-gradient(to bottom, #aaa 1px, transparent 1px);
-            background-size: 20px 20px;
-            border: 3px solid #222;
-            width: 100%;
-            margin: 15px 0;
-        }
-        .maze-grid { display: grid; grid-template-columns: repeat(9,1fr); background: #eee; border: 4px solid #222; width: 100%; max-width: 450px; margin: 20px auto; }
-        .maze-cell { aspect-ratio: 1/1; border: 1px solid #999; position: relative; }
-        .wall { background: #222; }
-        .path { background: white; }
-        .start { background: #bbb; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
-        .finish { background: #ccc; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; font-weight: bold; }
-        .obstacle { background: repeating-linear-gradient(45deg, #333, #333 4px, #aaa 4px, #aaa 8px); }
-        .emotion-row { display: flex; gap: 25px; justify-content: center; margin: 30px 0; }
-        .face { width: 90px; height: 90px; border: 5px solid #111; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
-        .page-number { text-align: right; font-size: 1rem; margin-top: 15px; border-top: 2px solid #aaa; padding-top: 8px; }
-        .pattern-row { display: flex; align-items: center; margin: 25px 0; }
-        .pattern-fig { font-size: 3.5rem; margin-right: 30px; letter-spacing: 15px; }
-        .footer-note { text-align: center; margin-top: 20px; color: #222; }
-        .large-drawing-area { border: 5px solid #222; height: 500px; margin: 20px 0; background: #fafafa; }
-        @media print {
-            body { background: white; padding: 0.1in; }
-            .print-btn { display: none; }
-            .notebook { box-shadow: none; border: none; padding: 0; }
-            .page { box-shadow: inset 0 0 0 2px #000; border: 2px solid black; page-break-after: always; }
-            .task-box, .instruction { background: #f0f0f0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            .obstacle { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .silhouette {
+            width: 300px;
+            height: 600px;
         }
     </style>
 </head>
 <body>
-<button class="print-btn" onclick="window.print()">🖨️ РАСПЕЧАТАТЬ ТЕТРАДЬ (ЛЕТО С ПОЛЬЗОЙ)</button>
-<div class="notebook">
-
-<!-- 1 ОБЛОЖКА -->
-<div class="page">
-    <h1>📘 МОЯ НЕЙРО-ТЕТРАДЬ<br>«ЛЕТО С ПОЛЬЗОЙ»</h1>
-    <div style="text-align: center; margin: 25px 0; font-size: 6rem;">✏️🧠🌞</div>
-    <div style="background: #eaeaea; border: 5px solid #222; padding: 25px; text-align: center; font-size: 2rem;">
-        <p><strong>ИМЯ:</strong> _____________________________</p>
-        <p style="font-size: 1.4rem; margin-top: 30px;">Каждый день – 1-2 страницы. Играем, говорим, рисуем, развиваемся!</p>
-    </div>
-    <div class="page-number">стр. 1</div>
-</div>
-
-<!-- 2 ПАМЯТКА -->
-<div class="page">
-    <h2>📌 ДЛЯ ВЗРОСЛЫХ</h2>
-    <div class="instruction">
-        <p>⏱ 20-25 минут · закончить на интересе</p>
-        <p>🗣 речь · 🧠 нейро · ✏️ пальцы · ❤️ эмоции</p>
-        <p>✅ Хвалить: «Ты старался!», «Линия ровнее»</p>
-        <p>⭐ В конце – наклейка или похвала!</p>
-    </div>
-    <div style="margin-top: 30px;"><span class="badge">🗣️</span> логопедия · <span class="badge">🧠</span> нейро · <span class="badge">✏️</span> моторика</div>
-    <div class="page-number">стр. 2</div>
-</div>
-
-<!-- 3 АРТИКУЛЯЦИЯ -->
-<div class="page">
-    <h2>🗣️ ВЕСЁЛЫЙ ЯЗЫЧОК + РУКИ</h2>
-    <div style="display:flex; gap:20px;">
-        <div style="flex:1"><p>🐴 Лошадка · 🕒 Часики · 🎢 Качели · 🖌️ Маляр · 🍯 Варенье</p></div>
-        <div style="flex:1"><p><strong>➕ НЕЙРО:</strong> язык + руки (пальцы влево-вправо, ладони вверх-вниз)</p></div>
-    </div>
-    <div style="border:4px solid #222; padding:20px; margin-top:25px;"><p>🪞 Смотри в зеркало! 5-7 раз каждое.</p></div>
-    <div class="page-number">стр. 3</div>
-</div>
-
-<!-- 4 ПОЙМАЙ ЗВУК [С] -->
-<div class="page">
-    <h2>🗣️ ОХОТНИКИ ЗА ЗВУКОМ [С]</h2>
-    <div class="word-list">СОК · САНИ · ЛУК · СТУЛ · МИСКА · КОТ · НОС · СОБАКА · АНАНАС · ДОМ · ЛЕС · СЫР</div>
-    <p>👏 ХЛОПАЙ, если слышишь [С]. Закрась столько квадратов:</p>
-    <div class="check-grid"><div class="check-box"></div><div class="check-box"></div><div class="check-box"></div><div class="check-box"></div><div class="check-box"></div><div class="check-box"></div><div class="check-box"></div><div class="check-box"></div><div class="check-box"></div><div class="check-box"></div></div>
-    <div class="task-box"><strong>🧠 НЕЙРО-ДВИЖЕНИЕ:</strong> встань: звук [С] → шаг вправо, нет → шаг влево.</div>
-    <div class="page-number">стр. 4</div>
-</div>
-
-<!-- 5 ДОРОЖКА -->
-<div class="page">
-    <h2>✏️ ДОРОЖКА ЁЖИКА</h2>
-    <svg width="100%" height="160" viewBox="0 0 600 160" style="border:3px solid #222;"><path d="M30,80 Q100,20 180,80 T350,80 T520,80" stroke="#111" stroke-width="8" fill="none" stroke-dasharray="10 10"/><circle cx="30" cy="80" r="12" fill="#222"/><text x="20" y="60" font-size="22">🦔</text><circle cx="520" cy="80" r="15" fill="#222"/><text x="530" y="60" font-size="28">🍎</text></svg>
-    <p>Проведи линию правой, потом левой рукой. Двумя руками с помехой (хлопки).</p>
-    <div class="page-number">стр. 5</div>
-</div>
-
-<!-- 6 ЗЕРКАЛЬНАЯ БАБОЧКА -->
-<div class="page">
-    <h2>🧠 ЗЕРКАЛЬНАЯ БАБОЧКА</h2>
-    <div style="position:relative; height:280px; border:4px solid #222; margin:20px 0;">
-        <div style="position:absolute; left:20px; top:30px; width:180px; height:180px; border:5px solid #111; border-radius:50% 20% 50% 20%; background: repeating-linear-gradient(45deg, #ccc, #ccc 8px, #fff 8px, #fff 16px);"></div>
-        <div style="position:absolute; right:20px; top:30px; width:180px; height:180px; border:5px dashed #222; border-radius:20% 50% 20% 50%; background:#eee;"></div>
-        <div style="position:absolute; left:50%; width:6px; height:100%; background:#222;"></div>
-    </div>
-    <p>Обведи оба крыла одновременно. Потом левая обводит, правая стучит.</p>
-    <div class="page-number">стр. 6</div>
-</div>
-
-<!-- 6.5 ПЕРЕКРЁСТНЫЕ ШАГИ -->
-<div class="page">
-    <h2>🧠 ПЕРЕКРЁСТНЫЕ ШАГИ</h2>
-    <div style="border:4px solid #222; padding:25px;"><p>🚶 Маршируй: правый локоть – левое колено, левый – правое. Проговаривай: ША-ЖА-ША или СА-ЗА-СА.</p></div>
-    <div class="page-number">стр. 7</div>
-</div>
-
-<!-- 7 ЧУВСТВА -->
-<div class="page">
-    <h2>❤️ МОИ ЧУВСТВА</h2>
-    <div class="emotion-row"><div class="face">😊</div><div class="face">😐</div><div class="face">😌</div><div class="face">😟</div></div>
-    <p>Обведи подходящее лицо. Нарисуй, что успокаивает.</p>
-    <div style="border:3px dashed #222; height:120px; margin:20px 0;"></div>
-    <div class="page-number">стр. 8</div>
-</div>
-
-<!-- 8 ОДИН-МНОГО -->
-<div class="page"><h2>🗣️ ОДИН — МНОГО</h2><p>👂 ухо → _______  🌳 дерево → _______  🐦 воробей → _______</p><p>Предложение: ________________________________</p><div class="page-number">стр. 9</div></div>
-
-<!-- 9 ШТРИХОВКА -->
-<div class="page"><h2>✏️ ШТРИХОВКА «РЫБКА»</h2><div style="text-align:center"><svg width="300" height="180"><ellipse cx="150" cy="90" rx="100" ry="50" fill="none" stroke="#111" stroke-width="6"/><polygon points="250,90 290,60 290,120" fill="none" stroke="#111" stroke-width="6"/><circle cx="110" cy="80" r="8" fill="#222"/></svg></div><p>Заштрихуй горизонтально, чешую — кружками. Шепчи: «У рыбки рубашка».</p><div class="page-number">стр. 10</div></div>
-
-<!-- 10 НАЙДИ ОТЛИЧИЯ (УВЕЛИЧЕННЫЕ КАРТИНКИ) -->
-<div class="page">
-    <h2>🧠 НАЙДИ 5 ОТЛИЧИЙ</h2>
-    <div style="display: flex; gap: 20px; justify-content: center;">
-        <div style="border:5px solid #222; width: 300px; height: 300px; background: #ddd; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 4rem;">
-            🏠 🌳 ☀️<br>
-            <span style="font-size:2rem;">🐕</span>
-        </div>
-        <div style="border:5px solid #222; width: 300px; height: 300px; background: #ddd; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 4rem;">
-            🏡 🌲 ⛅<br>
-            <span style="font-size:2rem;">🐈</span>
-        </div>
-    </div>
-    <p>Обведи отличия кружком. Назови каждое.</p>
-    <div class="page-number">стр. 11</div>
-</div>
-
-<!-- 10.5 ПРОБА ХЭДА -->
-<div class="page"><h2>🧠 ПРОБА ХЭДА (ЗЕРКАЛО)</h2><p>🙋‍♂️ → 🙋‍♀️ повторяй как в зеркале: правая вверх → левая вверх и т.д.</p><div style="border:4px solid #222; height:150px; margin:20px 0;"></div><div class="page-number">стр. 12</div></div>
-
-<!-- 11 ЗВУКОВОЙ АНАЛИЗ -->
-<div class="page"><h2>🗣️ ЗВУКОВОЙ АНАЛИЗ</h2><p>МАК — 🔵🔴🔵 &nbsp;&nbsp; СЫР — 🔵🔴🔵</p><div style="display:flex; gap:40px;"><div>МАК: ▢ ▢ ▢</div><div>СЫР: ▢ ▢ ▢</div></div><div class="page-number">стр. 13</div></div>
-
-<!-- 12 СУПЕРСИЛЫ (НА ВЕСЬ ЛИСТ) -->
-<div class="page">
-    <h2>❤️ МОИ СУПЕРСИЛЫ</h2>
-    <p style="font-size:1.5rem;">🦸 Нарисуй себя супергероем! (можно во весь рост)</p>
-    <div class="large-drawing-area"></div>
-    <p>Три суперсилы: 1.__________ 2.__________ 3.__________</p>
-    <div class="page-number">стр. 14</div>
-</div>
-
-<!-- 13 ЛАБИРИНТ С ПРЕПЯТСТВИЯМИ -->
-<div class="page">
-    <h2>✏️ ЛАБИРИНТ «ПОМОГИ БУКВЕ А»</h2>
-    <div class="maze-grid">
-        <div class="maze-cell wall"></div><div class="maze-cell wall"></div><div class="maze-cell wall"></div><div class="maze-cell wall"></div><div class="maze-cell wall"></div><div class="maze-cell wall"></div><div class="maze-cell wall"></div><div class="maze-cell wall"></div><div class="maze-cell wall"></div>
-        <div class="maze-cell wall"></div><div class="maze-cell start">🚪</div><div class="maze-cell path"></div><div class="maze-cell path"></div><div class="maze-cell wall"></div><div class="maze-cell path"></div><div class="maze-cell path"></div><div class="maze-cell obstacle"></div><div class="maze-cell wall"></div>
-        <div class="maze-cell wall"></div><div class="maze-cell wall"></div><div class="maze-cell wall"></div><div class="maze-cell path"></div><div class="maze-cell wall"></div><div class="maze-cell path"></div><div class="maze-cell wall"></div><div class="maze-cell path"></div><div class="maze-cell wall"></div>
-        <div class="maze-cell wall"></div><div class="maze-cell path"></div><div class="maze-cell path"></div><div class="maze-cell path"></div><div class="maze-cell wall"></div><div class="maze-cell path"></div><div class="maze-cell obstacle"></div><div class="maze-cell path"></div><div class="maze-cell wall"></div>
-        <div class="maze-cell wall"></div><div class="maze-cell path"></div><div class="maze-cell wall"></div><div class="maze-cell wall"></div><div class="maze-cell wall"></div><div class="maze-cell wall"></div><div class="maze-cell wall"></div><div class="maze-cell path"></div><div class="maze-cell wall"></div>
-        <div class="maze-cell wall"></div><div class="maze-cell path"></div><div class="maze-cell path"></div><div class="maze-cell path"></div><div class="maze-cell wall"></div><div class="maze-cell path"></div><div class="maze-cell path"></div><div class="maze-cell finish">🅰️</div><div class="maze-cell wall"></div>
-        <div class="maze-cell wall"></div><div class="maze-cell wall"></div><div class="maze-cell wall"></div><div class="maze-cell wall"></div><div class="maze-cell wall"></div><div class="maze-cell wall"></div><div class="maze-cell wall"></div><div class="maze-cell wall"></div><div class="maze-cell wall"></div>
-    </div>
-    <p>Проведи дорожку, обходя заштрихованные клетки-препятствия. Потом пройди пальцами обеих рук.</p>
-    <div class="page-number">стр. 15</div>
-</div>
-
-<!-- 14 КУЛАК-РЕБРО-ЛАДОНЬ -->
-<div class="page"><h2>🧠 КУЛАК-РЕБРО-ЛАДОНЬ</h2><p style="font-size:4rem;">✊🤚✋</p><p>Под ритм: «Кулак — ребро — ладонь, быстро сменю я их, не тронь!»</p><div class="page-number">стр. 16</div></div>
-
-<!-- 14.5 ГРАФИЧЕСКИЙ ДИКТАНТ ДВУМЯ РУКАМИ (СЕТКА) -->
-<div class="page">
-    <h2>✏️🧠 ДИКТАНТ ДВУМЯ РУКАМИ</h2>
-    <div class="graph-paper" style="height:200px;"></div>
-    <p>Левая: 2→ 1↓ 2← 1↑. Правая: зеркально. Веди одновременно.</p>
-    <div class="page-number">стр. 17</div>
-</div>
-
-<!-- 15 РАССКАЗ -->
-<div class="page"><h2>🗣️ СОСТАВЬ РАССКАЗ</h2><div style="border:5px solid #222; background:#ddd; height:180px; display:flex; align-items:center; justify-content:center; font-size:4rem;">⛄🧒🐕🌲</div><p>Рассказ: ________________________</p><div class="page-number">стр. 18</div></div>
-
-<!-- 16 ГРАФИЧЕСКИЙ ДИКТАНТ (КЛЕТКИ) -->
-<div class="page">
-    <h2>✏️ ГРАФИЧЕСКИЙ ДИКТАНТ «ЗАЙЧИК»</h2>
-    <div class="graph-paper" style="height: 260px;"></div>
-    <p><strong>Старт:</strong> точка в центре левого края.<br>➡️ 2→, 1↑, 1→, 2↓, 1←, 1↓, 2←, 1↑, 1←, 2↑ (получится зайчик).</p>
-    <div class="page-number">стр. 19</div>
-</div>
-
-<!-- 17 СТОП-ИГРА И ЗЛОСТЬ -->
-<div class="page">
-    <h2>❤️🧠 СТОП-ИГРА & ЗЛОСТЬ</h2>
-    <p><strong>Если злюсь:</strong> скажи, сожми кулачки 5 раз, вдох-выдох, попроси помощи.</p>
-    <p><strong>Стоп-игра:</strong> летает – маши, нет – стой. «КУРИЦА» – замри!</p>
-    <div class="page-number">стр. 20</div>
-</div>
-
-<!-- 18 ПРОДОЛЖИ РЯД (Ч/Б крупно) -->
-<div class="page">
-    <h2>🧠 ПРОДОЛЖИ РЯД</h2>
-    <div style="margin: 30px 0;">
-        <div class="pattern-row"><span class="pattern-fig">⬛ ⚪ ⬛ ⚪ ⬛ ___</span></div>
-        <div class="pattern-row"><span class="pattern-fig">▲ ▲ ■ ▲ ▲ ■ ___</span></div>
-        <div class="pattern-row"><span class="pattern-fig">◢ ◣ ◢ ◣ ◢ ___</span></div>
-        <div class="pattern-row"><span class="pattern-fig">⬜ ⬜ ⬛ ⬜ ⬜ ⬛ ___</span></div>
-    </div>
-    <div class="page-number">стр. 21</div>
-</div>
-
-<!-- 19 ЧИСТОГОВОРКИ (без Р) -->
-<div class="page">
-    <h2>🗣️ ЧИСТОГОВОРКИ + ДВИЖЕНИЯ</h2>
-    <div style="font-size:1.5rem; line-height:2.2;">
-        <p>🐝 Са-са-са – летит оса (руки в стороны)</p>
-        <p>🦔 Жа-жа-жа – есть иголки у ежа (пальцы растопырить)</p>
-        <p>🐍 Ша-ша-ша – мама моет малыша (гладим живот)</p>
-        <p>🦷 За-за-за – у Зои коза (показать рожки)</p>
-        <p>🦌 Ла-ла-ла – лодка по морю плыла (руки лодочкой)</p>
-        <p>➕ Ши-ши-ши – что-то шепчут камыши (палец к губам)</p>
-        <p>➕ Жу-жу-жу – молока дадим ежу (протянуть руки)</p>
-        <p>➕ Со-со-со – покатилось колесо (крутим руками)</p>
-    </div>
-    <div class="page-number">стр. 22</div>
-</div>
-
-<!-- 19.5 РИТМИЧЕСКИЙ КРУГ -->
-<div class="page"><h2>🧠 РИТМИЧЕСКИЙ КРУГ</h2><div style="font-size:4rem;">🔴🟡🟢🔵</div><p>Отстучи: X X _ X , X _ X X. Проговаривай: МА-МА (пауза) МА, РУЧ-КА-МИ.</p><div class="page-number">стр. 23</div></div>
-
-<!-- 20 ДОСТИЖЕНИЯ -->
-<div class="page">
-    <h2>🏆 МОИ ДОСТИЖЕНИЯ</h2>
-    <p>😊😊😊😊😊 — раскрась смайлики за понравившиеся задания.</p>
-    <div class="task-box"><strong>🧠 МОЙ МОЗГ НАУЧИЛСЯ:</strong><br>☐ делать два дела одновременно ☐ вовремя останавливаться ☐ слышать звуки ☐ рисовать двумя руками ☐ повторять ритм ☐ знаю право-лево</div>
-    <p style="font-size:2.5rem;">✨ Я МОЛОДЕЦ! ✨</p>
-    <div class="page-number">стр. 24</div>
-</div>
-
-<!-- ПОСЛЕСЛОВИЕ -->
-<div class="page"><h2>✅ ДО НОВЫХ ВСТРЕЧ</h2><p>Ты отлично поработал! Лето с пользой — это весело и интересно.</p><div class="page-number">стр. 25</div></div>
-</div>
-<button class="print-btn" style="margin-top:20px;" onclick="window.print()">🖨️ ПЕЧАТЬ ЕЩЁ РАЗ</button>
-<div class="footer-note">⭐ для детей 5–7 лет · нейроподход · логопедия · моторика · эмоции ⭐</div>
+    <svg class="silhouette" viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
+        <!-- Силуэт человека (вид спереди) -->
+        <path d="
+            M 100 20
+            C 100 20, 115 25, 120 40
+            C 125 55, 120 70, 120 70
+            L 140 90
+            C 155 105, 170 120, 175 140
+            C 180 160, 175 180, 160 190
+            L 140 180
+            L 130 220
+            L 150 280
+            L 155 320
+            L 150 360
+            L 130 360
+            L 120 320
+            L 110 280
+            L 100 260
+            L 90 280
+            L 80 320
+            L 70 360
+            L 50 360
+            L 45 320
+            L 50 280
+            L 70 220
+            L 60 180
+            L 40 190
+            C 25 180, 20 160, 25 140
+            C 30 120, 45 105, 60 90
+            L 80 70
+            C 80 70, 75 55, 80 40
+            C 85 25, 100 20, 100 20
+            Z
+        " fill="#B0BEC5" stroke="#78909C" stroke-width="2"/>
+        <!-- Внутренний контур головы (лицо) для обозначения -->
+        <ellipse cx="100" cy="55" rx="20" ry="25" fill="#B0BEC5" stroke="#78909C" stroke-width="2"/>
+    </svg>
+    <p style="text-align: center; margin-top: 10px; font-family: Arial; color: #555;">Силуэт для методики «Горячие точки тела»</p>
 </body>
 </html>
